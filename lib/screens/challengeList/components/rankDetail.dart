@@ -6,6 +6,7 @@ import '../../../../models/weeklyRank.dart';
 //import 'eachWeeklyRank.dart';
 import '../../../components/ImageContainer.dart';
 import '../../../../theme.dart';
+// import '../../components/ImageContainer.dart';
 
 // class RankDetail extends StatelessWidget {
 //   final WeeklyRank weeklyRank;
@@ -80,6 +81,7 @@ class RankDetail extends StatelessWidget {
               borderRadius: 25,
               imageUrl: weeklyRankList.imageUrl,
             ),
+
             const SizedBox(width: 14),
             Expanded(
               child: Column(

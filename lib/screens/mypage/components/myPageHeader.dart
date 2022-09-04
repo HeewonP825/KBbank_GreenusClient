@@ -16,15 +16,15 @@ class MyPageHeader extends StatelessWidget {
         child: Column(
           children: [
             _buildProfileRow(),
-            const SizedBox(height: 30),
+            const SizedBox(height: 25),
             _buildProfileButton(),
-            const SizedBox(height: 30),
+            const SizedBox(height: 25),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildRoundTextButton('판매내역', FontAwesomeIcons.receipt),
-                _buildRoundTextButton('구매내역', FontAwesomeIcons.shoppingBag),
-                _buildRoundTextButton('관심목록', FontAwesomeIcons.heart),
+                _buildRoundTextButton('배지1', FontAwesomeIcons.solidHeart),
+                _buildRoundTextButton('배지2', FontAwesomeIcons.solidHeart),
+                _buildRoundTextButton('배지3', FontAwesomeIcons.solidHeart),
               ],
             )
           ],
@@ -44,7 +44,7 @@ class MyPageHeader extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(32.5),
                 child: Image.network(
-                  'https://placeimg.com/200/100/people',
+                  "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
                   fit: BoxFit.cover,
                 ),
               ),
@@ -70,9 +70,9 @@ class MyPageHeader extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('developer', style: textTheme().headline2),
+            Text('Lv3'),
             SizedBox(height: 10),
-            Text('좌동 #00912'),
+            Text('그리너', style: textTheme().headline2),
           ],
         )
       ],
@@ -81,19 +81,19 @@ class MyPageHeader extends StatelessWidget {
 
   Widget _buildProfileButton() {
     return InkWell(
-      onTap: () {},
+      //onTap: () {},
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
-            color: Color(0xFFD4D5DD),
-            width: 1.0,
+            color: Color(0xFF69b06c),
+            width: 2.3,
           ),
           borderRadius: BorderRadius.circular(6.0),
         ),
         height: 45,
         child: Center(
           child: Text(
-            '프로필 펼쳐 보기',
+            '환영합니다! 그리너 OOO님:)',
             style: textTheme().subtitle1,
           ),
         ),
@@ -109,11 +109,11 @@ class MyPageHeader extends StatelessWidget {
           height: 60,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30.0),
-              color: Color.fromRGBO(255, 226, 208, 1),
+              color: Color.fromRGBO(228, 255, 221, 1.0),
               border: Border.all(color: Color(0xFFD4D5DD), width: 0.5)),
           child: Icon(
             iconData,
-            color: Colors.green,
+            color: Color(0xFF69b06c),
           ),
         ),
         SizedBox(height: 10),

@@ -1,36 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'components/myPageHeader.dart';
+import '../../../theme.dart';
 
 class MyPageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-          child: Scaffold(
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              title: Text(
-                "GREENUS",
-                style: GoogleFonts.pacifico(fontSize: 20, color: Colors.white),
-              ),
-            ),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text(
+            "GREENUS",
+            style: GoogleFonts.pacifico(fontSize: 20, color: Colors.white),
           ),
         ),
-    );
-
-    return Scaffold(
       body: ListView(
-        children: [
+          children: [
           MyPageHeader(),
-          const SizedBox(height: 8.0),
-          //CardIconMenu(iconMenuList: iconMenu1),
-          //const SizedBox(height: 8.0),
-          //CardIconMenu(iconMenuList: iconMenu2),
-          //const SizedBox(height: 8.0),
-          //CardIconMenu(iconMenuList: iconMenu3),
-        ],
-      ),
+            SizedBox(height: 20),
+            Padding(
+              padding: EdgeInsets.only(left: 16, bottom: 16),
+              child: Text("진행 중인 미션", style: textTheme().headline1,),
+            ),
+          ],
+        ),
     );
   }
 }
