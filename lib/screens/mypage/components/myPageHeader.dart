@@ -1,10 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../../../models/myPageData.dart';
 
 import '../../../../theme.dart';
 
 class MyPageHeader extends StatelessWidget {
+  const MyPageHeader({
+    Key? key,
+    required this.myPageData,
+  }) : super(key: key);
+
+  final MyPageData myPageData;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -22,9 +30,9 @@ class MyPageHeader extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildRoundTextButton('배지1', FontAwesomeIcons.solidHeart),
-                _buildRoundTextButton('배지2', FontAwesomeIcons.solidHeart),
-                _buildRoundTextButton('배지3', FontAwesomeIcons.solidHeart),
+                _buildRoundTextButton(myPageData.badge1, FontAwesomeIcons.solidHeart),
+                _buildRoundTextButton(myPageData.badge2, FontAwesomeIcons.solidHeart),
+                _buildRoundTextButton(myPageData.badge3, FontAwesomeIcons.solidHeart),
               ],
             )
           ],
@@ -44,7 +52,7 @@ class MyPageHeader extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(32.5),
                 child: Image.network(
-                  "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+                  myPageData.profileImage,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -70,9 +78,17 @@ class MyPageHeader extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Lv3'),
+            Text.rich(
+              TextSpan(children: [
+                TextSpan(text: myPageData.level),
+                TextSpan(text: myPageData.levelNum.toString()),
+              ]),
+            ),
             SizedBox(height: 10),
-            Text('그리너', style: textTheme().headline2),
+            Text(
+              myPageData.name,
+              style: textTheme().headline1,
+            ),
           ],
         )
       ],
@@ -86,14 +102,14 @@ class MyPageHeader extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             color: Color(0xFF69b06c),
-            width: 2.3,
+            width: 2.0,
           ),
-          borderRadius: BorderRadius.circular(6.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         height: 45,
         child: Center(
           child: Text(
-            '환영합니다! 그리너 OOO님:)',
+            '😃 환영합니다! 그리너 ${myPageData.name} 님:) 😃',
             style: textTheme().subtitle1,
           ),
         ),
