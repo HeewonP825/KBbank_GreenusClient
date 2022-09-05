@@ -37,39 +37,5 @@ class HomePage extends StatelessWidget {
       ],
 
     );
-    // return Scaffold(
-    //   body: ListView(
-    //     children: List.generate(
-    //       weeklyRankList.length,
-    //           (index) => RankDetail(weeklyRank: weeklyRankList[index]),
-    //     ),
-    //   ),
-    // );
-    //   /*body: ListView.separated(
-    //     separatorBuilder: (context, index) => Divider(
-    //       height: 0,
-    //       indent: 16,
-    //       endIndent: 16,
-    //       color: Colors.grey,
-    //     ),
-    //     itemBuilder: (context, index) {
-    //       return RankDetail(
-    //         weeklyRank: WRList[index],
-    //       );
-    //     },
-    //     itemCount: WRList.length,
-    //   ),*/
-    //   /*child: ListView(
-    //             padding: const EdgeInsets.all(8),
-    //             children: [
-    //                itemBuilder: (context, index) {
-    //                  return RankDetail(
-    //                     weeklyRank: WeeklyRank[index],
-    //                   );
-    //                 },
-    //                 itemCount: productList.length,
-    //             ]*/
-    //  //);
-
    }
 }

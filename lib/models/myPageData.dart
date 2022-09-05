@@ -7,6 +7,7 @@ class MyPageData {
   final String badge2;
   final String badge3;
 
+
   MyPageData({
     required this.name,
     required this.profileImage,

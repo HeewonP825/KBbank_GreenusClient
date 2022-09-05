@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../constants.dart';
 import '../../../theme.dart';
 import 'components/homePage.dart';
-import 'components/ingMission.dart';
+import 'components/eachIngMission.dart';
+import 'components/IngMission.dart';
 import 'components/finishMission.dart';
 
 class ChallengeHome extends StatelessWidget {
