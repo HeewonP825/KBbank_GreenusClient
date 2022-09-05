@@ -7,17 +7,11 @@ import '../../../../theme.dart';
 
 class IngMission extends StatelessWidget {
 
-  // final IngMissionData? ingMissionData;
-  //
-  // const IngMission({Key? key, this.ingMissionData}) : super(key: key);
-
-  // EachIngMission({this.ingMissionData});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: ListView(
-          prototypeItem: SizedBox(height: 250),
+          prototypeItem: SizedBox(height: 145),
           children: List.generate(
             ingMissionData.length,
               (index) {
