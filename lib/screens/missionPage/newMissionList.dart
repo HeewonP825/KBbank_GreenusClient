@@ -26,7 +26,7 @@ class NewMissionList extends StatelessWidget {
         onPressed: () { // 이벤트 콜백 함수
           Navigator.pop(
             context,
-            MaterialPageRoute(builder: (context) => IngMission()),
+            MaterialPageRoute(builder: (context) => IngMissionWidget()),
           );
         },
       ),

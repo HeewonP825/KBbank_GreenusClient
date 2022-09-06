@@ -2,36 +2,61 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../models/ingMissionData.dart';
+import 'package:kbbank_practice/screens/missionPage/newMissionList.dart';
 import 'eachIngMission.dart';
 import '../../../../theme.dart';
-import '../../../missionPage/newMissionList.dart';
 
-class IngMission extends StatelessWidget {
+class IngMissionWidget extends StatefulWidget {
+  const IngMissionWidget({Key? key}) : super(key: key);
+
+  @override
+  State<IngMissionWidget> createState() => _IngMissionWidgetState();
+}
+
+class _IngMissionWidgetState extends State<IngMissionWidget> {
+  late Future<List<IngMissionData>> futureIngMissionData;
+
+  void initState(){
+    super.initState();
+    futureIngMissionData=receiveIngMissionData();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: (Icon(Icons.add)),
-        backgroundColor: Colors.green,//Widget 추가
-        onPressed: () { // 이벤트 콜백 함수
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => NewMissionList()),
+    return FutureBuilder<List<IngMissionData>>(
+      future: futureIngMissionData,
+      builder: (context,snapshot) {
+        var data = snapshot.data;
+        if (data == null) {
+          return Container(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           );
-        },
-      ),
-
-      body: ListView(
-          prototypeItem: SizedBox(height: 132),
-          children: List.generate(
-            ingMissionData.length,
-              (index) {
-                print(ingMissionData[index]);
-                return EachIngMission(ingMissionData: ingMissionData[index]);
+        } else {
+          return Scaffold(
+            floatingActionButton: FloatingActionButton(
+              child: (Icon(Icons.add)),
+              backgroundColor: Colors.green,//Widget 추가
+              onPressed: () { // 이벤트 콜백 함수
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NewMissionList()),
+                );
               },
-          ),
-        ),
-    );
+            ),
+            body: ListView(
+              prototypeItem: SizedBox(height: 145),
+              children: List.generate(
+                data.length,
+                    (index) {
+                  print(data[index]);
+                  return EachIngMission(ingMissionData: data[index]);
+                },
+              ),
+            ),
+          );
+        }
+      });
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kbbank_practice/models/FriendProfile.dart';
 import '../../../../models/ingMissionData.dart';
 import '../../../../theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,8 +11,34 @@ class EachIngMission extends StatelessWidget {
 
   EachIngMission({this.ingMissionData});
 
+
   @override
   Widget build(BuildContext context) {
+    print("ingMissionData!!!:");
+    print(ingMissionData);
+    List<FriendProfile>? friendProfileList=ingMissionData?.friendProfileList;
+    late int list_length=0;
+    if(friendProfileList!=null){
+      list_length=friendProfileList.length;
+    }
+
+    List<Widget> profileContainerList=[];
+    for(int i=0; i< list_length ; i++){
+          profileContainerList.add(Container(
+            margin: const EdgeInsets.fromLTRB(15, 0, 6, 10),
+            padding: const EdgeInsets.all(20.0),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: new DecorationImage(
+                fit: BoxFit.fill,
+                image: new Image.network(
+                    friendProfileList![i].profileUrl
+                ).image,
+              ),
+            ),
+          ),);
+    }
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -22,10 +49,12 @@ class EachIngMission extends StatelessWidget {
             decoration: new BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               image: new DecorationImage(
-                colorFilter: ColorFilter.mode(
-                  Colors.white.withOpacity(0.7), BlendMode.dstATop),
-                fit: BoxFit.cover,
-                image: new AssetImage(
+                  colorFilter: ColorFilter.mode(
+                      Colors.white.withOpacity(0.7),
+                      BlendMode.dstATop
+                  ),
+                  fit: BoxFit.cover,
+                  image: new AssetImage(
                     ingMissionData?.backgroundImage ?? ''
                 ),
               ),
@@ -60,47 +89,7 @@ class EachIngMission extends StatelessWidget {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                        margin: const EdgeInsets.fromLTRB(15, 0, 6, 10),
-                        padding: const EdgeInsets.all(20.0),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: new DecorationImage(
-                            fit: BoxFit.fill,
-                            image: new AssetImage(
-                              ingMissionData?.profileImage1 ?? ''
-                            ),
-                          ),
-                        ),
-                      ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(3.5, 0, 6, 10),
-                      padding: const EdgeInsets.all(20.0),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: new DecorationImage(
-                          fit: BoxFit.fill,
-                          image: new AssetImage(
-                              ingMissionData?.profileImage2 ?? ''
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(3.5, 0, 4, 10),
-                      padding: const EdgeInsets.all(20.0),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: new DecorationImage(
-                          fit: BoxFit.fill,
-                          image: new AssetImage(
-                              ingMissionData?.profileImage3 ?? ''
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  children: profileContainerList,
                 ),
                 // ButtonBar(
                 //   alignment: MainAxisAlignment.start,

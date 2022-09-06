@@ -1,3 +1,6 @@
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 class MyPageData {
   final String name;
   final String profileImage;
@@ -18,6 +21,35 @@ class MyPageData {
     required this.badge3,
   });
 }
+
+Future<MyPageData> receiveMyPageData() async {
+  var userId = 12;
+
+  var jsonString = await http.get(
+      Uri.parse('https://dev.uksfirstdomain.shop/app/users/${userId}'));
+  var resp = jsonDecode(jsonString.body);
+  print("receive MyPageData 실행");
+  print(resp);
+  print(resp['result']);
+  print(resp['result']['userName']);
+
+
+  print("실행전");
+  MyPageData myPageData=MyPageData(
+    name: resp['result']['userName'],
+    profileImage:resp['result']['profileImgUrl'],
+    level: 'Lv',
+    levelNum: resp['result']['userLevel'],
+    badge1: '1',
+    badge2: '2',
+    badge3: '3',
+  );
+  print("실행 후");
+  print(myPageData);
+
+  return myPageData;
+}
+
 //TODO 뱃지가 NULL일때 처리해야함 DEFAULT값이 있어야할듯?
 
 // List<MyPageData> myPageData = [
