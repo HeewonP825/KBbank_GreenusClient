@@ -51,7 +51,7 @@ class _MissionListState extends State<MissionList> {
                     elevation: 6.0,
                     shadowColor: Colors.grey,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(bottomRight:Radius.circular(30)),
+                      borderRadius: BorderRadius.circular(30),
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(
