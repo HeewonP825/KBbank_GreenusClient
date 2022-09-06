@@ -100,14 +100,6 @@ class EachIngMission extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(3.5, 0, 6, 10),
-                      padding: const EdgeInsets.all(20.0),
-                      child: Icon(
-                        FontAwesomeIcons.plus,
-                        size: 16,
-                      ),
-                    ),
                   ],
                 ),
                 // ButtonBar(

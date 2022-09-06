@@ -11,7 +11,7 @@ class FinishMission extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        prototypeItem: SizedBox(height: 145),
+        prototypeItem: SizedBox(height: 132),
         children: List.generate(
           finishMissionData.length,
               (index) {

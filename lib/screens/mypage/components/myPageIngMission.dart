@@ -1,36 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../../models/finishMissionData.dart';
+import '../../../../models/ingMissionData.dart';
 import '../../../../theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class EachFinishMission extends StatelessWidget {
+class MyPageIngMission extends StatelessWidget {
 
-  final FinishMissionData? finishMissionData;
+  final IngMissionData? ingMissionData;
 
-  EachFinishMission({this.finishMissionData});
+  MyPageIngMission({this.ingMissionData});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Container(
-            // width: 400,
-            // height: 230,
-            margin: EdgeInsets.fromLTRB(6, 6, 6, 0),
-            decoration: new BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              image: new DecorationImage(
-                colorFilter: ColorFilter.mode(
-                    Colors.white.withOpacity(0.3), BlendMode.dstATop),
-                fit: BoxFit.cover,
-                image: new AssetImage(
-                    finishMissionData?.backgroundImage ?? ''
-                ),
-              ),
-            ),
-          ),
+          // Container(
+          //   // width: 400,
+          //   // height: 230,
+          //   margin: EdgeInsets.fromLTRB(6, 6, 6, 0),
+          //   decoration: new BoxDecoration(
+          //     borderRadius: BorderRadius.circular(10.0),
+          //     image: new DecorationImage(
+          //       colorFilter: ColorFilter.mode(
+          //           Colors.white.withOpacity(0.6), BlendMode.dstATop),
+          //       fit: BoxFit.cover,
+          //       image: new AssetImage(
+          //           ingMissionData?.backgroundImage ?? ''
+          //       ),
+          //     ),
+          //   ),
+          // ),
           // Card(
           //   clipBehavior: Clip.antiAlias,
           //   color: Color(0xffffff),
@@ -50,11 +50,11 @@ class EachFinishMission extends StatelessWidget {
               ListTile(
                 //leading: Icon(Icons.arrow_drop_down_circle),
                 title: Text(
-                  finishMissionData?.missionName ?? '',
+                  ingMissionData?.missionName ?? '',
                   style: textTheme().headline1,
                 ),
                 subtitle: Text(
-                  '${finishMissionData?.startDate ?? ''} ~ ${finishMissionData?.startDate ?? ''}',
+                  '${ingMissionData?.startDate ?? ''} ~',
                   style: textTheme().subtitle1,
                 ),
               ),
@@ -69,7 +69,7 @@ class EachFinishMission extends StatelessWidget {
                       image: new DecorationImage(
                         fit: BoxFit.fill,
                         image: new AssetImage(
-                            finishMissionData?.profileImage1 ?? ''
+                            ingMissionData?.profileImage1 ?? ''
                         ),
                       ),
                     ),
@@ -82,7 +82,7 @@ class EachFinishMission extends StatelessWidget {
                       image: new DecorationImage(
                         fit: BoxFit.fill,
                         image: new AssetImage(
-                            finishMissionData?.profileImage2 ?? ''
+                            ingMissionData?.profileImage2 ?? ''
                         ),
                       ),
                     ),
@@ -95,9 +95,17 @@ class EachFinishMission extends StatelessWidget {
                       image: new DecorationImage(
                         fit: BoxFit.fill,
                         image: new AssetImage(
-                            finishMissionData?.profileImage3 ?? ''
+                            ingMissionData?.profileImage3 ?? ''
                         ),
                       ),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(3.5, 0, 6, 10),
+                    padding: const EdgeInsets.all(20.0),
+                    child: Icon(
+                      FontAwesomeIcons.plus,
+                      size: 16,
                     ),
                   ),
                 ],

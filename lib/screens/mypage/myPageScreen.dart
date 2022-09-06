@@ -4,6 +4,8 @@ import 'package:kbbank_practice/models/myPageData.dart';
 import 'components/myPageHeader.dart';
 import '../../../theme.dart';
 import '../../../../models/myPageData.dart';
+import '../../../../models/ingMissionData.dart';
+import 'components/myPageIngMission.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -74,11 +76,25 @@ class _MyPageScreen extends State<MyPageScreen> {
               ),
               body: ListView(
                 children: [
-                  MyPageHeader(myPageData: data),
+                  SizedBox(
+                    height: 290,
+                    child: MyPageHeader(myPageData : data),
+                  ),
                   SizedBox(height: 20),
                   Padding(
                     padding: EdgeInsets.only(left: 16, bottom: 16),
-                    child: Text("진행 중인 미션", style: textTheme().headline1,),
+                    child: Text("진행중인 미션", style: textTheme().headline1,),
+                  ),
+                  // 2
+                  //SizedBox(height: 550),
+                  Column(
+                    children: List.generate(
+                      ingMissionData.length,
+                          (index) {
+                              print(ingMissionData[index]);
+                              return MyPageIngMission(ingMissionData: ingMissionData[index]);
+                          },
+                    ),
                   ),
                 ],
               ),

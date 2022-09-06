@@ -10,8 +10,16 @@ class IngMission extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(
-          prototypeItem: SizedBox(height: 145),
+      floatingActionButton: FloatingActionButton(
+        child: (Icon(Icons.add)),
+        backgroundColor: Colors.green,//Widget 추가
+        onPressed: () { // 이벤트 콜백 함수
+          //print('Hi there!');
+        },
+      ),
+
+      body: ListView(
+          prototypeItem: SizedBox(height: 132),
           children: List.generate(
             ingMissionData.length,
               (index) {
