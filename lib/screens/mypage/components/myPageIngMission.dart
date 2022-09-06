@@ -12,41 +12,25 @@ class MyPageIngMission extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          // Container(
-          //   // width: 400,
-          //   // height: 230,
-          //   margin: EdgeInsets.fromLTRB(6, 6, 6, 0),
-          //   decoration: new BoxDecoration(
-          //     borderRadius: BorderRadius.circular(10.0),
-          //     image: new DecorationImage(
-          //       colorFilter: ColorFilter.mode(
-          //           Colors.white.withOpacity(0.6), BlendMode.dstATop),
-          //       fit: BoxFit.cover,
-          //       image: new AssetImage(
-          //           ingMissionData?.backgroundImage ?? ''
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          // Card(
-          //   clipBehavior: Clip.antiAlias,
-          //   color: Color(0xffffff),
-
-          Column(
-            children: <Widget>[
+    return Stack(
+      children: <Widget>[
               Container(
-                width: 5,
-                height: 5,
-                //margin: EdgeInsets.fromLTRB(15, 0, 15, 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
+                //width: 400,
+                height: 110,
+                margin: EdgeInsets.fromLTRB(8, 8, 8, 0),
+                decoration: new BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.4),
+                      spreadRadius: 2,
+                      blurRadius: 1.5,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                  color: Colors.  white,
                 ),
-                //padding: const EdgeInsets.all(15.0),
               ),
-
               ListTile(
                 //leading: Icon(Icons.arrow_drop_down_circle),
                 title: Text(
@@ -62,7 +46,7 @@ class MyPageIngMission extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    margin: const EdgeInsets.fromLTRB(15, 0, 6, 10),
+                    margin: const EdgeInsets.fromLTRB(15, 65, 6, 10),
                     padding: const EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -75,7 +59,7 @@ class MyPageIngMission extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.fromLTRB(3.5, 0, 6, 10),
+                    margin: const EdgeInsets.fromLTRB(3.5, 65, 6, 10),
                     padding: const EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -88,7 +72,7 @@ class MyPageIngMission extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.fromLTRB(3.5, 0, 4, 10),
+                    margin: const EdgeInsets.fromLTRB(3.5, 65, 4, 10),
                     padding: const EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -100,20 +84,9 @@ class MyPageIngMission extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(3.5, 0, 6, 10),
-                    padding: const EdgeInsets.all(20.0),
-                    child: Icon(
-                      FontAwesomeIcons.plus,
-                      size: 16,
-                    ),
-                  ),
                 ],
               ),
             ],
-          ),
-        ],
-      ),
     );
   }
 }

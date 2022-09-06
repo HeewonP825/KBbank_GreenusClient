@@ -85,6 +85,9 @@ class _MyPageScreen extends State<MyPageScreen> {
                     padding: EdgeInsets.only(left: 16, bottom: 16),
                     child: Text("진행중인 미션", style: textTheme().headline1,),
                   ),
+                  Container(
+                      width: 400,
+                      child: Divider(color: Color(0xFFE8E8E8), thickness: 1.0)),
                   // 2
                   //SizedBox(height: 550),
                   Column(

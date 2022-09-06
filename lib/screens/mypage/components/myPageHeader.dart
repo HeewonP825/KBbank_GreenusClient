@@ -100,10 +100,19 @@ class MyPageHeader extends StatelessWidget {
       //onTap: () {},
       child: Container(
         decoration: BoxDecoration(
+          color: Color(0xFFD9EED4),
           border: Border.all(
-            color: Color(0xFF69b06c),
-            width: 2.0,
+            width: 1.5,
+            color: Color(0xffffffff),
           ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.35),
+              spreadRadius: 1.7,
+              blurRadius: 1.2,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
           borderRadius: BorderRadius.circular(10.0),
         ),
         height: 45,
