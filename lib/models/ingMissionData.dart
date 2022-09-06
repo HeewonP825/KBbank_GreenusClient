@@ -21,12 +21,9 @@ class IngMissionData {
 }
 
 Future<List<IngMissionData>> receiveIngMissionData() async {
-  print("뭐가됐든 여기 들어오긶 ㅏㄴ거겠지?");
-  ///:userId
+  //Todo userId수정 필요
   var userId = 1;
-  print("진행중 미션 response1");
 
-  print("진행중 미션 response2");
   var options = BaseOptions(
     baseUrl: 'https://dev.uksfirstdomain.shop',
     connectTimeout: 5000,
@@ -37,7 +34,6 @@ Future<List<IngMissionData>> receiveIngMissionData() async {
     'status': 'onGoing'
   });
 
-  print("진행중 미션 response3");
   print(response);
   print(response.data);
   print(response.data["result"]);
