@@ -67,6 +67,8 @@ class EachFinishMission extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: new DecorationImage(
+                        colorFilter: ColorFilter.mode(
+                            Colors.white.withOpacity(0.6), BlendMode.dstATop),
                         fit: BoxFit.fill,
                         image: new AssetImage(
                             finishMissionData?.profileImage1 ?? ''
@@ -80,6 +82,8 @@ class EachFinishMission extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: new DecorationImage(
+                        colorFilter: ColorFilter.mode(
+                            Colors.white.withOpacity(0.6), BlendMode.dstATop),
                         fit: BoxFit.fill,
                         image: new AssetImage(
                             finishMissionData?.profileImage2 ?? ''
@@ -93,6 +97,8 @@ class EachFinishMission extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: new DecorationImage(
+                        colorFilter: ColorFilter.mode(
+                            Colors.white.withOpacity(0.6), BlendMode.dstATop),
                         fit: BoxFit.fill,
                         image: new AssetImage(
                             finishMissionData?.profileImage3 ?? ''

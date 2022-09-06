@@ -23,7 +23,7 @@ class EachIngMission extends StatelessWidget {
               borderRadius: BorderRadius.circular(10.0),
               image: new DecorationImage(
                 colorFilter: ColorFilter.mode(
-                  Colors.white.withOpacity(0.6), BlendMode.dstATop),
+                  Colors.white.withOpacity(0.7), BlendMode.dstATop),
                 fit: BoxFit.cover,
                 image: new AssetImage(
                     ingMissionData?.backgroundImage ?? ''
