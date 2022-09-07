@@ -15,17 +15,18 @@ Future<List<FriendList>> receiveFriendsList() async {
   var jsonString = await http.get(
       Uri.parse('https://dev.uksfirstdomain.shop/app/users/${userId}/friends'));
   var resp = jsonDecode(jsonString.body);
-  print(resp[0]);
-  print(resp[0]['userName']);
+  print("친구야~!~!@~!@~!@~!놀자~!@~!");
+  print(resp['result']);
 
+  final dataResult=resp['result'];
   List<FriendList> friendList=[];
-  for(int i=0; i<resp.length;i++){
+  for(int i=0; i<resp['result'].length;i++){
 
     friendList.add(FriendList(
-      message: resp[i]['statusMessage'],
-      friendName: resp[i]['userName'],
-      profileImage: resp[i]['profileImgUrl'],
-      levelNum: resp[i]['userLevel'],
+      message: dataResult[i]['statusMessage'],
+      friendName: dataResult[i]['userName'],
+      profileImage: dataResult[i]['profileImgUrl'],
+      levelNum: dataResult[i]['userLevel'],
       level: 'Lv',
     ));
   }
@@ -55,27 +56,37 @@ class _FriendWidgetState extends State<FriendWidget>{
     return FutureBuilder<List<FriendList>>(
       future: futureFriends,
       builder: (context, snapshot) {
+        var data = snapshot.data;
+        if(data==null){
+          return Container(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }else{
+          return Scaffold(
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              title: Text(
+                "GREENUS",
+                style: GoogleFonts.pacifico(fontSize: 20, color: Colors.white),
+              ),
+            ),
+            body: ListView(
+              children: List.generate(
+                snapshot.data?.length ?? 0,
+                    (index) => FriendContainer(friendList: snapshot.data![index]),
+              ),
+            ),
+          );
+        }
       //   if(snapshot.hasError) {
       //     return Center(child: Text(snapshot.error.toString()));
       //   }
       //   if (!snapshot.hasData) {
       //     return Center(child: CircularProgressIndicator());
       // }
-        return Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            title: Text(
-              "GREENUS",
-              style: GoogleFonts.pacifico(fontSize: 20, color: Colors.white),
-            ),
-          ),
-          body: ListView(
-            children: List.generate(
-              snapshot.data?.length ?? 0,
-                  (index) => FriendContainer(friendList: snapshot.data![index]),
-            ),
-          ),
-        );
+
       },
     );
     // return Scaffold(

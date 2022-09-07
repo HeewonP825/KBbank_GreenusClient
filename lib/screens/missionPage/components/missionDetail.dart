@@ -21,11 +21,11 @@ class MissionDetail extends StatelessWidget {
           style: GoogleFonts.pacifico(fontSize: 20, color: Colors.white),
         ),
       ),
-
       floatingActionButton: FloatingActionButton(
         child: (Icon(Icons.keyboard_return)),
         backgroundColor: Colors.green, //Widget 추가
-        onPressed: () { // 이벤트 콜백 함수
+        onPressed: () {
+          // 이벤트 콜백 함수
           Navigator.pop(
             context,
             MaterialPageRoute(builder: (context) => NewMissionList()),

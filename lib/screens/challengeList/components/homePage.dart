@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kbbank_practice/screens/weeklyRank/weeklyRankWidget.dart';
 import '../components/homeRecommendMission.dart';
 import '../components/eachWeeklyRank.dart';
 //import '../components/rankDetail.dart';
@@ -28,12 +29,7 @@ class HomePage extends StatelessWidget {
           child: Text("주간 등수", style: textTheme().headline1,),
         ),
         // 2
-        Column(
-          children: List.generate(
-            weeklyRankList.length,
-                (index) => RankDetail(weeklyRankList: weeklyRankList[index]),
-          ),
-        ),
+        WeeklyRankWidget(),
       ],
 
     );

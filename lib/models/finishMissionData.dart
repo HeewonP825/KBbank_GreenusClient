@@ -109,6 +109,7 @@ Future<List<FinishMissionData>> receiveFinishMissionData() async {
     ));
   }
 
+  print(ingMissionLists[0].finishDate);
   return ingMissionLists;
 }
 

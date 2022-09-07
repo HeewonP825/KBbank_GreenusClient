@@ -14,6 +14,7 @@ class FriendContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("Friend List build start");
     return Container(
       decoration: const BoxDecoration(
         border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
