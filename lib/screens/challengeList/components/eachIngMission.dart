@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kbbank_practice/models/FriendProfile.dart';
+import 'package:kbbank_practice/screens/challengeDetail/challengeDetalHome.dart';
 import 'package:kbbank_practice/screens/challengeDetail/missionRank.dart';
 import '../../../../models/ingMissionData.dart';
 import '../../../../theme.dart';
@@ -48,7 +49,7 @@ class EachIngMission extends StatelessWidget {
               print("눌림`");
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MissionRank()),
+                MaterialPageRoute(builder: (context) => MissionDetailPageView()),
               );
             },
             child: Container(

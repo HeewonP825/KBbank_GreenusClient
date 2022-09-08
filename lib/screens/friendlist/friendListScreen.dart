@@ -51,12 +51,14 @@ class _FriendWidgetState extends State<FriendWidget>{
 
   @override
   Widget build(BuildContext context) {
-    //final List<FriendList> friendList=await receiveFriendsList();
+    // final List<FriendList> friendList=receiveFriendsList();
 
     return FutureBuilder<List<FriendList>>(
       future: futureFriends,
       builder: (context, snapshot) {
         var data = snapshot.data;
+        print("친구야`!~@! 잘 놀았다~!@~!2");
+        print(data);
         if(data==null){
           return Container(
             child: Center(
