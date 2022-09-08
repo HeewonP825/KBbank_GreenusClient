@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kbbank_practice/models/FriendProfile.dart';
+import 'package:kbbank_practice/screens/challengeDetail/missionRank.dart';
 import '../../../../models/ingMissionData.dart';
 import '../../../../theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -42,20 +43,29 @@ class EachIngMission extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Container(
-            // width: 400,
-            // height: 230,
-            margin: EdgeInsets.fromLTRB(6, 6, 6, 0),
-            decoration: new BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              image: new DecorationImage(
-                  colorFilter: ColorFilter.mode(
-                      Colors.white.withOpacity(0.7),
-                      BlendMode.dstATop
+          GestureDetector(
+            onTap: (){
+              print("눌림`");
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MissionRank()),
+              );
+            },
+            child: Container(
+              // width: 400,
+              // height: 230,
+              margin: EdgeInsets.fromLTRB(6, 6, 6, 0),
+              decoration: new BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                image: new DecorationImage(
+                    colorFilter: ColorFilter.mode(
+                        Colors.white.withOpacity(0.7),
+                        BlendMode.dstATop
+                    ),
+                    fit: BoxFit.cover,
+                    image: new AssetImage(
+                      ingMissionData?.backgroundImage ?? ''
                   ),
-                  fit: BoxFit.cover,
-                  image: new AssetImage(
-                    ingMissionData?.backgroundImage ?? ''
                 ),
               ),
             ),
