@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kbbank_practice/screens/challengeDetail/missionFeed.dart';
 import 'package:kbbank_practice/screens/challengeDetail/missionRank.dart';
 import 'package:kbbank_practice/screens/challengeDetail/missionStamp.dart';
 
@@ -15,6 +16,7 @@ class MissionDetailPageView extends StatelessWidget {
       children: [
         MissionStampWidget(),
         MissionRank(),
+        MissionFeed(),
       ],
     );
   }

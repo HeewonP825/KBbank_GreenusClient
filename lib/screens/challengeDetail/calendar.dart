@@ -44,6 +44,14 @@ class _CalendarState extends State<Calendar> {
         return _getEventsForDay(day);
       },
       calendarStyle: CalendarStyle(
+        todayDecoration: BoxDecoration(
+          color: const Color(0xFFE6EFE4),
+          shape: BoxShape.circle,
+        ),
+        markerDecoration: BoxDecoration(
+          color: Colors.green,
+          shape: BoxShape.circle,
+        ),
         markerSize:20,
       ),
     );
