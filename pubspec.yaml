@@ -45,6 +45,7 @@ dependencies:
   flutter_native_splash: ^2.2.0+1
   carousel_slider: ^4.1.1
   table_calendar: ^3.0.7
+  syncfusion_flutter_datepicker: ^20.2.48
 
 dev_dependencies:
   flutter_test:

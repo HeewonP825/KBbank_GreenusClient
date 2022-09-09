@@ -10,11 +10,15 @@ class UserInfoWidget extends StatelessWidget {
       height: 100,
       margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(
-          color: Colors.green,
-          width: 2,
-        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.4),
+            spreadRadius: 2,
+            blurRadius: 1.5,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+        color: Colors.  white,
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: Row(
@@ -25,7 +29,7 @@ class UserInfoWidget extends StatelessWidget {
               child: Text("1.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 35,
+                    fontSize: 30,
                   ))), //순위
           Flexible(
             fit: FlexFit.tight,
@@ -33,7 +37,7 @@ class UserInfoWidget extends StatelessWidget {
             child: Container(
               //profileImage
               alignment: Alignment.center,
-              margin: const EdgeInsets.fromLTRB(15, 0, 6, 10),
+              margin: const EdgeInsets.fromLTRB(15, 5, 6, 10),
               padding: const EdgeInsets.all(20.0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
