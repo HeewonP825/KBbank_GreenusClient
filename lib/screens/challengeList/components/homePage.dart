@@ -28,6 +28,9 @@ class HomePage extends StatelessWidget {
           padding: EdgeInsets.only(left: 16, bottom: 16),
           child: Text("주간 등수", style: textTheme().headline1,),
         ),
+        Container(
+            width: 400,
+            child: Divider(color: Color(0xFFDBDADA), thickness: 1.0)),
         // 2
         WeeklyRankWidget(),
       ],
