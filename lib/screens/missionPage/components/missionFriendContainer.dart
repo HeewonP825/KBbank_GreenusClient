@@ -4,13 +4,23 @@ import '../../../models/friendList.dart';
 import '../../../theme.dart';
 import '../../components/ImageContainer.dart';
 
-class FriendContainer extends StatelessWidget {
-  const FriendContainer({
+class MissionFriendContainer extends StatefulWidget {
+  const MissionFriendContainer({
     Key? key,
     required this.friendList,
   }) : super(key: key);
 
   final FriendList friendList;
+  // use this
+  @override
+  _MissionFriendContainerState createState() => _MissionFriendContainerState();
+}
+
+class _MissionFriendContainerState extends State<MissionFriendContainer> {
+
+  late final FriendList friendList;
+
+  bool _isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +40,30 @@ class FriendContainer extends StatelessWidget {
             offset: Offset(0, 3), // changes position of shadow
           ),
         ],
-        color: Colors.  white,
+        color: Colors.white,
       ),
       margin: EdgeInsets.fromLTRB(8, 8, 8, 0),
       height: 96,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Row(
-          children: [
-            // Checkbox(
-            //   value: this.value,
-            //   onChanged: (bool value) {
-            //     setState(() {
-            //       this.value = value;
-            //     });
-            //   },
-            // ),
+          children: <Widget>[
+            Checkbox(
+              value: _isChecked,
+              onChanged: (value) {
+                setState(() {
+                  _isChecked = value!;
+                });
+              },
+            ),
+            Switch(
+              value: _isChecked,
+              onChanged: (value) {
+                setState(() {
+                  _isChecked = value!;
+                });
+              },
+            ),
             ImageContainer(
               width: 55,
               height: 55,
