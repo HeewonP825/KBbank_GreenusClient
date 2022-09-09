@@ -5,6 +5,7 @@ import 'package:kbbank_practice/screens/challengeDetail/userInfo.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../theme.dart';
+import '../certifyPage/doCertify.dart';
 
 
 class MissionStampWidget extends StatelessWidget {
@@ -44,10 +45,19 @@ class MissionStampWidget extends StatelessWidget {
             ),
           ),
           UserInfoWidget(),
-          Calendar(),
+          Container(
+            child: Card(
+              margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+              child: Calendar(),
+            ),
+          ),
           GestureDetector(
             onTap: (){
-              print("인증하기 페이지로 이동되어야함.");
+              print("인증하기 페이지로 이동`");
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DoCertify()),
+              );
             },
             child: Container(
               decoration:BoxDecoration(
@@ -73,16 +83,8 @@ class MissionStampWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                      "인증하기",
-                      style: TextStyle(
-                        fontSize: 25,
-                      ),
-                  ),
-                  Icon(
-                    FontAwesomeIcons.plus,
-                    size: 25,
-                  )
+                  Text("인증하기", style: textTheme().headline1,),
+                  Icon(Icons.add),
                 ],
               )
             ),

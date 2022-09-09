@@ -55,7 +55,7 @@ class MissionDetailState extends State<MissionDetail> {
     //primary: Colors.black87,
     minimumSize: Size(88, 36),
     padding: EdgeInsets.symmetric(horizontal: 16.0),
-    elevation: 10,
+    elevation: 5,
     // shape
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(27.5),
@@ -151,14 +151,18 @@ class MissionDetailState extends State<MissionDetail> {
             margin: EdgeInsets.fromLTRB(13, 5, 20, 0),
             //height: 50,
             alignment: Alignment.topLeft,
-            child: Text("친구 추가", style: textTheme().headline1),
-
+            child: Row(
+              children: [
+                Text("친구 추가", style: textTheme().headline1),
+                Icon(Icons.add_circle_outline_rounded),
+              ],
+            ),
           ),
           Container(
             margin: EdgeInsets.fromLTRB(13, 5, 20, 0),
             //height: 50,
             alignment: Alignment.topLeft,
-            child: Text("미션 설명", style: textTheme().headline1),
+            child: Text("미션 설명", style: textTheme().headline1,),
           ),
           Container(
             child: Card(
