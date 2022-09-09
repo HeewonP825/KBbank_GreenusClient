@@ -46,7 +46,7 @@ class _IngMissionWidgetState extends State<IngMissionWidget> {
               },
             ),
             body: ListView(
-              prototypeItem: SizedBox(height: 145),
+              prototypeItem: SizedBox(height: 132),
               children: List.generate(
                 data.length,
                     (index) {
