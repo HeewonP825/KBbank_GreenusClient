@@ -29,15 +29,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  calendar_builder:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "265a94e45c2b82f9153b964a032170876ac04c6a"
-      url: "https://github.com/J-MU/calendar_builder.git"
-    source: git
-    version: "0.0.6"
   carousel_slider:
     dependency: "direct main"
     description:
@@ -158,13 +149,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "9.2.0"
-  get:
-    dependency: transitive
-    description:
-      name: get
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.6.5"
   google_fonts:
     dependency: "direct main"
     description:
@@ -347,6 +331,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.3"
+  simple_gesture_detector:
+    dependency: transitive
+    description:
+      name: simple_gesture_detector
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -387,6 +378,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.5"
+  table_calendar:
+    dependency: "direct main"
+    description:
+      name: table_calendar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.7"
   term_glyph:
     dependency: transitive
     description:

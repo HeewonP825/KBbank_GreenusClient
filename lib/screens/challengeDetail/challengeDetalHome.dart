@@ -10,16 +10,13 @@ class MissionDetailPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: MissionStampWidget(),
+    return PageView(
+      controller: missionDetailPageViewController,
+      children: [
+        MissionStampWidget(),
+        MissionRank(),
+      ],
     );
-    // return PageView(
-    //   controller: missionDetailPageViewController,
-    //   children: [
-    //     MissionStampWidget(),
-    //     MissionRank(),
-    //   ],
-    // );
   }
 }
 

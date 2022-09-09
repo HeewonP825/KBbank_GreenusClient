@@ -44,9 +44,7 @@ dependencies:
   dio: ^4.0.0
   flutter_native_splash: ^2.2.0+1
   carousel_slider: ^4.1.1
-  calendar_builder:
-    git:
-      url: https://github.com/J-MU/calendar_builder.git
+  table_calendar: ^3.0.7
 
 dev_dependencies:
   flutter_test:
