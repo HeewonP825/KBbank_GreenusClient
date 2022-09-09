@@ -2,6 +2,7 @@ import 'package:calendar_builder/calendar_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kbbank_practice/screens/challengeDetail/userInfo.dart';
+import '../../theme.dart';
 
 class MissionStampWidget extends StatelessWidget {
   const MissionStampWidget({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class MissionStampWidget extends StatelessWidget {
             margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
             height: 50,
             alignment: Alignment.topCenter,
-            child: Center(child: Text("이전 페이지에서 미션 이름 받아와야함.")),
+            child: Center(child: Text("이전 페이지에서 미션 이름 받아와야함.", style: textTheme().headline1),),
             decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(
