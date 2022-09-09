@@ -16,18 +16,32 @@ class FriendContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     print("Friend List build start");
     return Container(
-      decoration: const BoxDecoration(
-        border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 0.2,
+          color: Colors.grey,
+        ),
+        borderRadius: BorderRadius.circular(5),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.4),
+            spreadRadius: 0.5,
+            blurRadius: 1,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+        color: Colors.  white,
       ),
-      height: 100,
+      margin: EdgeInsets.fromLTRB(8, 8, 8, 0),
+      height: 96,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Row(
           children: [
             ImageContainer(
-              width: 60,
-              height: 60,
-              borderRadius: 30,
+              width: 55,
+              height: 55,
+              borderRadius: 27.5,
               imageUrl: friendList.profileImage,
             ),
             const SizedBox(width: 16),

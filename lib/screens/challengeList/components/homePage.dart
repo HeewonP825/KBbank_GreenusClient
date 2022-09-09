@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
           height: 250,
           child: HomeRecommendMission(),
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 16),
         Padding(
           padding: EdgeInsets.only(left: 16, bottom: 16),
           child: Text("주간 등수", style: textTheme().headline1,),

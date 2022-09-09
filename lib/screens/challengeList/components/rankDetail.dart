@@ -19,10 +19,24 @@ class RankDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
+      decoration: BoxDecoration(
+        // border: Border.all(
+        //   width: 0.2,
+        //   color: Colors.grey,
+        // ),
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.4),
+            spreadRadius: 1,
+            blurRadius: 1.5,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+        color: Colors.  white,
       ),
-      height: 100,
+      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+      height: 96,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Row(
