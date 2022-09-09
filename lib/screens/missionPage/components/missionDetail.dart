@@ -50,6 +50,30 @@ class MissionDetailState extends State<MissionDetail> {
     });
   }
 
+  void _showDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0)
+          ),
+          title: new Text("Alert Dialog title"),
+          content: SingleChildScrollView(child:new Text("Alert Dialog body")),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -328,6 +352,41 @@ class MissionDetailState extends State<MissionDetail> {
               child: MissionCustom(),
             ),
           ),
+          ElevatedButton(
+            child: Text('save'),
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  barrierDismissible: false, // 바깥 영역 클릭 시 안닫힘
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('팝업 메시지'),
+                      content: SingleChildScrollView(
+                        child: ListBody(
+                          children: <Widget>[
+                            Text('저장하시겠습니까?'),
+                          ],
+                        )
+                      ),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text('OK'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        FlatButton(
+                          child: Text('Cancel'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  }
+                );
+              }
+            ),
         ],
       ),
     );
