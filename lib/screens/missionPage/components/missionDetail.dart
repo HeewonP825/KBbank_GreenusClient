@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kbbank_practice/screens/challengeList/components/ingMission.dart';
+import 'package:kbbank_practice/screens/missionPage/components/missionWithFriends.dart';
 import 'package:kbbank_practice/screens/missionPage/newMissionList.dart';
 import 'missionList.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -154,7 +155,14 @@ class MissionDetailState extends State<MissionDetail> {
             child: Row(
               children: [
                 Text("친구 추가", style: textTheme().headline1),
-                Icon(Icons.add_circle_outline_rounded),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MissionWithFriends()),
+                    );},
+                  child: Icon(Icons.add_circle_outline_rounded),
+                ),
               ],
             ),
           ),
