@@ -45,7 +45,7 @@ class _CalendarState extends State<Calendar> {
       },
       calendarStyle: CalendarStyle(
         todayDecoration: BoxDecoration(
-          color: const Color(0xFFE6EFE4),
+          color: const Color(0xFFCBF1C3),
           shape: BoxShape.circle,
         ),
         markerDecoration: BoxDecoration(
