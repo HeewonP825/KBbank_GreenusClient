@@ -22,7 +22,7 @@ class MissionStampWidget extends StatelessWidget {
         ),
         body: Column(mainAxisSize: MainAxisSize.min, children: [
           Container(
-            margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+            margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
             height: 50,
             alignment: Alignment.topCenter,
             child: Center(child: Text("이전 페이지에서 미션 이름 받아와야함.", style: textTheme().headline1),),
@@ -64,11 +64,11 @@ class MissionStampWidget extends StatelessWidget {
                     offset: Offset(0, 3), // changes position of shadow
                   ),
                 ],
-                borderRadius: BorderRadius.circular(15.0),
+                borderRadius: BorderRadius.circular(25.0),
               ),
               margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
               padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-              height: 80,
+              height: 70,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -81,7 +81,7 @@ class MissionStampWidget extends StatelessWidget {
                   ),
                   Icon(
                     FontAwesomeIcons.plus,
-                    size: 30,
+                    size: 25,
                   )
                 ],
               )
