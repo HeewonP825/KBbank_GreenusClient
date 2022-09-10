@@ -19,7 +19,7 @@ class MissionDetailPageView extends StatelessWidget {
     return PageView(
       controller: missionDetailPageViewController,
       children: [
-        MissionStampWidget(),
+        MissionStampWidget(args),
         MissionRank(args),
         MissionFeed(),
       ],
