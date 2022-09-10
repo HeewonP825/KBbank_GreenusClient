@@ -7,12 +7,14 @@ import 'FriendProfile.dart';
 
 class IngMissionData {
 
+  final int groupId;
   final String missionName;
   final String backgroundImage;
   final String startDate;
   final List<FriendProfile> friendProfileList;
 
   IngMissionData({
+    required this.groupId,
     required this.missionName,
     required this.backgroundImage,
     required this.startDate,
@@ -53,6 +55,7 @@ Future<List<IngMissionData>> receiveIngMissionData() async {
       );
     }
     ingMissionLists.add(IngMissionData(
+      groupId: data[i]['groupId'],
       missionName: data[i]['missionName'],
       backgroundImage: "assets/images/banner1.jpg",
       startDate: data[i]['startDate'],

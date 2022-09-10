@@ -1,7 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kbbank_practice/models/FriendProfile.dart';
 import 'package:kbbank_practice/models/ingMissionData.dart';
+import 'package:kbbank_practice/models/missionRankUserInfo.dart';
 import 'package:kbbank_practice/screens/challengeDetail/userInfo.dart';
 import 'package:kbbank_practice/screens/challengeList/components/ingMission.dart';
 import '../../../constants.dart';
@@ -19,6 +21,7 @@ class MissionRank extends StatelessWidget {
     print("ingMissionData는 생성자에서 처리됩니다.");
     print(ingMissionData.missionName);
     print(ingMissionData.friendProfileList);
+
     var friendProfileList=[];
     for(int i=0; i<ingMissionData.friendProfileList.length;i++){
       friendProfileList.add(
@@ -37,6 +40,9 @@ class MissionRank extends StatelessWidget {
         ),
       );
     }
+
+
+
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -107,3 +113,43 @@ class MissionRank extends StatelessWidget {
         ));
   }
 }
+
+// Future<List<MissionRankUserInfo>> receiveMissionRankUserInfo() async {
+//   //Todo userId수정 필요
+//   var userId = 1;
+//
+//   var options = BaseOptions(
+//     baseUrl: 'https://dev.uksfirstdomain.shop',
+//     connectTimeout: 5000,
+//     receiveTimeout: 3000,
+//   );
+//   Dio dio = Dio(options);
+//   Response response= await dio.get('/app/MyMissionMainPage');
+//
+//   print(response.data["result"]);
+//   final data=response.data["result"];
+//
+//   List<MissionRankUserInfo> ingMissionLists=[];
+//   List<FriendProfile> friendProfileList=[];
+//
+//   print("friends");
+//   print(data[0]['friends'].runtimeType);
+//   print(data[0]['friends'][0]['profileImgUrl']);
+//
+//   for(int i=0; i<data.length; i++){
+//     for(int j=0; j<data[i]['friends'].length; j++){
+//       friendProfileList.add(
+//           FriendProfile(profileUrl: data[i]['friends'][j]['profileImgUrl'])
+//       );
+//     }
+//     ingMissionLists.add(MissionRankUserInfo(
+//       groupId: data[i]['groupId'],
+//       missionName: data[i]['missionName'],
+//       backgroundImage: "assets/images/banner1.jpg",
+//       startDate: data[i]['startDate'],
+//       friendProfileList: friendProfileList,
+//     ));
+//   }
+//
+//   return ingMissionLists;
+// }
