@@ -107,9 +107,6 @@ class MissionWithFriendsState extends State<MissionWithFriends>{
               ),
             );
           }
-          // body: Column(
-          //
-          // ),
         }
     );
   }

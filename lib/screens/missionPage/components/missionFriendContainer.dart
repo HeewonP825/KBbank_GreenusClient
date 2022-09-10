@@ -20,10 +20,22 @@ class _MissionFriendContainerState extends State<MissionFriendContainer> {
 
   late final FriendList friendList;
 
-  bool _isChecked = false;
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.red;
+    }
+
     print("Friend List build start");
     return Container(
       decoration: BoxDecoration(
@@ -47,23 +59,7 @@ class _MissionFriendContainerState extends State<MissionFriendContainer> {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Row(
-          children: <Widget>[
-            Checkbox(
-              value: _isChecked,
-              onChanged: (value) {
-                setState(() {
-                  _isChecked = value!;
-                });
-              },
-            ),
-            Switch(
-              value: _isChecked,
-              onChanged: (value) {
-                setState(() {
-                  _isChecked = value!;
-                });
-              },
-            ),
+          children: [
             ImageContainer(
               width: 55,
               height: 55,

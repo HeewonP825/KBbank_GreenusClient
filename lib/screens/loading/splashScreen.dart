@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kbbank_practice/theme.dart';
 import '../../constants.dart';
 import '../mainScreens.dart';
+import '../components/ImageContainer.dart';
 
 class SplashScreen extends StatelessWidget {
   static String routeName = "/splash";
@@ -9,34 +11,29 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kPrimaryColor,
+      //backgroundColor: kPrimaryColor,
       body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
-                flex: 5,
-                child: Center(
-                  child: Text(
-                    "GREENUS",
-                    style: GoogleFonts.pacifico(fontSize: 28, color: Colors.white),
+                child: InkWell(
+                  child: Container(
+                    constraints: BoxConstraints.expand(),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/GreenusSplash.png"),
+                          fit: BoxFit.cover),
+                    ),
                   ),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: EdgeInsets.all(24),
-                  child: TextButton(
-                    child: Text("Start!"),
-                    onPressed: () {
-                      _completeSplash(context, MainScreens());
-                    },
-                  ),
+                  onTap: () {
+                    _completeSplash(context, MainScreens());
+                  },
                 ),
               ),
             ],
-          )),
+          ),
+      ),
     );
   }
 
