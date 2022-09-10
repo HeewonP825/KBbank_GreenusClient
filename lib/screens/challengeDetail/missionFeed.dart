@@ -21,38 +21,31 @@ class MissionFeedState extends State<MissionFeed> {
   @override
   Widget build(BuildContext context) {
 
-    LikeButton(
-      size: 15,
-      circleColor:
-      CircleColor(start: Color(0xff00ddff), end: Color(0xff0099cc)),
-      bubblesColor: BubblesColor(
-        dotPrimaryColor: Color(0xff33b5e5),
-        dotSecondaryColor: Color(0xff0099cc),
-      ),
-      likeBuilder: (bool isLiked) {
-        return Icon(
-          Icons.home,
-          color: isLiked ? Colors.deepPurpleAccent : Colors.grey,
-          size: 15,
-        );
-      }
-    );
+    // LikeButton(
+    //   size: 15,
+    //   circleColor:
+    //   CircleColor(start: Color(0xff00ddff), end: Color(0xff0099cc)),
+    //   bubblesColor: BubblesColor(
+    //     dotPrimaryColor: Color(0xff33b5e5),
+    //     dotSecondaryColor: Color(0xff0099cc),
+    //   ),
+    // );
 
-    countBuilder: (int count, bool isLiked, String text) {
-      var color = isLiked ? Colors.deepPurpleAccent : Colors.grey;
-      Widget result;
-      if (count == 0) {
-        result = Text(
-          "love",
-          style: TextStyle(color: color),
-        );
-      } else
-        result = Text(
-          text,
-          style: TextStyle(color: color),
-        );
-      return result;
-    };
+    // countBuilder: (int count, bool isLiked, String text) {
+    //   var color = isLiked ? Colors.deepPurpleAccent : Colors.grey;
+    //   Widget result;
+    //   if (count == 0) {
+    //     result = Text(
+    //       "love",
+    //       style: TextStyle(color: color),
+    //     );
+    //   } else
+    //     result = Text(
+    //       text,
+    //       style: TextStyle(color: color),
+    //     );
+    //   return result;
+    // };
 
     Future<bool> onLikeButtonTapped(bool isLiked) async{
     // // send your request here
