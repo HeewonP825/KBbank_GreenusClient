@@ -100,7 +100,7 @@ class MyPageHeader extends StatelessWidget {
       //onTap: () {},
       child: Container(
         decoration: BoxDecoration(
-          color: Color(0xFFD9EED4),
+          color: const Color(0xFFC3D9F1),
           border: Border.all(
             width: 1.5,
             color: Color(0xffffffff),
@@ -134,11 +134,11 @@ class MyPageHeader extends StatelessWidget {
           height: 60,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30.0),
-              color: Color.fromRGBO(228, 255, 221, 1.0),
+              color: const Color(0xFFC3D9F1),
               border: Border.all(color: Color(0xFFD4D5DD), width: 0.5)),
           child: Icon(
             iconData,
-            color: Color(0xFF69b06c),
+            color: Color(0xff111621),
           ),
         ),
         SizedBox(height: 10),

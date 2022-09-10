@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
         ),
         Container(
             width: 400,
-            child: Divider(color: Color(0xFFDBDADA), thickness: 1.0)),
+            child: Divider(color: const Color(0xFFDBDADA), thickness: 1.0)),
         // 2
         WeeklyRankWidget(),
       ],

@@ -45,11 +45,11 @@ class _CalendarState extends State<Calendar> {
       },
       calendarStyle: CalendarStyle(
         todayDecoration: BoxDecoration(
-          color: const Color(0xFFCBF1C3),
+          color: const Color(0xFFC3D9F1),
           shape: BoxShape.circle,
         ),
         markerDecoration: BoxDecoration(
-          color: Colors.green,
+          color: const Color(0xff111421),
           shape: BoxShape.circle,
         ),
         markerSize:20,
