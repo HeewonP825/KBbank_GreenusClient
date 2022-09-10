@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kbbank_practice/screens/challengeList/components/ingMission.dart';
 import 'package:kbbank_practice/screens/missionPage/components/missionWithFriends.dart';
 import 'package:kbbank_practice/screens/missionPage/newMissionList.dart';
+import 'package:like_button/like_button.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -15,10 +16,53 @@ class MissionFeed extends StatefulWidget {
   @override
   MissionFeedState createState() => MissionFeedState();
 }
-class MissionFeedState extends State<MissionFeed> {
 
+class MissionFeedState extends State<MissionFeed> {
   @override
   Widget build(BuildContext context) {
+
+    LikeButton(
+      size: 15,
+      circleColor:
+      CircleColor(start: Color(0xff00ddff), end: Color(0xff0099cc)),
+      bubblesColor: BubblesColor(
+        dotPrimaryColor: Color(0xff33b5e5),
+        dotSecondaryColor: Color(0xff0099cc),
+      ),
+      likeBuilder: (bool isLiked) {
+        return Icon(
+          Icons.home,
+          color: isLiked ? Colors.deepPurpleAccent : Colors.grey,
+          size: 15,
+        );
+      }
+    );
+
+    countBuilder: (int count, bool isLiked, String text) {
+      var color = isLiked ? Colors.deepPurpleAccent : Colors.grey;
+      Widget result;
+      if (count == 0) {
+        result = Text(
+          "love",
+          style: TextStyle(color: color),
+        );
+      } else
+        result = Text(
+          text,
+          style: TextStyle(color: color),
+        );
+      return result;
+    };
+
+    Future<bool> onLikeButtonTapped(bool isLiked) async{
+    // // send your request here
+    // final bool success= (await LikeButton()) as bool;
+    //
+    // // if failed, you can do nothing
+    // return success? !isLiked:isLiked;
+
+    return !isLiked;
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -71,24 +115,28 @@ class MissionFeedState extends State<MissionFeed> {
               child: Column(
                 children: [
                   ListTile(
-                    leading: CircleAvatar(
+                    leading: Container(
                       //profileImage
-                      //alignment: Alignment.center,
-                      //margin: const EdgeInsets.fromLTRB(15, 5, 6, 10),
-                      //padding: const EdgeInsets.all(20.0),
-                      // decoration: BoxDecoration(
-                      //   shape: BoxShape.circle,
-                      //   image: DecorationImage(
-                      //     fit: BoxFit.fill,
-                      child: Image.asset('assets/images/banner.jpg'),
+                      height: 37,
+                      width: 37,
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.fromLTRB(2, 5, 4, 5),
+                      padding: const EdgeInsets.all(20.0),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: new DecorationImage(
+                          fit: BoxFit.fill,
+                          image: new Image.network(
+                              "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
+                              .image,
                         ),
-                    //   ),
-                    // ),
+                      ),
+                    ),
+                    title: const Text("이름", style: TextStyle(fontFamily: 'ELAND', fontSize: 18,),),
                     subtitle: Text(
                       'Lv1',
-                      style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      style: TextStyle(color: Colors.black.withOpacity(0.4)),
                     ),
-                    title: const Text('이름'),
                   ),
                   Image.asset('assets/images/banner.jpg'),
                   Padding(
@@ -98,10 +146,18 @@ class MissionFeedState extends State<MissionFeed> {
                       style: TextStyle(color: Colors.black.withOpacity(0.6)),
                     ),
                   ),
+                  // Container(
+                  //     margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                  //     width: 400,
+                  //     child: Divider(color: Color(0xFFE8E8E8), thickness: 1.0)),
                   Container(
-                      margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                      width: 400,
-                      child: Divider(color: Color(0xFFE8E8E8), thickness: 1.0)),
+                    alignment: Alignment.bottomLeft,
+                    margin: EdgeInsets.fromLTRB(5, 0, 20, 10),
+                    child: LikeButton(
+                      likeCount: 0,
+                      onTap: onLikeButtonTapped,
+                    ),
+                  ),
                   // ButtonBar(
                   //   alignment: MainAxisAlignment.start,
                   //   children: [
