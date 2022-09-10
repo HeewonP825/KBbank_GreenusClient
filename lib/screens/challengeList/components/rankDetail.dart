@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -15,6 +17,7 @@ class RankDetail extends StatelessWidget {
   }) : super(key: key);
 
   final WeeklyRank weeklyRankList;
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +44,10 @@ class RankDetail extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Row(
           children: [
+            Text(weeklyRankList.ranking),
+            SizedBox(
+              width: 10,
+            ),
             ImageContainer(
               width: 50,
               height: 50,

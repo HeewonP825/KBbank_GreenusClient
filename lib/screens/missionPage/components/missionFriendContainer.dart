@@ -18,7 +18,6 @@ class MissionFriendContainer extends StatefulWidget {
 
 class _MissionFriendContainerState extends State<MissionFriendContainer> {
 
-  late final FriendList friendList;
 
   bool _isChecked = false;
 
@@ -68,7 +67,7 @@ class _MissionFriendContainerState extends State<MissionFriendContainer> {
               width: 55,
               height: 55,
               borderRadius: 27.5,
-              imageUrl: friendList.profileImage,
+              imageUrl: widget.friendList.profileImage,
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -78,19 +77,19 @@ class _MissionFriendContainerState extends State<MissionFriendContainer> {
                   const Spacer(),
                   Text.rich(
                     TextSpan(children: [
-                      TextSpan(text: friendList.level),
-                      TextSpan(text: friendList.levelNum.toString()),
+                      TextSpan(text: widget.friendList.level),
+                      TextSpan(text: widget.friendList.levelNum.toString()),
                     ]),
                   ),
                   const Spacer(),
                   Text(
-                    friendList.friendName,
+                    widget.friendList.friendName,
                     style: textTheme().headline1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const Spacer(),
                   Text(
-                    friendList.message,
+                    widget.friendList.message,
                     style: textTheme().subtitle1,
                     overflow: TextOverflow.ellipsis,
                   ),

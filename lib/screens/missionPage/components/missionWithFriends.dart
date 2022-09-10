@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:kbbank_practice/screens/missionPage/components/missionFriendContainer.dart';
+
 import '../../../../theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -92,7 +94,7 @@ class MissionWithFriendsState extends State<MissionWithFriends>{
                 children: List.generate(
                   snapshot.data?.length ?? 0,
                       (index) =>
-                      FriendContainer(friendList: snapshot.data![index]),
+                      MissionFriendContainer(friendList: snapshot.data![index]),
                 ),
               ),
               floatingActionButton: FloatingActionButton(

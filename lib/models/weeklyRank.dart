@@ -7,14 +7,17 @@ class WeeklyRank {
   final int levelNum;
   final int stampNum;
   final String stampText;
+  final String ranking;
 
-  WeeklyRank(
-      {required this.imageUrl,
-      required this.name,
-      required this.level,
-      required this.levelNum,
-      required this.stampNum,
-      required this.stampText});
+  WeeklyRank({
+    required this.imageUrl,
+    required this.name,
+    required this.level,
+    required this.levelNum,
+    required this.stampNum,
+    required this.stampText,
+    required this.ranking,
+  });
 }
 
 // List<WeeklyRank> weeklyRankList = [
@@ -53,6 +56,7 @@ class WeeklyRank {
 // ];
 
 Future<List<WeeklyRank>> receiveWeeklyRankList() async {
+  print("receive Weekly Rank List run");
   //Todo userId수정 필요
   var userId = 1;
 
@@ -65,16 +69,32 @@ Future<List<WeeklyRank>> receiveWeeklyRankList() async {
   Response response = await dio.get('/app/friends/rank/${userId}');
 
   print("WeeklyRank Response");
+  print(1.toString()+"동");
   print(response.data["result"]);
   final myInfo = response.data["result"]['myInfo'];
-  final rankList=response.data["result"]['rankLists'];
+  final rankList = response.data["result"]['rankLists'];
   print(myInfo);
   print(rankList);
 
   List<WeeklyRank> weeklyRankList = [];
 
-
   for (int i = 0; i < rankList.length; i++) {
+    String rankStr="";
+    switch(i){
+      case 0:
+        rankStr="Me";
+        break;
+      case 1:
+        rankStr=rankList[i]['ranking'].toString()+"st";
+        break;
+      case 2:
+        rankStr=rankList[i]['ranking'].toString()+"nd";
+        break;
+      case 3:
+        rankStr=rankList[i]['ranking'].toString()+"rd";
+        break;
+    }
+
     weeklyRankList.add(WeeklyRank(
       imageUrl: rankList[i]['profileImgUrl'],
       name: rankList[i]['userName'],
@@ -82,6 +102,7 @@ Future<List<WeeklyRank>> receiveWeeklyRankList() async {
       levelNum: rankList[i]['userLevel'],
       stampNum: rankList[i]['stamp'],
       stampText: "개",
+      ranking: rankStr,
     ));
   }
 
