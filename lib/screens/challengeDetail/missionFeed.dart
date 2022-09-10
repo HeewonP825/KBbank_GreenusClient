@@ -65,9 +65,64 @@ class MissionFeedState extends State<MissionFeed> {
             ),
           ),
           Container(
-            child: Card(
-              margin: const EdgeInsets.fromLTRB(13, 10, 20, 20),
-
+            child:Card(
+              margin: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+              clipBehavior: Clip.antiAlias,
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: CircleAvatar(
+                      //profileImage
+                      //alignment: Alignment.center,
+                      //margin: const EdgeInsets.fromLTRB(15, 5, 6, 10),
+                      //padding: const EdgeInsets.all(20.0),
+                      // decoration: BoxDecoration(
+                      //   shape: BoxShape.circle,
+                      //   image: DecorationImage(
+                      //     fit: BoxFit.fill,
+                      child: Image.asset('assets/images/banner.jpg'),
+                        ),
+                    //   ),
+                    // ),
+                    subtitle: Text(
+                      'Lv1',
+                      style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                    ),
+                    title: const Text('이름'),
+                  ),
+                  Image.asset('assets/images/banner.jpg'),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      '~사진 내용 설명 텍스트 들어갈 부분~',
+                      style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                    ),
+                  ),
+                  Container(
+                      margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      width: 400,
+                      child: Divider(color: Color(0xFFE8E8E8), thickness: 1.0)),
+                  // ButtonBar(
+                  //   alignment: MainAxisAlignment.start,
+                  //   children: [
+                  //     FlatButton(
+                  //       textColor: const Color(0xFF6200EE),
+                  //       onPressed: () {
+                  //         // Perform some action
+                  //       },
+                  //       child: const Text('ACTION 1'),
+                  //     ),
+                  //     FlatButton(
+                  //       textColor: const Color(0xFF6200EE),
+                  //       onPressed: () {
+                  //         // Perform some action
+                  //       },
+                  //       child: const Text('ACTION 2'),
+                  //     ),
+                  //   ],
+                  // ),
+                ],
+              ),
             ),
           ),
         ],
