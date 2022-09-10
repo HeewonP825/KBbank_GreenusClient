@@ -114,42 +114,42 @@ class MissionRank extends StatelessWidget {
   }
 }
 
-Future<List<MissionRankUserInfo>> receiveMissionRankUserInfo() async {
-  //Todo userId수정 필요
-  var userId = 1;
-
-  var options = BaseOptions(
-    baseUrl: 'https://dev.uksfirstdomain.shop',
-    connectTimeout: 5000,
-    receiveTimeout: 3000,
-  );
-  Dio dio = Dio(options);
-  Response response= await dio.get('/app/MyMissionMainPage');
-
-  print(response.data["result"]);
-  final data=response.data["result"];
-
-  List<IngMissionData> ingMissionLists=[];
-  List<FriendProfile> friendProfileList=[];
-
-  print("friends");
-  print(data[0]['friends'].runtimeType);
-  print(data[0]['friends'][0]['profileImgUrl']);
-
-  for(int i=0; i<data.length; i++){
-    for(int j=0; j<data[i]['friends'].length; j++){
-      friendProfileList.add(
-          FriendProfile(profileUrl: data[i]['friends'][j]['profileImgUrl'])
-      );
-    }
-    ingMissionLists.add(IngMissionData(
-      groupId: data[i]['groupId'],
-      missionName: data[i]['missionName'],
-      backgroundImage: "assets/images/banner1.jpg",
-      startDate: data[i]['startDate'],
-      friendProfileList: friendProfileList,
-    ));
-  }
-
-  return ingMissionLists;
-}
+// Future<List<MissionRankUserInfo>> receiveMissionRankUserInfo() async {
+//   //Todo userId수정 필요
+//   var userId = 1;
+//
+//   var options = BaseOptions(
+//     baseUrl: 'https://dev.uksfirstdomain.shop',
+//     connectTimeout: 5000,
+//     receiveTimeout: 3000,
+//   );
+//   Dio dio = Dio(options);
+//   Response response= await dio.get('/app/MyMissionMainPage');
+//
+//   print(response.data["result"]);
+//   final data=response.data["result"];
+//
+//   List<MissionRankUserInfo> ingMissionLists=[];
+//   List<FriendProfile> friendProfileList=[];
+//
+//   print("friends");
+//   print(data[0]['friends'].runtimeType);
+//   print(data[0]['friends'][0]['profileImgUrl']);
+//
+//   for(int i=0; i<data.length; i++){
+//     for(int j=0; j<data[i]['friends'].length; j++){
+//       friendProfileList.add(
+//           FriendProfile(profileUrl: data[i]['friends'][j]['profileImgUrl'])
+//       );
+//     }
+//     ingMissionLists.add(MissionRankUserInfo(
+//       groupId: data[i]['groupId'],
+//       missionName: data[i]['missionName'],
+//       backgroundImage: "assets/images/banner1.jpg",
+//       startDate: data[i]['startDate'],
+//       friendProfileList: friendProfileList,
+//     ));
+//   }
+//
+//   return ingMissionLists;
+// }
