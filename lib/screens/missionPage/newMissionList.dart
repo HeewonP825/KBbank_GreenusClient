@@ -22,7 +22,7 @@ class NewMissionList extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: (Icon(Icons.keyboard_return)),
-        backgroundColor: Colors.green,//Widget 추가
+        backgroundColor: Color(0xff111421),//Widget 추가
         onPressed: () { // 이벤트 콜백 함수
           Navigator.pop(
             context,

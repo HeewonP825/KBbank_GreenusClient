@@ -53,8 +53,9 @@ class MissionWithFriendsState extends State<MissionWithFriends>{
   }
 
   final ButtonStyle RoundButtonStyle = TextButton.styleFrom(
-    backgroundColor: Colors.green,
+    backgroundColor: Color(0xff111421),
     //primary: Colors.black87,
+    alignment: Alignment.center,
     minimumSize: Size(88, 36),
     padding: EdgeInsets.symmetric(horizontal: 16.0),
     elevation: 5,
@@ -97,18 +98,58 @@ class MissionWithFriendsState extends State<MissionWithFriends>{
                       MissionFriendContainer(friendList: snapshot.data![index]),
                 ),
               ),
-              floatingActionButton: FloatingActionButton(
-                child: (Icon(Icons.keyboard_return)),
-                backgroundColor: Colors.green, //Widget 추가
-                onPressed: () { // 이벤트 콜백 함수
-                  Navigator.pop(
-                    context,
-                    MaterialPageRoute(builder: (context) => MissionDetail()),
-                  );
-                },
-              ),
+
+              floatingActionButton:
+                ElevatedButton(
+                    style: RoundButtonStyle,
+                    child: Text('추가하기', style: textTheme().headline2),
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          barrierDismissible: false, // 바깥 영역 클릭 시 안닫힘
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('팝업 알림창'),
+                              content: SingleChildScrollView(
+                                  child: ListBody(
+                                    children: <Widget>[
+                                      Text('추가하시겠습니까?'),
+                                    ],
+                                  )
+                              ),
+                              actions: <Widget>[
+                                FlatButton(
+                                  child: Text('네'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                    Navigator.pop(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => MissionWithFriends()),
+                                    );
+                                  },
+                                ),
+                                FlatButton(
+                                  child: Text('아니오'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                    Navigator.pop(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => MissionWithFriends()),
+                                    );
+                                  },
+                                ),
+                              ],
+                            );
+                          }
+                      );
+                    }
+                ),
+              floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
             );
           }
+          // body: Column(
+          //
+          // ),
         }
     );
   }

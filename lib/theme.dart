@@ -5,6 +5,7 @@ import 'constants.dart';
 ThemeData theme() {
   return ThemeData(
     scaffoldBackgroundColor: Colors.white,
+    fontFamily: 'ChangwonDangamAsac',
     appBarTheme: AppBarTheme(
       centerTitle: true,
       color: kPrimaryColor,

@@ -28,7 +28,7 @@ class MissionStampWidget extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: Center(child: Text("이전 페이지에서 미션 이름 받아와야함.", style: textTheme().headline1),),
             decoration: BoxDecoration(
-              color: Color(0xFFE6EFE4),
+              color: const Color(0xFFC3D9F1),
               border: Border.all(
                 width: 1.5,
                 color: Color(0xffffffff),
@@ -61,7 +61,7 @@ class MissionStampWidget extends StatelessWidget {
             },
             child: Container(
               decoration:BoxDecoration(
-                color: Color(0xFFE6EFE4),
+                color: const Color(0xFFC3D9F1),
                 border: Border.all(
                   width: 1.5,
                   color: Color(0xffffffff),
@@ -92,7 +92,7 @@ class MissionStampWidget extends StatelessWidget {
         ]),
         floatingActionButton: FloatingActionButton(
           child: (Icon(Icons.keyboard_return)),
-          backgroundColor: Colors.green, //Widget 추가
+          backgroundColor: const Color(0xff111421), //Widget 추가
           onPressed: () {
             // 이벤트 콜백 함수
             Navigator.pop(

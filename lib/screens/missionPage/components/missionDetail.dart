@@ -52,7 +52,7 @@ class MissionDetailState extends State<MissionDetail> {
   }
 
   final ButtonStyle RoundButtonStyle = TextButton.styleFrom(
-    backgroundColor: Colors.green,
+    backgroundColor: Color(0xff111421),
     //primary: Colors.black87,
     minimumSize: Size(88, 36),
     padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -76,7 +76,7 @@ class MissionDetailState extends State<MissionDetail> {
       ),
       floatingActionButton: FloatingActionButton(
         child: (Icon(Icons.keyboard_return)),
-        backgroundColor: Colors.green, //Widget 추가
+        backgroundColor: Color(0xff111421), //Widget 추가
         onPressed: () {
           // 이벤트 콜백 함수
           Navigator.pop(
@@ -94,7 +94,7 @@ class MissionDetailState extends State<MissionDetail> {
             alignment: Alignment.topCenter,
             child: Center(child: Text("이전 페이지에서 미션 이름 받아와야함.", style: textTheme().headline1),),
             decoration: BoxDecoration(
-              color: Color(0xFFE6EFE4),
+              color: const Color(0xFFC3D9F1),
               border: Border.all(
                 width: 1.5,
                 color: Color(0xffffffff),
@@ -133,17 +133,17 @@ class MissionDetailState extends State<MissionDetail> {
                     BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                          width: 1,
-                          color: Colors.green,
+                          width: 2,
+                          color: Color(0xff111621),
                       ),
                     ),
                 ),
 
                 selectionTextStyle: const TextStyle(color: Colors.white),
-                selectionColor: Colors.green,
-                startRangeSelectionColor: Colors.green,
-                endRangeSelectionColor: Colors.green,
-                rangeSelectionColor: Color(0xFFE6EFE4),
+                selectionColor: Color(0xff111421),
+                startRangeSelectionColor: Color(0xff111421),
+                endRangeSelectionColor: Color(0xff111421),
+                rangeSelectionColor: Colors.blueGrey,
               //rangeTextStyle: const TextStyle(color: Colors.white),
               ),
             ),
@@ -203,12 +203,20 @@ class MissionDetailState extends State<MissionDetail> {
                             child: Text('네'),
                             onPressed: () {
                               Navigator.of(context).pop();
+                              Navigator.pop(
+                                context,
+                                MaterialPageRoute(builder: (context) => NewMissionList()),
+                              );
                             },
                           ),
                           FlatButton(
                             child: Text('아니오'),
                             onPressed: () {
                               Navigator.of(context).pop();
+                              Navigator.pop(
+                                context,
+                                MaterialPageRoute(builder: (context) => NewMissionList()),
+                              );
                             },
                           ),
                         ],

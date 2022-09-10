@@ -33,8 +33,8 @@ class _MissionFriendContainerState extends State<MissionFriendContainer> {
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
-            width: _isChecked? 2.5 : 0.2,
-            color: _isChecked? Colors.green : Colors.grey,
+            width: _isChecked? 2.8 : 0.2,
+            color: _isChecked? Colors.blueGrey : Colors.grey,
           ),
           borderRadius: BorderRadius.circular(5),
           boxShadow: [
@@ -48,7 +48,7 @@ class _MissionFriendContainerState extends State<MissionFriendContainer> {
           color: Colors.white,
         ),
         margin: EdgeInsets.fromLTRB(8, 8, 8, 0),
-        height: 100,
+        height: 101,
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Row(
