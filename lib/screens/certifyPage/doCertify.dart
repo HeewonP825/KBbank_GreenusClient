@@ -25,7 +25,7 @@ class DoCertify extends StatelessWidget {
           onPressed: () { // 이벤트 콜백 함수
             Navigator.pop(
               context,
-              MaterialPageRoute(builder: (context) => MissionStampWidget()),
+              // MaterialPageRoute(builder: (context) => MissionStampWidget()),
             );
           },
         ),

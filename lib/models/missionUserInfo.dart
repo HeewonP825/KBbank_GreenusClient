@@ -5,7 +5,6 @@ class MissionRankUserInfo {
   final int userLevel;
   final int stampNum;
   final int totalStampNum;
-  late final int ranking;
 
   MissionRankUserInfo({
     required this.profileImgUrl,
@@ -13,7 +12,6 @@ class MissionRankUserInfo {
     required this.userLevel,
     required this.stampNum,
     required this.totalStampNum,
-    required this.ranking,
   });
 }
 

@@ -9,21 +9,31 @@ import 'package:kbbank_practice/screens/challengeList/components/ingMission.dart
 import '../../../constants.dart';
 import '../../../theme.dart';
 
-class MissionRank extends StatelessWidget {
+class MissionRank extends StatefulWidget {
   final IngMissionData ingMissionData;
-  const MissionRank(
-      this.ingMissionData,
-      {Key? key}
-      ) : super(key: key);
+
+  const MissionRank(this.ingMissionData, {Key? key}) : super(key: key);
+
+  @override
+  State<MissionRank> createState() => _MissionRankState();
+}
+
+class _MissionRankState extends State<MissionRank> {
+  late Future<List<MissionRankUserInfo>> futureRankUserList;
+
+  void initState(){
+    super.initState();
+    futureRankUserList=receiveMissionRankUserInfo(widget.ingMissionData.groupId);
+  }
 
   @override
   Widget build(BuildContext context) {
     print("ingMissionData는 생성자에서 처리됩니다.");
-    print(ingMissionData.missionName);
-    print(ingMissionData.friendProfileList);
+    print(widget.ingMissionData.missionName);
+    print(widget.ingMissionData.friendProfileList);
 
-    var friendProfileList=[];
-    for(int i=0; i<ingMissionData.friendProfileList.length;i++){
+    var friendProfileList = [];
+    for (int i = 0; i < widget.ingMissionData.friendProfileList.length; i++) {
       friendProfileList.add(
         Container(
           margin: const EdgeInsets.fromLTRB(15, 0, 6, 10),
@@ -33,7 +43,7 @@ class MissionRank extends StatelessWidget {
             image: new DecorationImage(
               fit: BoxFit.fill,
               image: new Image.network(
-                  ingMissionData.friendProfileList[i].profileUrl)
+                  widget.ingMissionData.friendProfileList[i].profileUrl)
                   .image,
             ),
           ),
@@ -41,14 +51,15 @@ class MissionRank extends StatelessWidget {
       );
     }
 
-
-
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Text(
             "GREENUS",
-            style: TextStyle(fontFamily: 'ChangwonDangamAsac', fontSize: 30,),
+            style: TextStyle(
+              fontFamily: 'ChangwonDangamAsac',
+              fontSize: 30,
+            ),
           ),
         ),
         body: Column(
@@ -58,7 +69,10 @@ class MissionRank extends StatelessWidget {
               margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
               height: 50,
               alignment: Alignment.topCenter,
-              child: Center(child: Text(ingMissionData.missionName, style: textTheme().headline1),),
+              child: Center(
+                child: Text(widget.ingMissionData.missionName,
+                    style: textTheme().headline1),
+              ),
               decoration: BoxDecoration(
                 color: const Color(0xFFC3D9F1),
                 border: Border.all(
@@ -78,26 +92,36 @@ class MissionRank extends StatelessWidget {
             ),
             Expanded(
               child: ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                children: friendProfileList.cast()
-              ),
-            ),
-            Expanded(
-              flex: 7,
-              child: ListView(
                   shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    UserInfoWidget(),
-                    UserInfoWidget(),
-                    UserInfoWidget(),
-                    UserInfoWidget(),
-                    UserInfoWidget(),
-                    UserInfoWidget(),
-                    UserInfoWidget(),
-                    UserInfoWidget(),
-                  ]),
+                  scrollDirection: Axis.horizontal,
+                  children: friendProfileList.cast()),
+            ),
+            FutureBuilder(
+                future: futureRankUserList,
+                builder: (context, snapshot) {
+                  var data = snapshot.data;
+                  print("data:");
+                  print(data);
+                  if (data == null) {
+                    return Container(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  } else {
+                    return Expanded(
+                      flex: 7,
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: (data as List).length,
+                          itemBuilder:(context,index){
+                            return UserInfoWidget((data as List)[index]);
+                          }
+                          ),
+                    );
+                }
+                }
             ),
           ],
         ),
@@ -114,42 +138,37 @@ class MissionRank extends StatelessWidget {
   }
 }
 
-// Future<List<MissionRankUserInfo>> receiveMissionRankUserInfo() async {
-//   //Todo userId수정 필요
-//   var userId = 1;
-//
-//   var options = BaseOptions(
-//     baseUrl: 'https://dev.uksfirstdomain.shop',
-//     connectTimeout: 5000,
-//     receiveTimeout: 3000,
-//   );
-//   Dio dio = Dio(options);
-//   Response response= await dio.get('/app/MyMissionMainPage');
-//
-//   print(response.data["result"]);
-//   final data=response.data["result"];
-//
-//   List<MissionRankUserInfo> ingMissionLists=[];
-//   List<FriendProfile> friendProfileList=[];
-//
-//   print("friends");
-//   print(data[0]['friends'].runtimeType);
-//   print(data[0]['friends'][0]['profileImgUrl']);
-//
-//   for(int i=0; i<data.length; i++){
-//     for(int j=0; j<data[i]['friends'].length; j++){
-//       friendProfileList.add(
-//           FriendProfile(profileUrl: data[i]['friends'][j]['profileImgUrl'])
-//       );
-//     }
-//     ingMissionLists.add(MissionRankUserInfo(
-//       groupId: data[i]['groupId'],
-//       missionName: data[i]['missionName'],
-//       backgroundImage: "assets/images/banner1.jpg",
-//       startDate: data[i]['startDate'],
-//       friendProfileList: friendProfileList,
-//     ));
-//   }
-//
-//   return ingMissionLists;
-// }
+Future<List<MissionRankUserInfo>> receiveMissionRankUserInfo(groupId) async {
+  //Todo userId수정 필요
+  var userId = 1;
+
+  var options = BaseOptions(
+    baseUrl: 'https://dev.uksfirstdomain.shop',
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+  );
+  Dio dio = Dio(options);
+  Response response = await dio.get('/app/MyMissionMainPage/users/${userId}/groupId/${groupId}');
+
+  print("/app/MyMissionMainPage/users/${userId}/groupId/${groupId}");
+  print("미션 랭크를 출력합시다!!! ");
+  print("여러분~?");
+  print("당연히~ 제가~ 1등이겠죠?");
+  print(response.data["result"]);
+  print(response.data["result"]['rankingLists']);
+  final data = response.data["result"]['rankingLists'];
+
+  List<MissionRankUserInfo> rankUserInfoList = [];
+
+  for (int i = 0; i < data.length; i++) {
+    rankUserInfoList.add(MissionRankUserInfo(
+        ranking: int.parse(data[i]['ranking']),
+        userName: data[i]['userName'],
+        totalStampNum: 1000,
+        stampNum: data[i]['stamp'],
+        userLevel: data[i]['userLevel'],
+        profileImgUrl: data[i]['profileImgUrl']));
+  }
+
+  return rankUserInfoList;
+}

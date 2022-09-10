@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kbbank_practice/models/missionRankUserInfo.dart';
 
-class UserInfoWidget extends StatelessWidget {
+class UserInfoWithoutRankWidget extends StatelessWidget {
   final MissionRankUserInfo rankUserInfo;
 
-  const UserInfoWidget(this.rankUserInfo, {Key? key}) : super(key: key);
+  const UserInfoWithoutRankWidget(this.rankUserInfo, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +25,7 @@ class UserInfoWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: Row(
-        children: [
-          Flexible(
-              fit: FlexFit.loose,
-              flex: 2,
-              child: Text("1.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 30,
-                  ))), //순위
+        children: [ //순위
           Flexible(
             fit: FlexFit.tight,
             flex: 3,
@@ -47,7 +39,8 @@ class UserInfoWidget extends StatelessWidget {
                 image: new DecorationImage(
                   fit: BoxFit.fill,
                   image: new Image.network(
-                          "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
+                      rankUserInfo.profileImgUrl
+                  )
                       .image,
                 ),
               ),
