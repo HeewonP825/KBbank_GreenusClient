@@ -103,7 +103,7 @@ class MissionFeedState extends State<MissionFeed> {
           ),
           Container(
             child:Card(
-              margin: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+              margin: const EdgeInsets.fromLTRB(10, 10, 20, 20),
               clipBehavior: Clip.antiAlias,
               child: Column(
                 children: [
@@ -145,7 +145,7 @@ class MissionFeedState extends State<MissionFeed> {
                   //     child: Divider(color: Color(0xFFE8E8E8), thickness: 1.0)),
                   Container(
                     // alignment: Alignment.centerLeft,
-                    margin: EdgeInsets.fromLTRB(5, 0, 20, 10),
+                    margin: EdgeInsets.fromLTRB(12, 0, 20, 10),
                     child: LikeButton(
                       mainAxisAlignment: MainAxisAlignment.start,
                       likeCount: 0,
