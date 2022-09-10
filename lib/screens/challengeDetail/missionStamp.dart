@@ -78,13 +78,13 @@ class MissionStampWidget extends StatelessWidget {
               ),
               margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
               padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-              height: 70,
+              height: 60,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text("인증하기", style: textTheme().headline1,),
-                  Icon(Icons.add),
+                children: const [
+                  Text("인증하기", style: TextStyle(fontFamily: 'ELAND', fontSize: 25,),),
+                  Icon(Icons.add, size: 25,),
                 ],
               )
             ),
