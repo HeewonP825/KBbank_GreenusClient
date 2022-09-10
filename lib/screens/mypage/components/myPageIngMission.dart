@@ -48,9 +48,15 @@ class MyPageIngMission extends StatelessWidget {
         InkWell(
           onTap: () {
             print("인증하기 페이지로 이동`");
-            Navigator.push(
+            Navigator.pushNamed(
               context,
-              MaterialPageRoute(builder: (context) => MissionDetailPageView()),
+              '/challengeDetailHome',
+              arguments: IngMissionData(
+                missionName: ingMissionData?.missionName ?? "미션 이름 x",
+                friendProfileList: friendProfileList ?? [],
+                backgroundImage: ingMissionData?.backgroundImage ?? '',
+                startDate: ingMissionData?.startDate ?? "지구가 태어날대부터 시작함",
+              ),
             );
           },
           child: Container(

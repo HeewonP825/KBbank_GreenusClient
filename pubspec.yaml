@@ -93,8 +93,8 @@ flutter:
   fonts:
     - family: ChangwonDangamAsac
       fonts:
-        - asset: fonts/ChangwonDangamAsac-Bold_0712.otf
-
+#        - asset: fonts/ChangwonDangamAsac-Bold_0712.otf
+        - asset: font/ChangwonDangamAsac-Bold_0712.otf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
