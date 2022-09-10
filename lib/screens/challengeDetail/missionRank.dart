@@ -1,13 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kbbank_practice/models/FriendProfile.dart';
+import 'package:kbbank_practice/models/ingMissionData.dart';
 import 'package:kbbank_practice/screens/challengeDetail/userInfo.dart';
 import 'package:kbbank_practice/screens/challengeList/components/ingMission.dart';
 import '../../../constants.dart';
 import '../../../theme.dart';
 
 class MissionRank extends StatelessWidget {
+  final IngMissionData ingMissionData;
+  const MissionRank(
+      this.ingMissionData,
+      {Key? key}
+      ) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    print("ingMissionData는 생성자에서 처리됩니다.");
+    print(ingMissionData.missionName);
+    print(ingMissionData.friendProfileList);
+    var friendProfileList=[];
+    for(int i=0; i<ingMissionData.friendProfileList.length;i++){
+      friendProfileList.add(
+        Container(
+          margin: const EdgeInsets.fromLTRB(15, 0, 6, 10),
+          padding: const EdgeInsets.all(20.0),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            image: new DecorationImage(
+              fit: BoxFit.fill,
+              image: new Image.network(
+                  ingMissionData.friendProfileList[i].profileUrl)
+                  .image,
+            ),
+          ),
+        ),
+      );
+    }
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -23,7 +52,7 @@ class MissionRank extends StatelessWidget {
               margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
               height: 50,
               alignment: Alignment.topCenter,
-              child: Center(child: Text("이전 페이지에서 미션 이름 받아와야함.", style: textTheme().headline1),),
+              child: Center(child: Text(ingMissionData.missionName, style: textTheme().headline1),),
               decoration: BoxDecoration(
                 color: Color(0xFFE6EFE4),
                 border: Border.all(
@@ -45,112 +74,7 @@ class MissionRank extends StatelessWidget {
               child: ListView(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(15, 0, 6, 10),
-                    padding: const EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new Image.network(
-                                "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
-                            .image,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(15, 0, 6, 10),
-                    padding: const EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new Image.network(
-                                "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
-                            .image,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(15, 0, 6, 10),
-                    padding: const EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new Image.network(
-                                "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
-                            .image,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(15, 0, 6, 10),
-                    padding: const EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new Image.network(
-                                "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
-                            .image,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(15, 0, 6, 10),
-                    padding: const EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new Image.network(
-                                "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
-                            .image,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(15, 0, 6, 10),
-                    padding: const EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new Image.network(
-                                "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
-                            .image,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(15, 0, 6, 10),
-                    padding: const EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new Image.network(
-                                "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
-                            .image,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(15, 0, 6, 10),
-                    padding: const EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new Image.network(
-                                "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
-                            .image,
-                      ),
-                    ),
-                  )
-                ],
+                children: friendProfileList.cast()
               ),
             ),
             Expanded(

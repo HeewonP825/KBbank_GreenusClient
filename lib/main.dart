@@ -22,7 +22,7 @@ class Greenus extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Greenus",
-      initialRoute: SplashScreen.routeName,
+      initialRoute: '/splash',
       //home: mainScreens(),
       routes: route,
       theme: theme(),
