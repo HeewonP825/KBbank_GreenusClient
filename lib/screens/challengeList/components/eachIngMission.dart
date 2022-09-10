@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:kbbank_practice/models/FriendProfile.dart';
 import 'package:kbbank_practice/screens/challengeDetail/challengeDetalHome.dart';
 import 'package:kbbank_practice/screens/challengeDetail/missionRank.dart';
@@ -11,6 +12,7 @@ class EachIngMission extends StatelessWidget {
   final IngMissionData? ingMissionData;
 
   EachIngMission({this.ingMissionData});
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,7 @@ class EachIngMission extends StatelessWidget {
                 context,
                 '/challengeDetailHome',
                 arguments: IngMissionData(
+                  groupId: ingMissionData?.groupId?? 0,
                   missionName: ingMissionData?.missionName ?? "미션 이름 x",
                   friendProfileList: friendProfileList ?? [],
                   backgroundImage: ingMissionData?.backgroundImage ?? '',

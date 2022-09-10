@@ -52,6 +52,7 @@ class MyPageIngMission extends StatelessWidget {
               context,
               '/challengeDetailHome',
               arguments: IngMissionData(
+                groupId: ingMissionData?.groupId?? 0,
                 missionName: ingMissionData?.missionName ?? "미션 이름 x",
                 friendProfileList: friendProfileList ?? [],
                 backgroundImage: ingMissionData?.backgroundImage ?? '',

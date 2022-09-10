@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kbbank_practice/theme.dart';
 import '../../constants.dart';
@@ -10,6 +11,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // _login();
     return Scaffold(
       //backgroundColor: kPrimaryColor,
       body: SafeArea(
@@ -36,7 +38,17 @@ class SplashScreen extends StatelessWidget {
       ),
     );
   }
-
+  //
+  // Future<void> _login() async {
+  //   final _storage=const FlutterSecureStorage();
+  //   final String key = "userId";
+  //   final String value = "1";
+  //
+  //   await _storage.write(
+  //     key: key,
+  //     value: value,
+  //   );
+  // }
   void _completeSplash(BuildContext context, Widget widget) {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (BuildContext context) => widget));
