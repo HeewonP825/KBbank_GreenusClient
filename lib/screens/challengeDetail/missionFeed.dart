@@ -25,7 +25,7 @@ class MissionFeedState extends State<MissionFeed> {
         automaticallyImplyLeading: false,
         title: Text(
           "GREENUS",
-          style: GoogleFonts.pacifico(fontSize: 20, color: Colors.white),
+          style: TextStyle(fontFamily: 'ChangwonDangamAsac', fontSize: 30,),
         ),
       ),
       floatingActionButton: FloatingActionButton(

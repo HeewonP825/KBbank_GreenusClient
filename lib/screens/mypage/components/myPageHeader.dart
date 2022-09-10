@@ -80,14 +80,14 @@ class MyPageHeader extends StatelessWidget {
           children: [
             Text.rich(
               TextSpan(children: [
-                TextSpan(text: myPageData.level),
-                TextSpan(text: myPageData.levelNum.toString()),
+                TextSpan(text: myPageData.level, style: TextStyle(fontFamily: 'Cafe24Ohsquare', fontSize: 10,),),
+                TextSpan(text: myPageData.levelNum.toString(), style: TextStyle(fontFamily: 'Cafe24Ohsquare', fontSize: 20,),),
               ]),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 5),
             Text(
               myPageData.name,
-              style: textTheme().headline1,
+              style: TextStyle(fontFamily: 'Cafe24Ohsquare', fontSize: 26,),
             ),
           ],
         )

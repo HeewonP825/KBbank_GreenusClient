@@ -35,7 +35,7 @@ class _MyPageScreen extends State<MyPageScreen> {
           automaticallyImplyLeading: false,
           title: Text(
             "GREENUS",
-            style: GoogleFonts.pacifico(fontSize: 20, color: Colors.white),
+            style: TextStyle(fontFamily: 'ChangwonDangamAsac', fontSize: 30,),
           ),
         ),
         body: ListView(

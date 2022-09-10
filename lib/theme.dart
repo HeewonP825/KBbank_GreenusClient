@@ -5,7 +5,7 @@ import 'constants.dart';
 ThemeData theme() {
   return ThemeData(
     scaffoldBackgroundColor: Colors.white,
-    fontFamily: 'ChangwonDangamAsac',
+    //fontFamily: 'ChangwonDangamAsac',
     appBarTheme: AppBarTheme(
       centerTitle: true,
       color: kPrimaryColor,
@@ -19,6 +19,7 @@ ThemeData theme() {
 
 TextTheme textTheme() {
   return TextTheme(
+    //appbar1: const TextStyle(fontFamily: 'ChangwonDangamAsac', fontSize: 30),
     headline1:
     GoogleFonts.nanumGothic(fontSize: 18.0, fontWeight: FontWeight.bold),
     headline2:

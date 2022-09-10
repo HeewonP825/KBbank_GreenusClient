@@ -71,7 +71,7 @@ class MissionDetailState extends State<MissionDetail> {
         automaticallyImplyLeading: false,
         title: Text(
           "GREENUS",
-          style: GoogleFonts.pacifico(fontSize: 20, color: Colors.white),
+          style: TextStyle(fontFamily: 'ChangwonDangamAsac', fontSize: 30,),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -213,10 +213,6 @@ class MissionDetailState extends State<MissionDetail> {
                             child: Text('아니오'),
                             onPressed: () {
                               Navigator.of(context).pop();
-                              Navigator.pop(
-                                context,
-                                MaterialPageRoute(builder: (context) => NewMissionList()),
-                              );
                             },
                           ),
                         ],
