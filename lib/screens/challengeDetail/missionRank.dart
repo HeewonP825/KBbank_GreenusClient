@@ -36,7 +36,7 @@ class _MissionRankState extends State<MissionRank> {
     for (int i = 0; i < widget.ingMissionData.friendProfileList.length; i++) {
       friendProfileList.add(
         Container(
-          margin: const EdgeInsets.fromLTRB(15, 0, 6, 10),
+          margin: const EdgeInsets.fromLTRB(15, 0, 6, 5),
           padding: const EdgeInsets.all(20.0),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
@@ -95,6 +95,11 @@ class _MissionRankState extends State<MissionRank> {
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   children: friendProfileList.cast()),
+            ),
+            Container(
+                margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
+                width: 400,
+                child: Divider(color: Color(0xFFE8E8E8), thickness: 1.0)
             ),
             FutureBuilder(
                 future: futureRankUserList,

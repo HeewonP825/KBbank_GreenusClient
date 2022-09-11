@@ -100,10 +100,10 @@ class MyPageHeader extends StatelessWidget {
       //onTap: () {},
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFFC3D9F1),
+          color: Color(0xffffffff),
           border: Border.all(
             width: 1.5,
-            color: Color(0xffffffff),
+            color: const Color(0xFFC3D9F1),
           ),
           boxShadow: [
             BoxShadow(

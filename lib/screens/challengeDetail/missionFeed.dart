@@ -6,6 +6,7 @@ import 'package:kbbank_practice/screens/challengeList/components/ingMission.dart
 import 'package:kbbank_practice/screens/missionPage/components/missionWithFriends.dart';
 import 'package:kbbank_practice/screens/missionPage/newMissionList.dart';
 import 'package:like_button/like_button.dart';
+import 'package:kbbank_practice/screens/challengeList/components/numberIndicator.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -18,6 +19,7 @@ class MissionFeed extends StatefulWidget {
 }
 
 class MissionFeedState extends State<MissionFeed> {
+
   @override
   Widget build(BuildContext context) {
 
