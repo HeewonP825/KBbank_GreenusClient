@@ -90,6 +90,9 @@ flutter:
     - assets/icons/bronze.png
     - assets/icons/silver.png
     - assets/icons/gold.png
+    - assets/icons/1.png
+    - assets/icons/2.png
+    - assets/icons/3.png
     - assets/icons/4.png
     - assets/icons/5.png
     - assets/icons/6.png

@@ -49,7 +49,7 @@ class EachFinishMission extends StatelessWidget {
                 context,
                 '/challengeDetailHome',
                 arguments: IngMissionData(
-                  groupId: finishMissionData?.groupId?? 0,
+                  groupId: finishMissionData?.groupId ?? 0,
                   missionName: finishMissionData?.missionName ?? "미션 이름 x",
                   friendProfileList: friendProfileList ?? [],
                   backgroundImage: finishMissionData?.backgroundImage ?? '',
@@ -67,7 +67,8 @@ class EachFinishMission extends StatelessWidget {
                   colorFilter: ColorFilter.mode(
                       Colors.white.withOpacity(0.3), BlendMode.dstATop),
                   fit: BoxFit.cover,
-                  image: new AssetImage(finishMissionData?.backgroundImage ?? ''),
+                  image:
+                      new AssetImage(finishMissionData?.backgroundImage ?? ''),
                 ),
               ),
             ),
@@ -99,9 +100,10 @@ class EachFinishMission extends StatelessWidget {
                 ),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: profileContainerList,
-              ),
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: profileContainerList
+
+                ),
             ],
           ),
         ],

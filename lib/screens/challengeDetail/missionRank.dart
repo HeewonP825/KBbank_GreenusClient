@@ -202,13 +202,13 @@ Future<List<MissionRankUserInfo>> receiveMissionRankUserInfo(groupId) async {
         rankStr="Me";
         break;
       case 1:
-        rankStr="assets/icons/gold.png";
+        rankStr="assets/icons/1.png";
         break;
       case 2:
-        rankStr="assets/icons/silver.png";
+        rankStr="assets/icons/2.png";
         break;
       case 3:
-        rankStr="assets/icons/bronze.png";
+        rankStr="assets/icons/3.png";
         break;
       case 4:
         rankStr="assets/icons/4.png";

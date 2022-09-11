@@ -98,6 +98,7 @@ Future<List<FinishMissionData>> receiveFinishMissionData() async {
 
   for(int i=0; i<data.length; i++){
     for(int j=0; j<data[i]['friends'].length; j++){
+      if(j>5) break;
       friendProfileList.add(
           FriendProfile(profileUrl: data[i]['friends'][j]['profileImgUrl'])
       );
