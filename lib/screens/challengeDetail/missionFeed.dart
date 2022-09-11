@@ -85,7 +85,7 @@ class MissionFeedState extends State<MissionFeed> {
             margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
             height: 50,
             alignment: Alignment.topCenter,
-            child: Center(child: Text("이전 페이지에서 미션 이름 받아와야함.", style: textTheme().headline1),),
+            child: Center(child: Text("이전 페이지에서 미션 이름 받아와야함.~", style: textTheme().headline1),),
             decoration: BoxDecoration(
               color: const Color(0xFFC3D9F1),
               border: Border.all(
