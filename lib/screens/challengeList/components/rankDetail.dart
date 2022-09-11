@@ -54,8 +54,8 @@ class RankDetail extends StatelessWidget {
             ClipRRect(
               child: Image.asset(
                 weeklyRankList.ranking,
-                width: 30,
-                height: 50,
+                width: 33,
+                height: 52,
                 fit: BoxFit.cover,
               ),
             ),
