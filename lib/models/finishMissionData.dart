@@ -4,6 +4,7 @@ import 'FriendProfile.dart';
 
 class FinishMissionData {
 
+  final int groupId;
   final String missionName;
   final String backgroundImage;
   final String startDate;
@@ -11,6 +12,7 @@ class FinishMissionData {
   final List<FriendProfile> friendProfileList;
 
   FinishMissionData({
+    required this.groupId,
     required this.missionName,
     required this.backgroundImage,
     required this.startDate,
@@ -101,6 +103,7 @@ Future<List<FinishMissionData>> receiveFinishMissionData() async {
       );
     }
     ingMissionLists.add(FinishMissionData(
+      groupId:data[i]['groupId'],
       missionName: data[i]['missionName'],
       backgroundImage: "assets/images/banner1.jpg",
       startDate: data[i]['startDate'],

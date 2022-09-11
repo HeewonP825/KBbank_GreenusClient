@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kbbank_practice/models/FriendProfile.dart';
+import 'package:kbbank_practice/models/ingMissionData.dart';
 import '../../../../models/finishMissionData.dart';
 import '../../../../theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -41,17 +42,33 @@ class EachFinishMission extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Container(
-            // width: 400,
-            // height: 230,
-            margin: EdgeInsets.fromLTRB(6, 6, 6, 0),
-            decoration: new BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              image: new DecorationImage(
-                colorFilter: ColorFilter.mode(
-                    Colors.white.withOpacity(0.3), BlendMode.dstATop),
-                fit: BoxFit.cover,
-                image: new AssetImage(finishMissionData?.backgroundImage ?? ''),
+          GestureDetector(
+            onTap: () {
+              print("눌림`");
+              Navigator.pushNamed(
+                context,
+                '/challengeDetailHome',
+                arguments: IngMissionData(
+                  groupId: finishMissionData?.groupId?? 0,
+                  missionName: finishMissionData?.missionName ?? "미션 이름 x",
+                  friendProfileList: friendProfileList ?? [],
+                  backgroundImage: finishMissionData?.backgroundImage ?? '',
+                  startDate: finishMissionData?.startDate ?? "지구가 태어날대부터 시작함",
+                ),
+              );
+            },
+            child: Container(
+              // width: 400,
+              // height: 230,
+              margin: EdgeInsets.fromLTRB(6, 6, 6, 0),
+              decoration: new BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                image: new DecorationImage(
+                  colorFilter: ColorFilter.mode(
+                      Colors.white.withOpacity(0.3), BlendMode.dstATop),
+                  fit: BoxFit.cover,
+                  image: new AssetImage(finishMissionData?.backgroundImage ?? ''),
+                ),
               ),
             ),
           ),
