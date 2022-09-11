@@ -37,7 +37,6 @@ class _CalendarState extends State<Calendar> {
         future: receiveEventSource(widget.groupId),
         builder: (context, snapshot) {
           var data = snapshot.data;
-
           if (data == null) {
             return Container(
               child: Center(
@@ -45,11 +44,13 @@ class _CalendarState extends State<Calendar> {
               ),
             );
           } else {
+            print('11111');
             print(data);
             final events = LinkedHashMap<DateTime, List<Event>>(
               equals: isSameDay,
             )..addAll(data as Map<DateTime,List<Event>>);
 
+            print(events);
             List<Event> _getEventsForDay(DateTime day) {
               return events[day] ?? [];
             }

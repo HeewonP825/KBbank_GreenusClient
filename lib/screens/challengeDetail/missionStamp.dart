@@ -72,8 +72,6 @@ class _MissionStampWidgetState extends State<MissionStampWidget> {
               future: futureRankUserList,
               builder: (context, snapshot) {
                 var data = snapshot.data;
-                print("data:");
-                print(data);
                 if (data == null) {
                   return Container(
                     child: Center(

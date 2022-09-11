@@ -29,7 +29,7 @@ class _MissionListState extends State<MissionList> {
           children: [
             CarouselSlider(
               options: CarouselOptions(
-                height: 630,
+                height: 550,
                 // autoPlay: true,
                 // enlargeCenterPage: true,
                 //scrollDirection: Axis.vertical,
@@ -70,7 +70,7 @@ class _MissionListState extends State<MissionList> {
                               item,
                               fit: BoxFit.cover,
                               width: double.infinity,
-                              height: 630,
+                              height: 550,
                             ),
                           ),
                         ],
