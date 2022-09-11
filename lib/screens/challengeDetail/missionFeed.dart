@@ -110,7 +110,7 @@ class MissionFeedState extends State<MissionFeed> {
           ),
           Container(
             child:Card(
-              margin: const EdgeInsets.fromLTRB(10, 10, 20, 20),
+              margin: const EdgeInsets.fromLTRB(20, 10, 20, 20),
               clipBehavior: Clip.antiAlias,
               child: Column(
                 children: [
