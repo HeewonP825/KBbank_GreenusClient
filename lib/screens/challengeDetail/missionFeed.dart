@@ -145,20 +145,20 @@ class MissionFeedState extends State<MissionFeed> {
                       ]
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      '~사진 내용 설명 텍스트 들어갈 부분~',
-                      style: TextStyle(color: Colors.black.withOpacity(0.6)),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(16.0),
+                  //   child: Text(
+                  //     '~사진 내용 설명 텍스트 들어갈 부분~',
+                  //     style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                  //   ),
+                  // ),
                   // Container(
                   //     margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                   //     width: 400,
                   //     child: Divider(color: Color(0xFFE8E8E8), thickness: 1.0)),
                   Container(
                     // alignment: Alignment.centerLeft,
-                    margin: EdgeInsets.fromLTRB(12, 0, 20, 10),
+                    margin: EdgeInsets.fromLTRB(12, 10, 20, 10),
                     child: LikeButton(
                       mainAxisAlignment: MainAxisAlignment.start,
                       likeCount: 0,
