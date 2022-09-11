@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kbbank_practice/models/ingMissionData.dart';
 import 'package:kbbank_practice/screens/challengeList/components/ingMission.dart';
 import 'package:kbbank_practice/screens/missionPage/components/missionWithFriends.dart';
 import 'package:kbbank_practice/screens/missionPage/newMissionList.dart';
@@ -14,6 +15,10 @@ import 'package:intl/date_symbol_data_local.dart';
 import '../../../../theme.dart';
 
 class MissionFeed extends StatefulWidget {
+  final IngMissionData ingMissionData;
+
+  const MissionFeed(this.ingMissionData,{Key? key}) : super(key: key);
+
   @override
   MissionFeedState createState() => MissionFeedState();
 }
@@ -85,7 +90,7 @@ class MissionFeedState extends State<MissionFeed> {
             margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
             height: 50,
             alignment: Alignment.topCenter,
-            child: Center(child: Text("이전 페이지에서 미션 이름 받아와야함.~", style: textTheme().headline1),),
+            child: Center(child: Text(widget.ingMissionData.missionName, style: textTheme().headline1),),
             decoration: BoxDecoration(
               color: const Color(0xFFC3D9F1),
               border: Border.all(

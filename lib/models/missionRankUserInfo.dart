@@ -5,7 +5,7 @@ class MissionRankUserInfo {
   final int userLevel;
   final int stampNum;
   final int totalStampNum;
-  late final int ranking;
+  late final String ranking;
 
   MissionRankUserInfo({
     required this.profileImgUrl,

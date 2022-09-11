@@ -29,10 +29,10 @@ class UserInfoWidget extends StatelessWidget {
           Flexible(
               fit: FlexFit.loose,
               flex: 2,
-              child: Text("1.",
+              child: Text(rankUserInfo.ranking.toString(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 25,
                   ))), //순위
           Flexible(
             fit: FlexFit.tight,

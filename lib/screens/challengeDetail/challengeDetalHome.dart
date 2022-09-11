@@ -21,7 +21,7 @@ class MissionDetailPageView extends StatelessWidget {
       children: [
         MissionStampWidget(args),
         MissionRank(args),
-        MissionFeed(),
+        MissionFeed(args),
       ],
     );
   }

@@ -93,7 +93,7 @@ class _MissionRankState extends State<MissionRank> {
             ),
             Expanded(
               child: ListView(
-                  shrinkWrap:true,
+                  shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   children: friendProfileList.cast()),
             ),
@@ -115,15 +115,45 @@ class _MissionRankState extends State<MissionRank> {
                     );
                   } else {
                     return Expanded(
-                      flex: 7,
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: (data as List).length,
-                          itemBuilder: (context, index) {
-                            return UserInfoWidget((data as List)[index]);
-                          }),
-                    );
+                        flex: 7,
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.fromLTRB(10, 10, 0, 10),
+                              width: double.infinity,
+                              child: Text(
+                                "Me",
+                                style: textTheme().headline1,
+                              ),
+                            ),
+                            UserInfoWidget((data as List)[0]),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(10, 20, 0, 20),
+                              width: double.infinity,
+                              child: Text(
+                                "Ranking",
+                                style: textTheme().headline1,
+                              ),
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: (data as List).length,
+                                  itemBuilder: (context, index) {
+                                    if (index == 0) {
+                                      return SizedBox(
+                                        width: 0,
+                                        height: 0,
+                                      );
+                                    }
+                                    ;
+                                    return UserInfoWidget(
+                                        (data as List)[index]);
+                                  }),
+                            )
+                          ],
+                        ));
                   }
                 }),
           ],
@@ -165,8 +195,23 @@ Future<List<MissionRankUserInfo>> receiveMissionRankUserInfo(groupId) async {
   List<MissionRankUserInfo> rankUserInfoList = [];
 
   for (int i = 0; i < data.length; i++) {
+    var rank = data[i]['ranking'];
+    String rankStr = "";
+    switch (rank) {
+      case 1:
+        rankStr = data[i]['ranking'].toString() + "st";
+        break;
+      case 2:
+        rankStr = data[i]['ranking'].toString() + "nd";
+        break;
+      case 3:
+        rankStr = data[i]['ranking'].toString() + "rd";
+        break;
+      default:
+        rankStr = data[i]['ranking'].toString() + "th";
+    }
     rankUserInfoList.add(MissionRankUserInfo(
-        ranking: int.parse(data[i]['ranking']),
+        ranking: rankStr,
         userName: data[i]['userName'],
         totalStampNum: 1000,
         stampNum: data[i]['stamp'],
