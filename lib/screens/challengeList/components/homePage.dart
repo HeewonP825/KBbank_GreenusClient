@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
       children: [
         // 위젯 크기 지정
         SizedBox(
-          height: 250,
+          height: 260,
           child: HomeRecommendMission(),
         ),
         SizedBox(height: 16),
