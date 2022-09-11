@@ -42,20 +42,44 @@ Future<List<missionRank>> receiveMissionRankList() async {
   List<missionRank> missionRankList = [];
 
   for (int i = 0; i < rankList.length; i++) {
+    var rank=rankList[i]['ranking'];
     String rankStr="";
-    switch(i){
+    switch(rank){
       case 0:
         rankStr="Me";
         break;
       case 1:
-        rankStr=rankList[i]['ranking'].toString()+"st";
+        rankStr="assets/icons/gold.png";
         break;
       case 2:
-        rankStr=rankList[i]['ranking'].toString()+"nd";
+        rankStr="assets/icons/silver.png";
         break;
       case 3:
-        rankStr=rankList[i]['ranking'].toString()+"rd";
+        rankStr="assets/icons/bronze.png";
         break;
+      case 4:
+        rankStr="assets/icons/4.png";
+        break;
+      case 5:
+        rankStr="assets/icons/5.png";
+        break;
+      case 6:
+        rankStr="assets/icons/6.png";
+        break;
+      case 7:
+        rankStr="assets/icons/7.png";
+        break;
+      case 8:
+        rankStr="assets/icons/8.png";
+        break;
+      case 9:
+        rankStr="assets/icons/9.png";
+        break;
+      case 10:
+        rankStr="assets/icons/10.png";
+        break;
+      default:
+        rankStr="순위권 밖"; //Todo 10명넘었을때도 에러 발생 안하도록 대처할것.
     }
 
     missionRankList.add(missionRank(

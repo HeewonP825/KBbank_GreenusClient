@@ -29,7 +29,16 @@ class UserInfoWidget extends StatelessWidget {
           Flexible(
               fit: FlexFit.loose,
               flex: 2,
-              child: Text(rankUserInfo.ranking.toString(),
+              child: (rankUserInfo.ranking.toString()!="순위권 밖")?
+              Container(
+                child: Image.asset(
+                  rankUserInfo.ranking,
+                  width: 45,
+                  height: 50,
+                  fit: BoxFit.fitWidth,
+                ),
+              ):
+              Text(rankUserInfo.ranking.toString(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 25,
@@ -58,6 +67,7 @@ class UserInfoWidget extends StatelessWidget {
             fit: FlexFit.tight,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -85,6 +95,12 @@ class UserInfoWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Text(
+                      "인증 횟수: ",
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
                     Text(
                       rankUserInfo.stampNum.toString(),
                       style: TextStyle(
