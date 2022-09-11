@@ -73,8 +73,6 @@ Future<List<HomeBanner>> receiveHomeBannerList() async {
   List<HomeBanner> homeBannerList = [];
 
   for (int i = 0; i < homeBanner.length; i++) {
-
-
     homeBannerList.add(HomeBanner(
       bannerImage: homeBanner[i]['bannerImage'],
       bannerTitle: homeBanner[i]['bannerTitle'],

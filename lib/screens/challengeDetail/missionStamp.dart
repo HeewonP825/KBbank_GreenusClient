@@ -87,7 +87,7 @@ class _MissionStampWidgetState extends State<MissionStampWidget> {
           Container(
             child: Card(
               margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-              child: Calendar(),
+              child: Calendar(widget.ingMissionData.groupId),
             ),
           ),
           GestureDetector(

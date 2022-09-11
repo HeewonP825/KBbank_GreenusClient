@@ -9,17 +9,17 @@ class Event {
   String toString() => this.title;
 }
 
-Map<DateTime,List<Event>> eventSource={
-  DateTime(2022,9,3):[Event('쓰레기 분리수거하기')],
-  DateTime(2022,8,1):[Event("하 힘들다")],
-  DateTime(2022,8,2):[Event("하 힘들다")],
-  DateTime(2022,8,20):[Event("하 힘들다")],
-  DateTime(2022,8,28):[Event("그만하고싶다.")],
-  DateTime(2022,9,10):[Event("나 그만하면 안될까?")],
-  DateTime(2022,9,5):[Event("아이워너 그만")],
-  DateTime(2022,9,12):[Event('쓰레기 분리수거하기')],
-  DateTime(2022,9,20):[Event('쓰레기 분리수거하기')],
-};
+// Map<DateTime,List<Event>> eventSource={
+//   DateTime(2022,9,3):[Event('쓰레기 분리수거하기')],
+//   DateTime(2022,8,1):[Event("하 힘들다")],
+//   DateTime(2022,8,2):[Event("하 힘들다")],
+//   DateTime(2022,8,20):[Event("하 힘들다")],
+//   DateTime(2022,8,28):[Event("그만하고싶다.")],
+//   DateTime(2022,9,10):[Event("나 그만하면 안될까?")],
+//   DateTime(2022,9,5):[Event("아이워너 그만")],
+//   DateTime(2022,9,12):[Event('쓰레기 분리수거하기')],
+//   DateTime(2022,9,20):[Event('쓰레기 분리수거하기')],
+// };
 
 
 Future<Map<DateTime,List<Event>>> receiveEventSource(groupId) async{
@@ -44,10 +44,16 @@ Future<Map<DateTime,List<Event>>> receiveEventSource(groupId) async{
   List<DateTime> eventDays = [];
 
   for (int i = 0; i < data.length; i++) {
-    eventDays.add(data[i]['date']);
+    // DateTime datetime=DateTime(2022,09,10);
+    print(data[i]['date']);
+    var dateStringList=data[i]['date'].split("-");
+    print(dateStringList);
+    var year=int.parse(dateStringList[0]);
+    var month=int.parse(dateStringList[1]);
+    var day=int.parse(dateStringList[2]);
+    eventSource[DateTime(year,month,day)]=[Event("Stamp")];
   }
 
-  print("data");
 
 
 
