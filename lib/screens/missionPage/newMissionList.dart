@@ -32,7 +32,7 @@ class NewMissionList extends StatelessWidget {
       ),
       body: Center(
         child: Container(
-            margin: const EdgeInsets.fromLTRB(0, 60, 0, 20),
+            margin: const EdgeInsets.fromLTRB(0, 15, 0, 15),
             child: MissionList()
         ),
       ),

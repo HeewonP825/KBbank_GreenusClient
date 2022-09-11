@@ -132,10 +132,10 @@ class MissionFeedState extends State<MissionFeed> {
                         ),
                       ),
                     ),
-                    title: const Text("이름", style: TextStyle(fontFamily: 'ELAND', fontSize: 18,),),
+                    title: const Text("그리너", style: TextStyle(fontFamily: 'Cafe24Ohsquare', fontSize: 20,),),
                     subtitle: Text(
                       'Lv1',
-                      style: TextStyle(color: Colors.black.withOpacity(0.4)),
+                      style: TextStyle(color: Colors.black.withOpacity(0.4), fontSize: 13,),
                     ),
                   ),
                   SizedBox(

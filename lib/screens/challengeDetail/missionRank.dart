@@ -98,7 +98,7 @@ class _MissionRankState extends State<MissionRank> {
                   children: friendProfileList.cast()),
             ),
             Container(
-                margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
+                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
                 width: 400,
                 child: Divider(color: Color(0xFFE8E8E8), thickness: 1.0)),
             FutureBuilder(
@@ -119,7 +119,7 @@ class _MissionRankState extends State<MissionRank> {
                         child: Column(
                           children: [
                             Container(
-                              margin: EdgeInsets.fromLTRB(10, 10, 0, 10),
+                              margin: EdgeInsets.fromLTRB(20, 10, 0, 5),
                               width: double.infinity,
                               child: Text(
                                 "Me",
@@ -128,7 +128,7 @@ class _MissionRankState extends State<MissionRank> {
                             ),
                             UserInfoWidget((data as List)[0]),
                             Container(
-                              margin: EdgeInsets.fromLTRB(10, 20, 0, 20),
+                              margin: EdgeInsets.fromLTRB(20, 10, 0, 5),
                               width: double.infinity,
                               child: Text(
                                 "Ranking",
