@@ -133,7 +133,18 @@ class MissionFeedState extends State<MissionFeed> {
                       style: TextStyle(color: Colors.black.withOpacity(0.4)),
                     ),
                   ),
-                  Image.asset('assets/images/banner.jpg'),
+                  SizedBox(
+                    height: 204,
+                    child: ListView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      children:[
+                        Image.asset('assets/images/banner.jpg'),
+                        Image.asset('assets/images/banner.jpg'),
+                        Image.asset('assets/images/banner.jpg'),
+                      ]
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(
