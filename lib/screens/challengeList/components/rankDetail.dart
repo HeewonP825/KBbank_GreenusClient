@@ -45,7 +45,12 @@ class RankDetail extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Row(
           children: [
-            (weeklyRankList.ranking=="Me") ? Text("Me"):
+            (weeklyRankList.ranking=="Me") ? Text(
+                "Me",
+                style:TextStyle(
+                    fontSize:20,
+                )
+            ):
             ClipRRect(
               child: Image.asset(
                 weeklyRankList.ranking,
@@ -55,7 +60,7 @@ class RankDetail extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 10,
+              width: 15
             ),
             ImageContainer(
               width: 50,
