@@ -21,9 +21,10 @@ class MissionRank extends StatefulWidget {
 class _MissionRankState extends State<MissionRank> {
   late Future<List<MissionRankUserInfo>> futureRankUserList;
 
-  void initState(){
+  void initState() {
     super.initState();
-    futureRankUserList=receiveMissionRankUserInfo(widget.ingMissionData.groupId);
+    futureRankUserList =
+        receiveMissionRankUserInfo(widget.ingMissionData.groupId);
   }
 
   @override
@@ -43,7 +44,7 @@ class _MissionRankState extends State<MissionRank> {
             image: new DecorationImage(
               fit: BoxFit.fill,
               image: new Image.network(
-                  widget.ingMissionData.friendProfileList[i].profileUrl)
+                      widget.ingMissionData.friendProfileList[i].profileUrl)
                   .image,
             ),
           ),
@@ -92,15 +93,14 @@ class _MissionRankState extends State<MissionRank> {
             ),
             Expanded(
               child: ListView(
-                  shrinkWrap: true,
+                  shrinkWrap:true,
                   scrollDirection: Axis.horizontal,
                   children: friendProfileList.cast()),
             ),
             Container(
                 margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
                 width: 400,
-                child: Divider(color: Color(0xFFE8E8E8), thickness: 1.0)
-            ),
+                child: Divider(color: Color(0xFFE8E8E8), thickness: 1.0)),
             FutureBuilder(
                 future: futureRankUserList,
                 builder: (context, snapshot) {
@@ -120,14 +120,12 @@ class _MissionRankState extends State<MissionRank> {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: (data as List).length,
-                          itemBuilder:(context,index){
+                          itemBuilder: (context, index) {
                             return UserInfoWidget((data as List)[index]);
-                          }
-                          ),
+                          }),
                     );
-                }
-                }
-            ),
+                  }
+                }),
           ],
         ),
         floatingActionButton: FloatingActionButton(
@@ -153,7 +151,8 @@ Future<List<MissionRankUserInfo>> receiveMissionRankUserInfo(groupId) async {
     receiveTimeout: 3000,
   );
   Dio dio = Dio(options);
-  Response response = await dio.get('/app/MyMissionMainPage/users/${userId}/groupId/${groupId}');
+  Response response = await dio
+      .get('/app/MyMissionMainPage/users/${userId}/groupId/${groupId}');
 
   print("/app/MyMissionMainPage/users/${userId}/groupId/${groupId}");
   print("미션 랭크를 출력합시다!!! ");
