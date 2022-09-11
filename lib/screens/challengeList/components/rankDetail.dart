@@ -8,6 +8,7 @@ import 'package:kbbank_practice/screens/components/ImageContainer.dart';
 import '../../../../models/weeklyRank.dart';
 //import 'eachWeeklyRank.dart';
 import '../../../../theme.dart';
+
 // import '../../components/ImageContainer.dart';
 
 class RankDetail extends StatelessWidget {
@@ -44,7 +45,15 @@ class RankDetail extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Row(
           children: [
-            Text(weeklyRankList.ranking),
+            (weeklyRankList.ranking=="Me") ? Text("Me"):
+            ClipRRect(
+              child: Image.asset(
+                weeklyRankList.ranking,
+                width: 30,
+                height: 50,
+                fit: BoxFit.cover,
+              ),
+            ),
             SizedBox(
               width: 10,
             ),

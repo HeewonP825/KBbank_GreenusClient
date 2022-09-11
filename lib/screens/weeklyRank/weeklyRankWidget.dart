@@ -17,31 +17,31 @@ class _WeeklyRankWidgetState extends State<WeeklyRankWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    futureWeeklyRankList=receiveWeeklyRankList();
+    futureWeeklyRankList = receiveWeeklyRankList();
   }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<WeeklyRank>>(
-      future:futureWeeklyRankList,
-      builder: (context,snapshot){
-        var data=snapshot.data;
-        print("weekly Rank Printing");
-        print(data);
-        if(data==null){
-          return Container(
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }else{
-          return Column(
-            children: List.generate(
-              data.length,
-                  (index) => RankDetail(weeklyRankList: data[index]),
-            ),
-          );
-        }
-      }
-    );
+        future: futureWeeklyRankList,
+        builder: (context, snapshot) {
+          var data = snapshot.data;
+          print("weekly Rank Printing");
+          print(data);
+          if (data == null) {
+            return Container(
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          } else {
+            return Column(
+              children: List.generate(
+                data.length,
+                (index) => RankDetail(weeklyRankList: data[index]),
+              ),
+            );
+          }
+        });
   }
 }

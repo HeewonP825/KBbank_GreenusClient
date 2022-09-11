@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-
 class WeeklyRank {
   final String imageUrl;
   final String name;
@@ -85,13 +84,13 @@ Future<List<WeeklyRank>> receiveWeeklyRankList() async {
         rankStr="Me";
         break;
       case 1:
-        rankStr=rankList[i]['ranking'].toString()+"st";
+        rankStr="assets/icons/gold.png";
         break;
       case 2:
-        rankStr=rankList[i]['ranking'].toString()+"nd";
+        rankStr="assets/icons/silver.png";
         break;
       case 3:
-        rankStr=rankList[i]['ranking'].toString()+"rd";
+        rankStr="assets/icons/bronze.png";
         break;
     }
 
