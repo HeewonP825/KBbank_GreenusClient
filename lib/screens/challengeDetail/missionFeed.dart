@@ -162,13 +162,23 @@ class MissionFeedState extends State<MissionFeed> {
                   //     width: 400,
                   //     child: Divider(color: Color(0xFFE8E8E8), thickness: 1.0)),
                   Container(
-                    // alignment: Alignment.centerLeft,
                     margin: EdgeInsets.fromLTRB(12, 10, 20, 10),
-                    child: LikeButton(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      likeCount: 0,
-                      onTap: onLikeButtonTapped,
+                    child: Row(
+                      children: [
+                        LikeButton(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          likeCount: 0,
+                          onTap: onLikeButtonTapped,
+                        ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(205, 10, 0, 10),
+                          alignment: Alignment.topRight,
+                          child: Text("2022-09-12",
+                            style: TextStyle(color: Colors.black.withOpacity(0.4),),),
+                        ),
+                      ],
                     ),
+                    // alignment: Alignment.centerLeft,
                   ),
                   // ButtonBar(
                   //   alignment: MainAxisAlignment.start,

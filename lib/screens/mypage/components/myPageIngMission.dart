@@ -95,7 +95,5 @@ class MyPageIngMission extends StatelessWidget {
         ),
       ],
     );
-
-
   }
 }
