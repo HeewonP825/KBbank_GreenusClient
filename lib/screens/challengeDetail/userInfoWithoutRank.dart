@@ -10,7 +10,7 @@ class UserInfoWithoutRankWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-      height: 100,
+      height: 90,
       margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
       decoration: BoxDecoration(
         boxShadow: [
@@ -32,7 +32,7 @@ class UserInfoWithoutRankWidget extends StatelessWidget {
             child: Container(
               //profileImage
               alignment: Alignment.center,
-              margin: const EdgeInsets.fromLTRB(15, 5, 6, 10),
+              margin: const EdgeInsets.fromLTRB(15, 10, 6, 10),
               padding: const EdgeInsets.all(20.0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -71,6 +71,7 @@ class UserInfoWithoutRankWidget extends StatelessWidget {
                       rankUserInfo.userName,
                       style: TextStyle(
                         fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
