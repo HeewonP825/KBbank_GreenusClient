@@ -34,6 +34,7 @@ class _EachFeedState extends State<EachFeed> {
       imgList.add(
         Image.network(
           widget.data.certifyImgUrl[i],
+          fit:BoxFit.fitHeight,
         ),
       );
     }
