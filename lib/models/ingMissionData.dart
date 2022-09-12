@@ -46,7 +46,6 @@ Future<List<IngMissionData>> receiveIngMissionData() async {
 
   print("friends");
   print(data[0]['friends'].runtimeType);
-  print(data[0]['friends'][0]['profileImgUrl']);
 
   for(int i=0; i<data.length; i++){
     for(int j=0; j<data[i]['friends'].length; j++){

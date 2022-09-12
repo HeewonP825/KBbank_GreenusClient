@@ -66,6 +66,8 @@ class MissionDetailState extends State<MissionDetail> {
   @override
   Widget build(BuildContext context) {
 
+    print(_controller.selectedRange?.startDate);
+    print(_controller.selectedRange?.endDate);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

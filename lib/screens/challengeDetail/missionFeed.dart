@@ -2,7 +2,9 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kbbank_practice/models/feed.dart';
 import 'package:kbbank_practice/models/ingMissionData.dart';
+import 'package:kbbank_practice/screens/challengeDetail/eachFeed.dart';
 import 'package:kbbank_practice/screens/challengeList/components/ingMission.dart';
 import 'package:kbbank_practice/screens/missionPage/components/missionWithFriends.dart';
 import 'package:kbbank_practice/screens/missionPage/newMissionList.dart';
@@ -17,80 +19,53 @@ import '../../../../theme.dart';
 class MissionFeed extends StatefulWidget {
   final IngMissionData ingMissionData;
 
-  const MissionFeed(this.ingMissionData,{Key? key}) : super(key: key);
+  const MissionFeed(this.ingMissionData, {Key? key}) : super(key: key);
 
   @override
   MissionFeedState createState() => MissionFeedState();
 }
 
 class MissionFeedState extends State<MissionFeed> {
+  late Future<List<Feed>> futureFeedList;
+
+  void initState() {
+    super.initState();
+    futureFeedList = receiveFeeds(widget.ingMissionData.groupId);
+  }
 
   @override
   Widget build(BuildContext context) {
-
-    // LikeButton(
-    //   size: 15,
-    //   circleColor:
-    //   CircleColor(start: Color(0xff00ddff), end: Color(0xff0099cc)),
-    //   bubblesColor: BubblesColor(
-    //     dotPrimaryColor: Color(0xff33b5e5),
-    //     dotSecondaryColor: Color(0xff0099cc),
-    //   ),
-    // );
-
-    // countBuilder: (int count, bool isLiked, String text) {
-    //   var color = isLiked ? Colors.deepPurpleAccent : Colors.grey;
-    //   Widget result;
-    //   if (count == 0) {
-    //     result = Text(
-    //       "love",
-    //       style: TextStyle(color: color),
-    //     );
-    //   } else
-    //     result = Text(
-    //       text,
-    //       style: TextStyle(color: color),
-    //     );
-    //   return result;
-    // };
-
-    Future<bool> onLikeButtonTapped(bool isLiked) async{
-    // // send your request here
-    // final bool success= (await LikeButton()) as bool;
-    //
-    // // if failed, you can do nothing
-    // return success? !isLiked:isLiked;
-
-    return !isLiked;
-    }
-
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text(
-          "GREENUS",
-          style: TextStyle(fontFamily: 'ChangwonDangamAsac', fontSize: 30,),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text(
+            "GREENUS",
+            style: TextStyle(
+              fontFamily: 'ChangwonDangamAsac',
+              fontSize: 30,
+            ),
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: (Icon(Icons.keyboard_return)),
-        backgroundColor: Color(0xff111421), //Widget 추가
-        onPressed: () {
-          // 이벤트 콜백 함수
-          Navigator.pop(
-            context,
-            MaterialPageRoute(builder: (context) => NewMissionList()),
-          );
-        },
-      ),
-      body: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
+        floatingActionButton: FloatingActionButton(
+          child: (Icon(Icons.keyboard_return)),
+          backgroundColor: Color(0xff111421), //Widget 추가
+          onPressed: () {
+            // 이벤트 콜백 함수
+            Navigator.pop(
+              context,
+              MaterialPageRoute(builder: (context) => NewMissionList()),
+            );
+          },
+        ),
+        body: Column(mainAxisSize: MainAxisSize.min, children: [
+          Container(
             margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
             height: 50,
             alignment: Alignment.topCenter,
-            child: Center(child: Text(widget.ingMissionData.missionName, style: textTheme().headline1),),
+            child: Center(
+              child: Text(widget.ingMissionData.missionName,
+                  style: textTheme().headline1),
+            ),
             decoration: BoxDecoration(
               color: const Color(0xFFC3D9F1),
               border: Border.all(
@@ -108,103 +83,25 @@ class MissionFeedState extends State<MissionFeed> {
               borderRadius: BorderRadius.circular(15.0),
             ),
           ),
-          Container(
-            child:Card(
-              margin: const EdgeInsets.fromLTRB(20, 10, 20, 20),
-              clipBehavior: Clip.antiAlias,
-              child: Column(
-                children: [
-                  ListTile(
-                    leading: Container(
-                      //profileImage
-                      height: 37,
-                      width: 37,
-                      alignment: Alignment.center,
-                      margin: const EdgeInsets.fromLTRB(2, 5, 4, 5),
-                      padding: const EdgeInsets.all(20.0),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: new DecorationImage(
-                          fit: BoxFit.fill,
-                          image: new Image.network(
-                              "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
-                              .image,
-                        ),
-                      ),
+          FutureBuilder<List<Feed>>(
+              future: futureFeedList,
+              builder: (context, snapshot) {
+                var data = snapshot.data;
+                if (data == null) {
+                  return Container(
+                    child: Center(
+                      child: CircularProgressIndicator(),
                     ),
-                    title: const Text("그리너", style: TextStyle(fontFamily: 'Cafe24Ohsquare', fontSize: 20,),),
-                    subtitle: Text(
-                      'Lv1',
-                      style: TextStyle(color: Colors.black.withOpacity(0.4), fontSize: 13,),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 204,
+                  );
+                } else {
+                  return Expanded(
                     child: ListView(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      children:[
-                        Image.asset('assets/images/banner.jpg'),
-                        Image.asset('assets/images/banner.jpg'),
-                        Image.asset('assets/images/banner.jpg'),
-                      ]
+                      children:
+                          List.generate(data.length, (index) => EachFeed(data[index])),
                     ),
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.all(16.0),
-                  //   child: Text(
-                  //     '~사진 내용 설명 텍스트 들어갈 부분~',
-                  //     style: TextStyle(color: Colors.black.withOpacity(0.6)),
-                  //   ),
-                  // ),
-                  // Container(
-                  //     margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                  //     width: 400,
-                  //     child: Divider(color: Color(0xFFE8E8E8), thickness: 1.0)),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(12, 10, 20, 10),
-                    child: Row(
-                      children: [
-                        LikeButton(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          likeCount: 0,
-                          onTap: onLikeButtonTapped,
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(205, 10, 0, 10),
-                          alignment: Alignment.topRight,
-                          child: Text("2022-09-12",
-                            style: TextStyle(color: Colors.black.withOpacity(0.4),),),
-                        ),
-                      ],
-                    ),
-                    // alignment: Alignment.centerLeft,
-                  ),
-                  // ButtonBar(
-                  //   alignment: MainAxisAlignment.start,
-                  //   children: [
-                  //     FlatButton(
-                  //       textColor: const Color(0xFF6200EE),
-                  //       onPressed: () {
-                  //         // Perform some action
-                  //       },
-                  //       child: const Text('ACTION 1'),
-                  //     ),
-                  //     FlatButton(
-                  //       textColor: const Color(0xFF6200EE),
-                  //       onPressed: () {
-                  //         // Perform some action
-                  //       },
-                  //       child: const Text('ACTION 2'),
-                  //     ),
-                  //   ],
-                  // ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+                  );
+                }
+              })
+        ]));
   }
 }

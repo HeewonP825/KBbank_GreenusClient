@@ -102,7 +102,6 @@ class EachFinishMission extends StatelessWidget {
               Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: profileContainerList
-
                 ),
             ],
           ),
