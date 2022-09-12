@@ -38,8 +38,6 @@ class _HomeRecommendMissionState extends State<HomeRecommendMission> {
                   PageView.builder(
                     itemCount: data.length,
                     itemBuilder: (context, index) {
-                      print(data[index].eventContent);
-                      print(data[index].eventContent.compareTo("3번 이상\n도시락 싸가기"));
                       return Stack(
                         children: [
                           // 3
