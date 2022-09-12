@@ -38,7 +38,7 @@ class _EachFeedState extends State<EachFeed> {
       );
     }
     return Card(
-      margin: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+      margin: const EdgeInsets.fromLTRB(20, 10, 20, 0),
       clipBehavior: Clip.antiAlias,
       child: Column(children: [
         ListTile(
@@ -73,10 +73,11 @@ class _EachFeedState extends State<EachFeed> {
           ),
         ),
         Container(
-            alignment: Alignment.center,
+            width: double.infinity,
+            //alignment: Alignment.center,
             child: SizedBox(
-              width: double.infinity,
-              height: 204,
+              //width: double.infinity,
+              height: 210,
               child: Stack(children: [
                 PageView.builder(
                   itemCount: imgList.length,

@@ -59,7 +59,7 @@ class MissionFeedState extends State<MissionFeed> {
         ),
         body: Column(mainAxisSize: MainAxisSize.min, children: [
           Container(
-            margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+            margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
             height: 50,
             alignment: Alignment.topCenter,
             child: Center(
