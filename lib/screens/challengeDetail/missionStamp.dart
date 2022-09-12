@@ -93,7 +93,7 @@ class _MissionStampWidgetState extends State<MissionStampWidget> {
               print("인증하기 페이지로 이동`");
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DoCertify()),
+                MaterialPageRoute(builder: (context) => DoCertify(widget.ingMissionData)),
               );
             },
             child: Container(
