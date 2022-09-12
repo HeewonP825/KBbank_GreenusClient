@@ -23,6 +23,7 @@ class DoCertify extends StatefulWidget {
   @override
   DoCertifyState createState() => DoCertifyState();
 }
+
 class DoCertifyState extends State<DoCertify> {
 
   File? _image;
@@ -39,12 +40,14 @@ class DoCertifyState extends State<DoCertify> {
 
   Widget showImage() {
     return Container(
+        // width: 180,
+        // height: 180,
         color: const Color(0xffd0cece),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.width,
         child: Center(
             child: _image == null
-                ? Text('No image selected.')
+                ? Icon(Icons.add)
                 : Image.file(File(_image!.path)))
     );
   }
@@ -133,28 +136,14 @@ class DoCertifyState extends State<DoCertify> {
                     width: 180,
                     child: Card(
                       //margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                      //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: InkWell(
-                              onTap: () {
-                                _getImage(ImageSource.camera);
-                                showImage();},
-                              child: Icon(Icons.camera_alt_outlined),
-                            ),
-                          ),
-                          Container(
-                            child: InkWell(
-                              onTap: () {
-                                _getImage(ImageSource.gallery);
-                                showImage();},
-                              child: Icon(Icons.camera),
-                            ),
-                          ),
-                        ],
+                        //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
+                      child: Container(
+                        child: InkWell(
+                          child: showImage(),
+                          onTap: () {
+                            _getImage(ImageSource.camera);
+                          },
+                        ),
                       ),
                       color: Color(0xffc6c6c6),
                     ),
@@ -164,37 +153,22 @@ class DoCertifyState extends State<DoCertify> {
                     //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
                     height: 180,
                     width: 180,
+                    //showImage(),
                     child: Card(
                       //margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
                       //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: InkWell(
-                              onTap: () {
-                                _getImage(ImageSource.camera);
-                                showImage();
-                                },
-                              child: Icon(Icons.camera_alt_outlined),
-                            ),
-                          ),
-                          Container(
-                            child: InkWell(
-                              onTap: () {
-                                _getImage(ImageSource.gallery);
-                                showImage();
-                                },
-                              child: Icon(Icons.camera),
-                            ),
-                          ),
-                        ],
+                      child: Container(
+                        child: InkWell(
+                          child: showImage(),
+                          onTap: () {
+                            _getImage(ImageSource.camera);
+                          },
+                        ),
                       ),
                       color: Color(0xffc6c6c6),
                     ),
                   ),
-                  ],
+                ],
               ),
           ),
           Container(
@@ -209,32 +183,17 @@ class DoCertifyState extends State<DoCertify> {
                   //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
                   height: 180,
                   width: 180,
+                  //showImage(),
                   child: Card(
                     //margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
                     //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          child: InkWell(
-                            onTap: () {
-                              _getImage(ImageSource.camera);
-                              showImage();
-                              },
-                            child: Icon(Icons.camera_alt_outlined),
-                          ),
-                        ),
-                        Container(
-                          child: InkWell(
-                            onTap: () {
-                              _getImage(ImageSource.gallery);
-                              showImage();
-                            },
-                            child: Icon(Icons.camera),
-                          ),
-                        ),
-                      ],
+                    child: Container(
+                      child: InkWell(
+                        child: showImage(),
+                        onTap: () {
+                          _getImage(ImageSource.camera);
+                        },
+                      ),
                     ),
                     color: Color(0xffc6c6c6),
                   ),
@@ -244,30 +203,17 @@ class DoCertifyState extends State<DoCertify> {
                   //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
                   height: 180,
                   width: 180,
+                  //showImage(),
                   child: Card(
                     //margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
                     //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          child: InkWell(
-                            onTap: () {
-                              _getImage(ImageSource.camera);
-                              showImage();},
-                            child: Icon(Icons.camera_alt_outlined),
-                          ),
-                        ),
-                        Container(
-                          child: InkWell(
-                            onTap: () {
-                              _getImage(ImageSource.gallery);
-                              showImage();},
-                            child: Icon(Icons.camera),
-                          ),
-                        ),
-                      ],
+                    child: Container(
+                      child: InkWell(
+                        child: showImage(),
+                        onTap: () {
+                          _getImage(ImageSource.camera);
+                        },
+                      ),
                     ),
                     color: Color(0xffc6c6c6),
                   ),
@@ -280,7 +226,7 @@ class DoCertifyState extends State<DoCertify> {
               child: Divider(color: Color(0xFFE8E8E8), thickness: 1.0)),
           ElevatedButton(
               style: RoundButtonStyle,
-              child: Text('생성하기', style: textTheme().headline2),
+              child: Text('인증하기', style: textTheme().headline2),
               onPressed: () {
                 showDialog(
                     context: context,
