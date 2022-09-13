@@ -52,12 +52,16 @@ class _CalendarState extends State<Calendar> {
 
             print(events);
             List<Event> _getEventsForDay(DateTime day) {
-              return events[day] ?? [];
+
+              return events[DateTime(day.toLocal().year.toInt(),day.toLocal().month.toInt(),day.toLocal().day.toInt())] ?? [];
             }
             return TableCalendar(
               focusedDay: selectedDay,
               firstDay: DateTime(2022),
               lastDay: DateTime(2023),
+              // eventLoader: (day) {
+              //   return _getEventsForDay(day);
+              // },
               eventLoader: (day) {
                 return _getEventsForDay(day);
               },
