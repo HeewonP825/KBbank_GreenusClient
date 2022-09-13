@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 
 class Feed {
+  final int feedId;
   final String profileImgUrl;
   final String userName;
   final int userLevel;
@@ -9,6 +10,7 @@ class Feed {
   final List<String> certifyImgUrl;
 
   Feed({
+    required this.feedId,
     required this.profileImgUrl,
     required this.userName,
     required this.userLevel,
@@ -53,6 +55,7 @@ Future<List<Feed>> receiveFeeds(groupId) async {
     List<String> strList=data[i]['ImgUrl']?.cast<String>();
 
     feedLists.add(Feed(
+        feedId: data[i]['Id'],
         createdAt: created,
         heartCount: data[i]['likeNum'],
         profileImgUrl: data[i]['profileImgUrl'],
