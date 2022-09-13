@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kbbank_practice/screens/certifyPage/getImageWidget.dart';
 import 'package:kbbank_practice/screens/challengeDetail/missionFeed.dart';
 import 'package:kbbank_practice/screens/challengeDetail/missionStamp.dart';
 import 'package:image_picker/image_picker.dart';
@@ -26,31 +27,6 @@ class DoCertify extends StatefulWidget {
 
 class DoCertifyState extends State<DoCertify> {
 
-  File? _image;
-  final picker = ImagePicker();
-  //bool _load = false;
-
-  Future _getImage(ImageSource imageSource) async {
-    final image = await picker.pickImage(source: imageSource);
-
-    setState(() {
-      _image = File(image!.path);
-    });
-  }
-
-  Widget showImage() {
-    return Container(
-        // width: 180,
-        // height: 180,
-        color: const Color(0xffd0cece),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.width,
-        child: Center(
-            child: _image == null
-                ? Icon(Icons.add)
-                : Image.file(File(_image!.path)))
-    );
-  }
 
   final ButtonStyle RoundButtonStyle = TextButton.styleFrom(
     backgroundColor: Color(0xff111421),
@@ -129,45 +105,8 @@ class DoCertifyState extends State<DoCertify> {
               //mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    //margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                    //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                    height: 180,
-                    width: 180,
-                    child: Card(
-                      //margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                        //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                      child: Container(
-                        child: InkWell(
-                          child: showImage(),
-                          onTap: () {
-                            _getImage(ImageSource.camera);
-                          },
-                        ),
-                      ),
-                      color: Color(0xffc6c6c6),
-                    ),
-                  ),
-                  Container(
-                    //margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                    //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                    height: 180,
-                    width: 180,
-                    //showImage(),
-                    child: Card(
-                      //margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                      //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                      child: Container(
-                        child: InkWell(
-                          child: showImage(),
-                          onTap: () {
-                            _getImage(ImageSource.camera);
-                          },
-                        ),
-                      ),
-                      color: Color(0xffc6c6c6),
-                    ),
-                  ),
+                  getImageWidget(),
+                  getImageWidget(),
                 ],
               ),
           ),
@@ -178,46 +117,8 @@ class DoCertifyState extends State<DoCertify> {
               //mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  //margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                  //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                  height: 180,
-                  width: 180,
-                  //showImage(),
-                  child: Card(
-                    //margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                    //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                    child: Container(
-                      child: InkWell(
-                        child: showImage(),
-                        onTap: () {
-                          _getImage(ImageSource.camera);
-                        },
-                      ),
-                    ),
-                    color: Color(0xffc6c6c6),
-                  ),
-                ),
-                Container(
-                  //margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                  //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                  height: 180,
-                  width: 180,
-                  //showImage(),
-                  child: Card(
-                    //margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                    //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                    child: Container(
-                      child: InkWell(
-                        child: showImage(),
-                        onTap: () {
-                          _getImage(ImageSource.camera);
-                        },
-                      ),
-                    ),
-                    color: Color(0xffc6c6c6),
-                  ),
-                ),
+                getImageWidget(),
+                getImageWidget(),
               ],
             ),
           ),
