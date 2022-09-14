@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kbbank_practice/screens/friendlist/friendHome.dart';
 import '../constants.dart';
 import '../models/navItem.dart';
 import 'friendlist/friendListScreen.dart';
@@ -27,7 +28,7 @@ class _MainScreensState extends State<MainScreens> {
         index: _selectedIndex,
         children: [
           ChallengeHome(),
-          FriendWidget(),
+          FriendHome(),
           NotiScreen(),
           MyPageScreen()
         ],

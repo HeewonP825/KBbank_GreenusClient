@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../models/friendList.dart';
@@ -10,17 +11,26 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 Future<List<FriendList>> receiveFriendsList() async {
-  var userId = 12;
+  var userId = 1;
 
-  var jsonString = await http.get(
-      Uri.parse('https://dev.uksfirstdomain.shop/app/users/${userId}/friends'));
-  var resp = jsonDecode(jsonString.body);
+  print("여기서 문제임?");
+
+  var options = BaseOptions(
+    baseUrl: 'https://dev.uksfirstdomain.shop',
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+  );
+  Dio dio = Dio(options);
+  Response resp = await dio.get('/app/users/${userId}/friends');
+
+
   print("친구야~!~!@~!@~!@~!놀자~!@~!");
-  print(resp['result']);
+  var data=resp.data;
+  print(data['result']);
 
-  final dataResult=resp['result'];
+  final dataResult=data['result'];
   List<FriendList> friendList=[];
-  for(int i=0; i<resp['result'].length;i++){
+  for(int i=0; i<data['result'].length;i++){
 
     friendList.add(FriendList(
       message: dataResult[i]['statusMessage'],
@@ -67,13 +77,13 @@ class _FriendWidgetState extends State<FriendWidget>{
           );
         }else{
           return Scaffold(
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              title: Text(
-                "GREENUS",
-                style: TextStyle(fontFamily: 'ChangwonDangamAsac', fontSize: 30,),
-              ),
-            ),
+            // appBar: AppBar(
+            //   automaticallyImplyLeading: false,
+            //   title: Text(
+            //     "GREENUS",
+            //     style: TextStyle(fontFamily: 'ChangwonDangamAsac', fontSize: 30,),
+            //   ),
+            // ),
             body: ListView(
               children: List.generate(
                 snapshot.data?.length ?? 0,
