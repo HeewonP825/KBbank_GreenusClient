@@ -19,12 +19,25 @@ class _EachFeedState extends State<EachFeed> {
 
   Future<bool> onLikeButtonTapped(bool isLiked) async {
     // // send your request here
+    Response response;
+    if(isLiked==false){
+      response=await postLike(widget.data.feedId);
+      print("no Heart");
+    }else{
+      response=await deleteLike(widget.data.feedId); //Todo Delete들어가야함.
+      print("yes Heart");
+    }
+
+    if(response.data['isSuccess']==true){
+        return !isLiked;
+    }else{
+      return isLiked;
+    }
     // final bool success= (await LikeButton()) as bool;
     //
     // // if failed, you can do nothing
     // return success? !isLiked:isLiked;
 
-    return !isLiked;
   }
 
   @override
@@ -128,7 +141,7 @@ class _EachFeedState extends State<EachFeed> {
   }
 }
 
-Future<Response> postLike() async {
+Future<Response> postLike(feedId) async {
   var userId = 1;
 
   var options = BaseOptions(
@@ -137,8 +150,23 @@ Future<Response> postLike() async {
     receiveTimeout: 3000,
   );
   Dio dio = Dio(options);
-  Response response = await dio.get('/app/confirmationPage/Id/${userId}/like',
-      queryParameters: {'status': 'completed'});
+  Response response = await dio.post('/app/confirmationPage/Id/${feedId}/like');
 
+  print(response);
+  return response;
+}
+
+Future<Response> deleteLike(feedId) async {
+  var userId = 1;
+
+  var options = BaseOptions(
+    baseUrl: 'https://dev.uksfirstdomain.shop',
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+  );
+  Dio dio = Dio(options);
+  Response response = await dio.delete('/app/like/feedId/${feedId}');
+
+  print(response);
   return response;
 }
