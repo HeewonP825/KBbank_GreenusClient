@@ -13,7 +13,7 @@ class MissionCustomState extends State<MissionCustom> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.fromLTRB(6, 5, 6, 0),
+        margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
         //height: 50,
         alignment: Alignment.topLeft,
             child: Row(

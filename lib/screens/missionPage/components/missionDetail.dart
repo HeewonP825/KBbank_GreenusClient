@@ -179,8 +179,7 @@ class MissionDetailState extends State<MissionDetail> {
           ),
           Card(
             margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-            child: Flexible(
-              flex: 10,
+            child: Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
