@@ -168,6 +168,9 @@ class MissionDetailState extends State<MissionDetail> {
               ],
             ),
           ),
+          SizedBox(
+           child: Text("여기 프로필이미지 들어와야함."),
+          ),
           Container(
             margin: EdgeInsets.fromLTRB(13, 5, 20, 0),
             //height: 50,
