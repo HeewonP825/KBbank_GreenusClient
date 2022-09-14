@@ -63,63 +63,78 @@ class DoCertifyState extends State<DoCertify> {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
+          Flexible(
+            child: Container(
               margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
               //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
               height: 30,
-              child: Row(
-                //mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "인증하기",
-                    style: TextStyle(
-                      fontFamily: 'ELAND',
-                      fontSize: 25,
-                    ),
-                  ),
-                  Icon(
-                    Icons.draw,
-                    size: 25,
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(160, 5, 0, 10),
-                    alignment: Alignment.topRight,
-                    child: Text(
-                      "2022-09-12",
+              child: Flexible(
+                flex: 5,
+                child: Row(
+                    //mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "인증하기",
                       style: TextStyle(
-                        color: Colors.black.withOpacity(0.4),
+                        fontFamily: 'ELAND',
+                        fontSize: 25,
                       ),
                     ),
+                    Icon(
+                      Icons.draw,
+                      size: 25,
+                    ),
+                    Container(
+                        margin: EdgeInsets.fromLTRB(160, 5, 0, 10),
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          "2022-09-12",
+                          style: TextStyle(
+                            color: Colors.black.withOpacity(0.4),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
           ),
           Container(
               width: 400,
               child: Divider(color: Color(0xFFE8E8E8), thickness: 1.0)),
-          Container(
-            margin: EdgeInsets.fromLTRB(15, 15, 15, 0),
-            //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-              child: Row(
-              //mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  getImageWidget(),
-                  getImageWidget(),
-                ],
+          Flexible(
+            child: Container(
+              margin: EdgeInsets.fromLTRB(15, 15, 15, 0),
+              //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
+              child: Flexible(
+                flex: 5,
+                child: Row(
+                //mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    getImageWidget(),
+                    getImageWidget(),
+                  ],
+                ),
               ),
+            ),
           ),
-          Container(
-            margin: EdgeInsets.fromLTRB(15, 3, 15, 15),
-            //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-            child: Row(
-              //mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                getImageWidget(),
-                getImageWidget(),
-              ],
+          Flexible(
+            child: Container(
+              margin: EdgeInsets.fromLTRB(15, 3, 15, 15),
+              //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
+              child: Flexible(
+                flex: 5,
+                child: Row(
+                  //mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    getImageWidget(),
+                    getImageWidget(),
+                  ],
+                ),
+              ),
             ),
           ),
           Container(

@@ -174,15 +174,22 @@ class MissionDetailState extends State<MissionDetail> {
             alignment: Alignment.topLeft,
             child: Text("미션 설명", style: textTheme().headline1,),
           ),
-          Container(
-            child: Card(
-              margin: const EdgeInsets.fromLTRB(13, 20, 20, 20),
-              child: MissionCustom(),
+          Card(
+            margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+            child: Flexible(
+              flex: 10,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  MissionCustom(),
+                  const Text('🚴대중교통 대신 자전거로! 건강과 환경을 한꺼번에 🚴🏻'),
+                  const Text('그리너도 지구도 다 함께 건강해져요😉💪🏻'),
+                ],
+              ),
             ),
           ),
-          Container(
 
-          ),
           ElevatedButton(
               style: RoundButtonStyle,
               child: Text('생성하기', style: textTheme().headline2),

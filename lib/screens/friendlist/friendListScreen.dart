@@ -67,13 +67,13 @@ class _FriendWidgetState extends State<FriendWidget>{
           );
         }else{
           return Scaffold(
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              title: Text(
-                "GREENUS",
-                style: TextStyle(fontFamily: 'ChangwonDangamAsac', fontSize: 30,),
-              ),
-            ),
+            // appBar: AppBar(
+            //   automaticallyImplyLeading: false,
+            //   title: Text(
+            //     "GREENUS",
+            //     style: TextStyle(fontFamily: 'ChangwonDangamAsac', fontSize: 30,),
+            //   ),
+            // ),
             body: ListView(
               children: List.generate(
                 snapshot.data?.length ?? 0,
