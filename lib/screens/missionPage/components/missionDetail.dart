@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_options.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -269,7 +270,17 @@ class MissionDetailState extends State<MissionDetail> {
                         actions: <Widget>[
                           FlatButton(
                             child: Text('네'),
-                            onPressed: () {
+                            onPressed: () async{
+                              var groupId=await postMyMission(1); //Todo 이거 missionId 바꿔야함.
+                              print("첫번째 api호출 완료");
+                              print(groupId);
+
+                              for(int i=0; i<missionFriendIdList.length; i++){
+                                await postMyMissionFriends(groupId,missionFriendIdList[i]);
+                              }
+
+                              print("여기까진 진짜로 옴");
+                              await postMyMissionRule(groupId,N,M);
                               Navigator.of(context).pop();
                               Navigator.pop(
                                 context,
@@ -294,5 +305,59 @@ class MissionDetailState extends State<MissionDetail> {
   }
 }
 
-// void postMission() async{
-// }
+Future<int> postMyMission(int missionId) async{
+  var userId = 1;
+
+
+  var options = BaseOptions(
+    baseUrl: 'https://dev.uksfirstdomain.shop',
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+  );
+  Dio dio = Dio(options);
+  Response response = await dio.post('/app/MyMission/${missionId}');
+
+  print(response.data['result']['groupId']);
+  int groupId=response.data['result']['groupId'];
+
+  return groupId;
+}
+
+
+Future<Response> postMyMissionFriends(groupId,friendId) async {
+  var userId = 1;
+
+  var options = BaseOptions(
+    baseUrl: 'https://dev.uksfirstdomain.shop',
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+  );
+  Dio dio = Dio(options);
+  Response response = await dio.post('/app/group/${groupId}/missionWithFriend',
+      data: {
+    "friendId":friendId,
+      });
+
+  print(response);
+  return response;
+}
+
+Future<Response> postMyMissionRule(groupId,period,count) async {
+  var userId = 1;
+
+  var options = BaseOptions(
+    baseUrl: 'https://dev.uksfirstdomain.shop',
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+  );
+  Dio dio = Dio(options);
+  Response response = await dio.post('/app/missionRule',
+  data: {
+    "groupId":groupId,
+    "day":period,
+    "number":count,
+  });
+
+  print(response);
+  return response;
+}
