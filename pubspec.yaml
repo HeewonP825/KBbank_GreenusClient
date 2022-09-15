@@ -101,7 +101,11 @@ flutter:
     - assets/icons/8.png
     - assets/icons/9.png
     - assets/icons/10.png
-
+    - assets/card/bag.png
+    - assets/card/bicycle.png
+    - assets/card/joobging.png
+    - assets/card/tumbler.png
+    - assets/card/vegitable.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
