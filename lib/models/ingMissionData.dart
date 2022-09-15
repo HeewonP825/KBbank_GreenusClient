@@ -56,7 +56,7 @@ Future<List<IngMissionData>> receiveIngMissionData() async {
     ingMissionLists.add(IngMissionData(
       groupId: data[i]['groupId'],
       missionName: data[i]['missionName'],
-      backgroundImage: "assets/images/banner1.jpg",
+      backgroundImage: "assets/images/banner1.png",
       startDate: data[i]['startDate'],
       friendProfileList: friendProfileList,
     ));

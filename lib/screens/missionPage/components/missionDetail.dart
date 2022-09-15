@@ -186,6 +186,8 @@ class MissionDetailState extends State<MissionDetail> {
                     );
                     setState(() {
                       missionFriendList = getmissionFriendIdList;
+                      missionFriendIdList=[];
+                      missionFriendProfileList=[];
                       print("여기 왜 실행안됨?");
                       for (int i = 0; i < missionFriendList.length; i++) {
                         String profileUrl = missionFriendList[i].values

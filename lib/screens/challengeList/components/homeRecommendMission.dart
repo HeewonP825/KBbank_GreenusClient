@@ -45,7 +45,7 @@ class _HomeRecommendMissionState extends State<HomeRecommendMission> {
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage(data[index].bannerImage),
-                                  fit: BoxFit.cover),
+                                  fit: BoxFit.fitWidth),
                             ),
                           ),
                           // 4

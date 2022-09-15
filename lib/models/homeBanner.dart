@@ -10,7 +10,8 @@ class HomeBanner {
       {required this.eventTitle,
         required this.bannerTitle,
         required this.eventContent,
-        required this.bannerImage});
+        required this.bannerImage
+      });
 }
 
 // 샘플 데이터
