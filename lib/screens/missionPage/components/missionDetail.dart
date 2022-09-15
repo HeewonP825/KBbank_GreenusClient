@@ -251,8 +251,8 @@ class MissionDetailState extends State<MissionDetail> {
                   MissionCustom(onSonChanged: (String period, String count) {
                     updatePeriodAndCount(period, count);
                   }),
-                  const Text('🚴대중교통 대신 자전거로! 건강과 환경을 한꺼번에 🚴🏻'),
-                  const Text('그리너도 지구도 다 함께 건강해져요😉💪🏻'),
+                  Text(widget.missionInfo.descriptionComment1),
+                  Text(widget.missionInfo.descriptionComment2),
                 ],
               ),
             ),
