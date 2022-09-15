@@ -19,6 +19,7 @@ class MissionDetail extends StatefulWidget {
   @override
   MissionDetailState createState() => MissionDetailState();
 }
+
 class MissionDetailState extends State<MissionDetail> {
   // String _selectedDate = '';
   // String _dateCount = '';
@@ -27,10 +28,12 @@ class MissionDetailState extends State<MissionDetail> {
 
   late String _startDate, _endDate;
   late DateRangePickerController _controller;
-  late DateTime _start, _end,_today;
+  late DateTime _start, _end, _today;
   late Future<List<FriendList>> futureFriends;
-  late int N;
-  late int M;
+  late String N;
+  late String M;
+  late List<Map<int, String>> missionFriendList;
+  List<Widget> missionFriendProfileList = [];
 
   @override
   void initState() {
@@ -39,7 +42,7 @@ class MissionDetailState extends State<MissionDetail> {
     _endDate = DateFormat('dd, MMMM yyyy')
         .format(DateTime.now().add(Duration(days: 3)))
         .toString();
-    _today=DateTime.now();
+    _today = DateTime.now();
     _start = _today;
     _end = _today.add(Duration(days: 3));
     _controller.selectedRange = PickerDateRange(_start, _end);
@@ -67,16 +70,15 @@ class MissionDetailState extends State<MissionDetail> {
     ),
   );
 
-  void updatePeriodAndCount(int period,int count) {
-      setState(() {
-        N=period;
-        M=count;
-      });
+  void updatePeriodAndCount(String period, String count) {
+    setState(() {
+      N = period;
+      M = count;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-
     print(_controller.selectedRange?.startDate);
     print(_controller.selectedRange?.endDate);
     return Scaffold(
@@ -84,7 +86,10 @@ class MissionDetailState extends State<MissionDetail> {
         automaticallyImplyLeading: false,
         title: Text(
           "GREENUS",
-          style: TextStyle(fontFamily: 'ChangwonDangamAsac', fontSize: 30,),
+          style: TextStyle(
+            fontFamily: 'ChangwonDangamAsac',
+            fontSize: 30,
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -105,7 +110,10 @@ class MissionDetailState extends State<MissionDetail> {
             margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
             height: 50,
             alignment: Alignment.topCenter,
-            child: Center(child: Text("이전 페이지에서 미션 이름 받아와야함.", style: textTheme().headline1),),
+            child: Center(
+              child:
+              Text("이전 페이지에서 미션 이름 받아와야함.", style: textTheme().headline1),
+            ),
             decoration: BoxDecoration(
               color: const Color(0xFFC3D9F1),
               border: Border.all(
@@ -139,17 +147,17 @@ class MissionDetailState extends State<MissionDetail> {
                 selectionMode: DateRangePickerSelectionMode.range,
                 onSelectionChanged: selectionChanged,
                 allowViewNavigation: false,
-                monthViewSettings: DateRangePickerMonthViewSettings(firstDayOfWeek: 1),
+                monthViewSettings:
+                DateRangePickerMonthViewSettings(firstDayOfWeek: 1),
 
                 monthCellStyle: DateRangePickerMonthCellStyle(
-                  todayCellDecoration:
-                    BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                          width: 2,
-                          color: Color(0xff111621),
-                      ),
+                  todayCellDecoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      width: 2,
+                      color: Color(0xff111621),
                     ),
+                  ),
                 ),
 
                 selectionTextStyle: const TextStyle(color: Colors.white),
@@ -157,7 +165,7 @@ class MissionDetailState extends State<MissionDetail> {
                 startRangeSelectionColor: Colors.blueGrey,
                 endRangeSelectionColor: Colors.blueGrey,
                 rangeSelectionColor: Color(0xFFC3D9F1),
-              //rangeTextStyle: const TextStyle(color: Colors.white),
+                //rangeTextStyle: const TextStyle(color: Colors.white),
               ),
             ),
           ),
@@ -170,23 +178,52 @@ class MissionDetailState extends State<MissionDetail> {
                 Text("친구 추가", style: textTheme().headline1),
                 InkWell(
                   onTap: () async {
-                    Navigator.push(
+                    var getmissionFriendIdList = await Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => MissionWithFriends()),
-                    );},
+                      MaterialPageRoute(
+                          builder: (context) => MissionWithFriends()),
+                    );
+                    setState(() {
+                      missionFriendList = getmissionFriendIdList;
+                      for (int i = 0; i < missionFriendList.length; i++) {
+                        String profileUrl = missionFriendList[i].values
+                            .toString();
+                        String realUrl = profileUrl.substring(1,
+                            profileUrl.length - 1);
+                        print(realUrl);
+                        missionFriendProfileList.add(
+                          Container(
+                            margin: const EdgeInsets.fromLTRB(15, 10, 6, 10),
+                            padding: const EdgeInsets.all(20.0),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: new DecorationImage(
+                                fit: BoxFit.fill,
+                                image: new Image.network(realUrl).image,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      print(missionFriendProfileList);
+                    });
+                  },
                   child: Icon(Icons.add_circle_outline_rounded),
                 ),
               ],
             ),
           ),
           Row(
-           children:[]
+            children: missionFriendProfileList,
           ),
           Container(
             margin: EdgeInsets.fromLTRB(13, 5, 20, 0),
             //height: 50,
             alignment: Alignment.topLeft,
-            child: Text("미션 설명", style: textTheme().headline1,),
+            child: Text(
+              "미션 설명",
+              style: textTheme().headline1,
+            ),
           ),
           Card(
             margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
@@ -195,7 +232,9 @@ class MissionDetailState extends State<MissionDetail> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  MissionCustom(),
+                  MissionCustom(onSonChanged: (String period, String count) {
+                    updatePeriodAndCount(period, count);
+                  }),
                   const Text('🚴대중교통 대신 자전거로! 건강과 환경을 한꺼번에 🚴🏻'),
                   const Text('그리너도 지구도 다 함께 건강해져요😉💪🏻'),
                 ],
@@ -214,12 +253,11 @@ class MissionDetailState extends State<MissionDetail> {
                       return AlertDialog(
                         title: Text('팝업 알림창'),
                         content: SingleChildScrollView(
-                          child: ListBody(
-                            children: <Widget>[
-                              Text('생성하시겠습니까?'),
-                            ],
-                          )
-                        ),
+                            child: ListBody(
+                              children: <Widget>[
+                                Text('생성하시겠습니까?'),
+                              ],
+                            )),
                         actions: <Widget>[
                           FlatButton(
                             child: Text('네'),
@@ -227,7 +265,8 @@ class MissionDetailState extends State<MissionDetail> {
                               Navigator.of(context).pop();
                               Navigator.pop(
                                 context,
-                                MaterialPageRoute(builder: (context) => NewMissionList()),
+                                MaterialPageRoute(
+                                    builder: (context) => NewMissionList()),
                               );
                             },
                           ),
@@ -239,10 +278,8 @@ class MissionDetailState extends State<MissionDetail> {
                           ),
                         ],
                       );
-                    }
-                  );
-                }
-            ),
+                    });
+              }),
         ],
       ),
     );

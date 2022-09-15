@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class MissionCustom extends StatefulWidget {
-  final IntsCallback onSonChanged();
+typedef IntsCallback(String period,String count);
 
-  MissionCustom(this.onSonChanged,{Key? key}) : super(key: key);
+class MissionCustom extends StatefulWidget {
+  final IntsCallback onSonChanged;
+
+  MissionCustom({Key? key, required this.onSonChanged}) : super(key: key);
 
 
 
   @override
   MissionCustomState createState() => MissionCustomState();
 }
-typedef void IntsCallback(int period,int count);
+
 
 
 class MissionCustomState extends State<MissionCustom> {
@@ -80,6 +82,7 @@ class MissionCustomState extends State<MissionCustom> {
                         n = '일주일';
                       });
                     }
+                    widget.onSonChanged(n,m);
                   },
                 ),
                 Text('에 '),
@@ -103,6 +106,7 @@ class MissionCustomState extends State<MissionCustom> {
                         m = '매일';
                       });
                     }
+                    widget.onSonChanged(n,m);
                   },
                 ),
                 Text("자전거로 출퇴근 하기"),

@@ -33,6 +33,7 @@ Future<List<FriendList>> receiveFriendsList() async {
   for(int i=0; i<data['result'].length;i++){
 
     friendList.add(FriendList(
+      friendId: dataResult[i]['userId'],
       message: dataResult[i]['statusMessage'],
       friendName: dataResult[i]['userName'],
       profileImage: dataResult[i]['profileImgUrl'],

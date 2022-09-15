@@ -4,10 +4,14 @@ import '../../../models/friendList.dart';
 import '../../../theme.dart';
 import '../../components/ImageContainer.dart';
 
+typedef void IntCallback(int friendId,String profileUrl);
 class MissionFriendContainer extends StatefulWidget {
+  final IntCallback onSonChanged;
+
   const MissionFriendContainer({
     Key? key,
     required this.friendList,
+    required this.onSonChanged,
   }) : super(key: key);
 
   final FriendList friendList;
@@ -28,6 +32,9 @@ class _MissionFriendContainerState extends State<MissionFriendContainer> {
       onTap: (){
         setState(() {
           _isChecked=!_isChecked;
+          widget.onSonChanged(widget.friendList.friendId,widget.friendList.profileImage);
+          //isChecked가 true인 경우. 외부 List에 friendId 추가
+          //isChecked가 false인 경우. 외부 List에서 friendId제거.
         });
       },
       child: Container(

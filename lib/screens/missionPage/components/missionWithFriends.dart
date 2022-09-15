@@ -22,11 +22,11 @@ Future<List<FriendList>> receiveFriendsList() async {
   print("친구야~!~!@~!@~!@~!놀자~!@~!");
   print(resp['result']);
 
-  final dataResult=resp['result'];
-  List<FriendList> friendList=[];
-  for(int i=0; i<resp['result'].length;i++){
-
+  final dataResult = resp['result'];
+  List<FriendList> friendList = [];
+  for (int i = 0; i < resp['result'].length; i++) {
     friendList.add(FriendList(
+      friendId: dataResult[i]['userId'],
       message: dataResult[i]['statusMessage'],
       friendName: dataResult[i]['userName'],
       profileImage: dataResult[i]['profileImgUrl'],
@@ -38,19 +38,28 @@ Future<List<FriendList>> receiveFriendsList() async {
   return friendList;
 }
 
-class MissionWithFriends extends StatefulWidget{
-  const MissionWithFriends({Key?key}):super(key:key);
+class MissionWithFriends extends StatefulWidget {
+  const MissionWithFriends({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => MissionWithFriendsState();
 }
 
-class MissionWithFriendsState extends State<MissionWithFriends>{
+class MissionWithFriendsState extends State<MissionWithFriends> {
   late Future<List<FriendList>> futureFriends;
-
+  List<Map<int,String>> missionFriendList=[];
   void initState() {
     super.initState();
-    futureFriends=receiveFriendsList();
+    futureFriends = receiveFriendsList();
+  }
+
+  void updateFriendList(int friendId,String profileUrl) {
+    setState(() {
+      Map<int,String> friendInfo={
+        friendId:profileUrl
+      };
+      missionFriendList.add(friendInfo);
+    });
   }
 
   final ButtonStyle RoundButtonStyle = TextButton.styleFrom(
@@ -88,68 +97,65 @@ class MissionWithFriendsState extends State<MissionWithFriends>{
                 automaticallyImplyLeading: false,
                 title: Text(
                   "GREENUS",
-                  style: TextStyle(fontFamily: 'ChangwonDangamAsac', fontSize: 30,),
+                  style: TextStyle(
+                    fontFamily: 'ChangwonDangamAsac',
+                    fontSize: 30,
+                  ),
                 ),
               ),
               body: ListView(
                 children: List.generate(
-                  snapshot.data?.length ?? 0,
-                      (index) => MissionFriendContainer(friendList: snapshot.data![index])
-                ),
+                    snapshot.data?.length ?? 0,
+                    (index) => MissionFriendContainer(
+                        friendList: snapshot.data![index],
+                        onSonChanged: (int friendId,String profileUrl) {
+                          updateFriendList(friendId,profileUrl);
+                        })),
               ),
-
-              floatingActionButton:
-                ElevatedButton(
-                    style: RoundButtonStyle,
-                    child: Text('추가하기', style: textTheme().headline2),
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          barrierDismissible: false, // 바깥 영역 클릭 시 안닫힘
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('팝업 알림창'),
-                              content: SingleChildScrollView(
-                                  child: ListBody(
-                                    children: <Widget>[
-                                      Text('추가하시겠습니까?'),
-                                    ],
-                                  )
-                              ),
-                              actions: <Widget>[
-                                FlatButton(
-                                  child: Text('네'),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                    Navigator.pop(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => MissionWithFriends()),
-                                    );
-                                  },
-                                ),
-                                FlatButton(
-                                  child: Text('아니오'),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                    Navigator.pop(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => MissionWithFriends()),
-                                    );
-                                  },
-                                ),
+              floatingActionButton: ElevatedButton(
+                  style: RoundButtonStyle,
+                  child: Text('추가하기', style: textTheme().headline2),
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        barrierDismissible: false, // 바깥 영역 클릭 시 안닫힘
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('팝업 알림창'),
+                            content: SingleChildScrollView(
+                                child: ListBody(
+                              children: <Widget>[
+                                Text('추가하시겠습니까?'),
                               ],
-                            );
-                          }
-                      );
-                    }
-                ),
-              floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+                            )),
+                            actions: <Widget>[
+                              FlatButton(
+                                child: Text('네'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  Navigator.pop(context, missionFriendList);
+                                },
+                              ),
+                              FlatButton(
+                                child: Text('아니오'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  Navigator.pop(
+                                    context,
+                                  );
+                                },
+                              ),
+                            ],
+                          );
+                        });
+                  }),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
             );
           }
           // body: Column(
           //
           // ),
-        }
-    );
+        });
   }
 }
