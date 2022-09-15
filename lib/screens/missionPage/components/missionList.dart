@@ -36,16 +36,14 @@ class _MissionListState extends State<MissionList> {
             );
           } else {
             print(data);
-            imagesList=[];
+            imagesList = [];
             for (int i = 0; i < data.length; i++) {
-                imagesList.add(data[i].descriptionImgUrl);
-              }
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              home: Scaffold(
-                body: Column(
-                  children: [
-                    CarouselSlider(
+              imagesList.add(data[i].descriptionImgUrl);
+            }
+            return Scaffold(
+              body: Column(
+                children: [
+                  CarouselSlider.builder(
                       options: CarouselOptions(
                         height: 550,
                         // autoPlay: true,
@@ -57,70 +55,67 @@ class _MissionListState extends State<MissionList> {
                           });
                         },
                       ),
-                      items: imagesList
-                          .map(
-                            (item) => Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Card(
-                                margin: EdgeInsets.only(
-                                  top: 10.0,
-                                  bottom: 10.0,
-                                ),
-                                elevation: 6.0,
-                                shadowColor: Colors.grey,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(30.0),
+                      itemCount: data.length,
+                      itemBuilder: (context, itemIndex, realIndex) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            margin: EdgeInsets.only(
+                              top: 10.0,
+                              bottom: 10.0,
+                            ),
+                            elevation: 6.0,
+                            shadowColor: Colors.grey,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30.0),
+                              ),
+                              child: Stack(
+                                children: <Widget>[
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                MissionDetail(data[itemIndex])),
+                                      );
+                                    },
+                                    child: Image.asset(
+                                      imagesList[itemIndex],
+                                      fit: BoxFit.cover,
+                                      width: double.infinity,
+                                      height: 550,
+                                    ),
                                   ),
-                                  child: Stack(
-                                    children: <Widget>[
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    MissionDetail()),
-                                          );
-                                        },
-                                        child: Image.asset(
-                                          item,
-                                          fit: BoxFit.cover,
-                                          width: double.infinity,
-                                          height: 550,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                ],
                               ),
                             ),
-                          )
-                          .toList(),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: imagesList.map((urlOfItem) {
-                        int index = imagesList.indexOf(urlOfItem);
-                        return Container(
-                          width: 10.0,
-                          height: 10.0,
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 2.0),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: _currentIndex == index
-                                ? Color.fromRGBO(0, 0, 0, 0.8)
-                                : Color.fromRGBO(0, 0, 0, 0.3),
                           ),
                         );
-                      }).toList(),
-                    )
-                  ],
-                ),
+                      }),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: imagesList.map((urlOfItem) {
+                      int index = imagesList.indexOf(urlOfItem);
+                      return Container(
+                        width: 10.0,
+                        height: 10.0,
+                        margin: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 2.0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _currentIndex == index
+                              ? Color.fromRGBO(0, 0, 0, 0.8)
+                              : Color.fromRGBO(0, 0, 0, 0.3),
+                        ),
+                      );
+                    }).toList(),
+                  )
+                ],
               ),
             );
           }

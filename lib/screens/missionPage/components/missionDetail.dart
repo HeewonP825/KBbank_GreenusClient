@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kbbank_practice/models/friendList.dart';
+import 'package:kbbank_practice/models/missionInfo.dart';
 import 'package:kbbank_practice/screens/challengeList/components/ingMission.dart';
 import 'package:kbbank_practice/screens/missionPage/components/missionWithFriends.dart';
 import 'package:kbbank_practice/screens/missionPage/newMissionList.dart';
@@ -17,6 +18,10 @@ import 'missionCustom.dart';
 import '../../../../theme.dart';
 
 class MissionDetail extends StatefulWidget {
+  MissionInfo missionInfo;
+
+  MissionDetail(this.missionInfo, {Key? key}) : super(key: key);
+
   @override
   MissionDetailState createState() => MissionDetailState();
 }
@@ -31,10 +36,11 @@ class MissionDetailState extends State<MissionDetail> {
   late DateRangePickerController _controller;
   late DateTime _start, _end, _today;
   late Future<List<FriendList>> futureFriends;
-  late String N;
-  late String M;
-  List<Map<int, String>> missionFriendList=[];
-  List<int> missionFriendIdList=[];
+  late String N = '일주일';
+  late String M = '한 번';
+
+  List<Map<int, String>> missionFriendList = [];
+  List<int> missionFriendIdList = [];
   List<Widget> missionFriendProfileList = [];
 
   @override
@@ -113,8 +119,8 @@ class MissionDetailState extends State<MissionDetail> {
             height: 50,
             alignment: Alignment.topCenter,
             child: Center(
-              child:
-              Text("이전 페이지에서 미션 이름 받아와야함.", style: textTheme().headline1),
+              child: Text(widget.missionInfo.missionName,
+                  style: textTheme().headline1),
             ),
             decoration: BoxDecoration(
               color: const Color(0xFFC3D9F1),
@@ -150,7 +156,7 @@ class MissionDetailState extends State<MissionDetail> {
                 onSelectionChanged: selectionChanged,
                 allowViewNavigation: false,
                 monthViewSettings:
-                DateRangePickerMonthViewSettings(firstDayOfWeek: 1),
+                    DateRangePickerMonthViewSettings(firstDayOfWeek: 1),
 
                 monthCellStyle: DateRangePickerMonthCellStyle(
                   todayCellDecoration: BoxDecoration(
@@ -180,24 +186,25 @@ class MissionDetailState extends State<MissionDetail> {
                 Text("친구 추가", style: textTheme().headline1),
                 InkWell(
                   onTap: () async {
-                     var getmissionFriendIdList = await Navigator.push(
+                    var getmissionFriendIdList = await Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => MissionWithFriends(missionFriendIdList,missionFriendList)),
+                          builder: (context) => MissionWithFriends(
+                              missionFriendIdList, missionFriendList)),
                     );
                     setState(() {
                       missionFriendList = getmissionFriendIdList;
-                      missionFriendIdList=[];
-                      missionFriendProfileList=[];
+                      missionFriendIdList = [];
+                      missionFriendProfileList = [];
                       print("여기 왜 실행안됨?");
                       for (int i = 0; i < missionFriendList.length; i++) {
-                        String profileUrl = missionFriendList[i].values
-                            .toString();
-                        String realUrl = profileUrl.substring(1,
-                            profileUrl.length - 1);
-                        String id=missionFriendList[i].keys.toString();
-                        String realIdStr=id.substring(1,id.length-1);
-                        int friendId=int.parse(realIdStr);
+                        String profileUrl =
+                            missionFriendList[i].values.toString();
+                        String realUrl =
+                            profileUrl.substring(1, profileUrl.length - 1);
+                        String id = missionFriendList[i].keys.toString();
+                        String realIdStr = id.substring(1, id.length - 1);
+                        int friendId = int.parse(realIdStr);
                         print(realUrl);
                         missionFriendIdList.add(friendId);
                         missionFriendProfileList.add(
@@ -263,29 +270,34 @@ class MissionDetailState extends State<MissionDetail> {
                         title: Text('팝업 알림창'),
                         content: SingleChildScrollView(
                             child: ListBody(
-                              children: <Widget>[
-                                Text('생성하시겠습니까?'),
-                              ],
-                            )),
+                          children: <Widget>[
+                            Text('생성하시겠습니까?'),
+                          ],
+                        )),
                         actions: <Widget>[
                           FlatButton(
                             child: Text('네'),
-                            onPressed: () async{
-                              var groupId=await postMyMission(1); //Todo 이거 missionId 바꿔야함.
+                            onPressed: () async {
+                              var groupId = await postMyMission(widget
+                                  .missionInfo
+                                  .missionId); //Todo 이거 missionId 바꿔야함.
                               print("첫번째 api호출 완료");
                               print(groupId);
 
-                              for(int i=0; i<missionFriendIdList.length; i++){
-                                await postMyMissionFriends(groupId,missionFriendIdList[i]);
+                              for (int i = 0;
+                                  i < missionFriendIdList.length;
+                                  i++) {
+                                await postMyMissionFriends(
+                                    groupId, missionFriendIdList[i]);
                               }
 
                               print("여기까진 진짜로 옴");
-                              await postMyMissionRule(groupId,N,M);
+                              await postMyMissionRule(groupId, N, M);
                               Navigator.of(context).pop();
                               Navigator.pop(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => NewMissionList()),
+                                    builder: (context) => IngMissionWidget()),
                               );
                             },
                           ),
@@ -305,9 +317,8 @@ class MissionDetailState extends State<MissionDetail> {
   }
 }
 
-Future<int> postMyMission(int missionId) async{
+Future<int> postMyMission(int missionId) async {
   var userId = 1;
-
 
   var options = BaseOptions(
     baseUrl: 'https://dev.uksfirstdomain.shop',
@@ -318,13 +329,12 @@ Future<int> postMyMission(int missionId) async{
   Response response = await dio.post('/app/MyMission/${missionId}');
 
   print(response.data['result']['groupId']);
-  int groupId=response.data['result']['groupId'];
+  int groupId = response.data['result']['groupId'];
 
   return groupId;
 }
 
-
-Future<Response> postMyMissionFriends(groupId,friendId) async {
+Future<Response> postMyMissionFriends(groupId, friendId) async {
   var userId = 1;
 
   var options = BaseOptions(
@@ -333,16 +343,16 @@ Future<Response> postMyMissionFriends(groupId,friendId) async {
     receiveTimeout: 3000,
   );
   Dio dio = Dio(options);
-  Response response = await dio.post('/app/group/${groupId}/missionWithFriend',
-      data: {
-    "friendId":friendId,
-      });
+  Response response =
+      await dio.post('/app/group/${groupId}/missionWithFriend', data: {
+    "friendId": friendId,
+  });
 
   print(response);
   return response;
 }
 
-Future<Response> postMyMissionRule(groupId,period,count) async {
+Future<Response> postMyMissionRule(groupId, period, count) async {
   var userId = 1;
 
   var options = BaseOptions(
@@ -351,11 +361,10 @@ Future<Response> postMyMissionRule(groupId,period,count) async {
     receiveTimeout: 3000,
   );
   Dio dio = Dio(options);
-  Response response = await dio.post('/app/missionRule',
-  data: {
-    "groupId":groupId,
-    "day":period,
-    "number":count,
+  Response response = await dio.post('/app/missionRule', data: {
+    "groupId": groupId,
+    "day": period,
+    "number": count,
   });
 
   print(response);
