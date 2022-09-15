@@ -48,6 +48,7 @@ Future<List<IngMissionData>> receiveIngMissionData() async {
   print(data[0]['friends'].runtimeType);
 
   for(int i=0; i<data.length; i++){
+    friendProfileList=[];
     for(int j=0; j<data[i]['friends'].length; j++){
       friendProfileList.add(
         FriendProfile(profileUrl: data[i]['friends'][j]['profileImgUrl'])
@@ -56,7 +57,7 @@ Future<List<IngMissionData>> receiveIngMissionData() async {
     ingMissionLists.add(IngMissionData(
       groupId: data[i]['groupId'],
       missionName: data[i]['missionName'],
-      backgroundImage: "assets/images/banner1.png",
+      backgroundImage: "assets/images/mission.png",
       startDate: data[i]['startDate'],
       friendProfileList: friendProfileList,
     ));
