@@ -4,14 +4,15 @@ import '../../../models/friendList.dart';
 import '../../../theme.dart';
 import '../../components/ImageContainer.dart';
 
-typedef void IntCallback(int friendId,String profileUrl);
+typedef void IntCallback(int friendId,String profileUrl,bool isChecked);
 class MissionFriendContainer extends StatefulWidget {
   final IntCallback onSonChanged;
-
-  const MissionFriendContainer({
+  bool isChecked;
+  MissionFriendContainer({
     Key? key,
     required this.friendList,
     required this.onSonChanged,
+    required this.isChecked,
   }) : super(key: key);
 
   final FriendList friendList;
@@ -21,18 +22,22 @@ class MissionFriendContainer extends StatefulWidget {
 }
 
 class _MissionFriendContainerState extends State<MissionFriendContainer> {
-
-
-  bool _isChecked = false;
-
+  late bool _isChecked;
+  late bool tempIsChecked;
+  bool isInitialize=false;
   @override
   Widget build(BuildContext context) {
+    _isChecked = widget.isChecked;
+    if(isInitialize==true){
+      _isChecked=tempIsChecked;
+    }
     print("Friend List build start");
     return GestureDetector(
       onTap: (){
         setState(() {
-          _isChecked=!_isChecked;
-          widget.onSonChanged(widget.friendList.friendId,widget.friendList.profileImage);
+          tempIsChecked=!_isChecked;
+          isInitialize=true;
+          widget.onSonChanged(widget.friendList.friendId,widget.friendList.profileImage,_isChecked);
           //isChecked가 true인 경우. 외부 List에 friendId 추가
           //isChecked가 false인 경우. 외부 List에서 friendId제거.
         });

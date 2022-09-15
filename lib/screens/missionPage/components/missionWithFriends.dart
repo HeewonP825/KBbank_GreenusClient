@@ -39,7 +39,12 @@ Future<List<FriendList>> receiveFriendsList() async {
 }
 
 class MissionWithFriends extends StatefulWidget {
-  const MissionWithFriends({Key? key}) : super(key: key);
+  List<int> missionFriendIdList;
+  List<Map<int, String>> missionFriendList;
+
+  MissionWithFriends(this.missionFriendIdList, this.missionFriendList,
+      {Key? key})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => MissionWithFriendsState();
@@ -47,18 +52,32 @@ class MissionWithFriends extends StatefulWidget {
 
 class MissionWithFriendsState extends State<MissionWithFriends> {
   late Future<List<FriendList>> futureFriends;
-  List<Map<int,String>> missionFriendList=[];
+  late List<Map<int, String>> missionFriendList;
+
   void initState() {
     super.initState();
     futureFriends = receiveFriendsList();
+    missionFriendList = widget.missionFriendList;
   }
 
-  void updateFriendList(int friendId,String profileUrl) {
+  void addFriendList(int friendId, String profileUrl) {
     setState(() {
-      Map<int,String> friendInfo={
-        friendId:profileUrl
-      };
+      Map<int, String> friendInfo = {friendId: profileUrl};
       missionFriendList.add(friendInfo);
+    });
+  }
+
+  void removeFriendList(int friendId, String profileUrl) {
+    setState(() {
+      for (int i = 0; i < missionFriendList.length; i++) {
+        String userIdStr = missionFriendList[i].keys.toString();
+        String realUserIdStr = userIdStr.substring(1, userIdStr.length - 1);
+        int intUserId = int.parse(realUserIdStr);
+        if (intUserId == friendId) {
+          missionFriendList.removeAt(i);
+          break;
+        }
+      }
     });
   }
 
@@ -104,13 +123,25 @@ class MissionWithFriendsState extends State<MissionWithFriends> {
                 ),
               ),
               body: ListView(
-                children: List.generate(
-                    snapshot.data?.length ?? 0,
-                    (index) => MissionFriendContainer(
-                        friendList: snapshot.data![index],
-                        onSonChanged: (int friendId,String profileUrl) {
-                          updateFriendList(friendId,profileUrl);
-                        })),
+                children: List.generate(snapshot.data?.length ?? 0, (index) {
+                  print("is have?");
+                  print(widget.missionFriendIdList
+                      .contains(snapshot.data![index].friendId));
+                  bool isChecked = widget.missionFriendIdList
+                      .contains(snapshot.data![index].friendId);
+                  return MissionFriendContainer(
+                    friendList: snapshot.data![index],
+                    onSonChanged:
+                        (int friendId, String profileUrl, bool isChecked) {
+                      if (isChecked == true) {
+                        removeFriendList(friendId, profileUrl);
+                      } else {
+                        addFriendList(friendId, profileUrl);
+                      }
+                    },
+                    isChecked: isChecked,
+                  );
+                }),
               ),
               floatingActionButton: ElevatedButton(
                   style: RoundButtonStyle,

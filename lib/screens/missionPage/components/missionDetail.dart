@@ -32,7 +32,8 @@ class MissionDetailState extends State<MissionDetail> {
   late Future<List<FriendList>> futureFriends;
   late String N;
   late String M;
-  late List<Map<int, String>> missionFriendList;
+  List<Map<int, String>> missionFriendList=[];
+  List<int> missionFriendIdList=[];
   List<Widget> missionFriendProfileList = [];
 
   @override
@@ -178,19 +179,24 @@ class MissionDetailState extends State<MissionDetail> {
                 Text("친구 추가", style: textTheme().headline1),
                 InkWell(
                   onTap: () async {
-                    var getmissionFriendIdList = await Navigator.push(
+                     var getmissionFriendIdList = await Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => MissionWithFriends()),
+                          builder: (context) => MissionWithFriends(missionFriendIdList,missionFriendList)),
                     );
                     setState(() {
                       missionFriendList = getmissionFriendIdList;
+                      print("여기 왜 실행안됨?");
                       for (int i = 0; i < missionFriendList.length; i++) {
                         String profileUrl = missionFriendList[i].values
                             .toString();
                         String realUrl = profileUrl.substring(1,
                             profileUrl.length - 1);
+                        String id=missionFriendList[i].keys.toString();
+                        String realIdStr=id.substring(1,id.length-1);
+                        int friendId=int.parse(realIdStr);
                         print(realUrl);
+                        missionFriendIdList.add(friendId);
                         missionFriendProfileList.add(
                           Container(
                             margin: const EdgeInsets.fromLTRB(15, 10, 6, 10),
