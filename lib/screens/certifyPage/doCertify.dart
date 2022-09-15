@@ -45,9 +45,9 @@ class DoCertifyState extends State<DoCertify> {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text(
+        title: Text(
             "GREENUS",
-            style: GoogleFonts.pacifico(fontSize: 20, color: Colors.white),
+            style: TextStyle(fontFamily: 'ChangwonDangamAsac', fontSize: 30,),
           ),
         ),
         floatingActionButton: FloatingActionButton(
