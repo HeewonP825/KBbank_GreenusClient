@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kbbank_practice/models/friendList.dart';
 import 'package:kbbank_practice/screens/challengeList/components/ingMission.dart';
 import 'package:kbbank_practice/screens/missionPage/components/missionWithFriends.dart';
 import 'package:kbbank_practice/screens/missionPage/newMissionList.dart';
@@ -27,6 +28,9 @@ class MissionDetailState extends State<MissionDetail> {
   late String _startDate, _endDate;
   late DateRangePickerController _controller;
   late DateTime _start, _end,_today;
+  late Future<List<FriendList>> futureFriends;
+  late int N;
+  late int M;
 
   @override
   void initState() {
@@ -62,6 +66,13 @@ class MissionDetailState extends State<MissionDetail> {
       borderRadius: BorderRadius.circular(27.5),
     ),
   );
+
+  void updatePeriodAndCount(int period,int count) {
+      setState(() {
+        N=period;
+        M=count;
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +169,7 @@ class MissionDetailState extends State<MissionDetail> {
               children: [
                 Text("친구 추가", style: textTheme().headline1),
                 InkWell(
-                  onTap: () {
+                  onTap: () async {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => MissionWithFriends()),
@@ -168,8 +179,8 @@ class MissionDetailState extends State<MissionDetail> {
               ],
             ),
           ),
-          SizedBox(
-           child: Text("여기 프로필이미지 들어와야함."),
+          Row(
+           children:[]
           ),
           Container(
             margin: EdgeInsets.fromLTRB(13, 5, 20, 0),
@@ -237,3 +248,6 @@ class MissionDetailState extends State<MissionDetail> {
     );
   }
 }
+
+// void postMission() async{
+// }

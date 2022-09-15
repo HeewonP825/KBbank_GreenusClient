@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:kbbank_practice/screens/missionPage/components/missionFriendContainer.dart';
 
 import '../../../../theme.dart';
@@ -13,7 +14,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 Future<List<FriendList>> receiveFriendsList() async {
-  var userId = 12;
+  var userId = 1;
 
   var jsonString = await http.get(
       Uri.parse('https://dev.uksfirstdomain.shop/app/users/${userId}/friends'));
@@ -93,8 +94,7 @@ class MissionWithFriendsState extends State<MissionWithFriends>{
               body: ListView(
                 children: List.generate(
                   snapshot.data?.length ?? 0,
-                      (index) =>
-                      MissionFriendContainer(friendList: snapshot.data![index]),
+                      (index) => MissionFriendContainer(friendList: snapshot.data![index])
                 ),
               ),
 

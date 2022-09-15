@@ -2,9 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 class MissionCustom extends StatefulWidget {
+  final IntsCallback onSonChanged();
+
+  MissionCustom(this.onSonChanged,{Key? key}) : super(key: key);
+
+
+
   @override
   MissionCustomState createState() => MissionCustomState();
 }
+typedef void IntsCallback(int period,int count);
+
+
 class MissionCustomState extends State<MissionCustom> {
   var switchValue = false;
   String n = '일주일';
@@ -12,6 +21,7 @@ class MissionCustomState extends State<MissionCustom> {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
         margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
         //height: 50,
