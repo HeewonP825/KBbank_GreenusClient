@@ -108,6 +108,11 @@ flutter:
     - assets/card/vegitable.png
     - assets/images/mission1.png
     - assets/images/mission.png
+    - assets/images/heart.png
+    - assets/images/feed.png
+    - assets/images/friendApply.png
+    - assets/images/friendRequest.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

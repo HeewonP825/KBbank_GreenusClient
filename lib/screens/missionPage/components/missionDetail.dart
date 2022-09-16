@@ -294,11 +294,8 @@ class MissionDetailState extends State<MissionDetail> {
                               print("여기까진 진짜로 옴");
                               await postMyMissionRule(groupId, N, M);
                               Navigator.of(context).pop();
-                              Navigator.pop(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => IngMissionWidget()),
-                              );
+                              Navigator.pop(context);
+                              Navigator.pop(context);
                             },
                           ),
                           FlatButton(
