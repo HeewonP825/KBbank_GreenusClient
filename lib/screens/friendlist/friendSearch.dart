@@ -7,7 +7,7 @@ import '../../theme.dart';
 import 'friendListScreen.dart';
 
 class FriendSearch extends StatefulWidget {
-  final List<String> list = List.generate(10, (index) => "Texto $index");
+  final List<String> list = List.generate(10, (index) => "$index");
 
   @override
   _FriendSearchState createState() => _FriendSearchState();
@@ -28,7 +28,10 @@ class _FriendSearchState extends State<FriendSearch> {
           )
         ],
         centerTitle: true,
-        title: Text("Search Bar"),
+        title: Text(
+            "친구를 검색하세요:)😃",
+            style: TextStyle(fontFamily: 'ELAND', fontSize: 22),
+        ),
       ),
       body: ListView.builder(
           itemCount: widget.list.length,
@@ -36,7 +39,7 @@ class _FriendSearchState extends State<FriendSearch> {
             title: Text(
               widget.list[index]
             ),
-          ),
+          )
       ),
     );
   }
