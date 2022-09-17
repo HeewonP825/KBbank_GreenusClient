@@ -18,10 +18,17 @@ class FriendSearch extends StatefulWidget {
 
 class _FriendSearchState extends State<FriendSearch> {
   late Future<List<FriendList>> futureFriends;
+  late String searchValue;
 
   void initState() {
     super.initState();
-    futureFriends=receiveSearchResult("");
+    futureFriends=receiveSearchResult(1,"");
+  }
+
+  void updateSearchResult(){
+    setState(() {
+      futureFriends=receiveSearchResult(1,searchValue);
+    });
   }
 
   @override
@@ -48,7 +55,8 @@ class _FriendSearchState extends State<FriendSearch> {
           onSubmitted: (value) {
             print("Submit~!!");
             setState((){
-              futureFriends=receiveSearchResult(value);
+              futureFriends=receiveSearchResult(1,value); // TODO 바꿔야함.
+              searchValue=value;
             });
 
             // Todo 여기서 친구조회 api를 호출해야함.
@@ -66,7 +74,7 @@ class _FriendSearchState extends State<FriendSearch> {
             if (data == null) {
               return Container(
                 child: Center(
-                  child: CircularProgressIndicator(),
+                  child: Container(),
                 ),
               );
             } else {
@@ -74,7 +82,12 @@ class _FriendSearchState extends State<FriendSearch> {
               return ListView(
                   children: List.generate(
                   data.length,
-              (index) => SearchFriendContainer(friendList: snapshot.data![index]),
+              (index) => SearchFriendContainer(
+                  friendList: snapshot.data![index],
+                  onSonChanged: (){
+                    updateSearchResult();
+                  },
+              ),
             ));
             }
           }),
@@ -82,14 +95,12 @@ class _FriendSearchState extends State<FriendSearch> {
   }
 }
 
-Future<List<FriendList>> receiveSearchResult(String searchString) async {
+Future<List<FriendList>> receiveSearchResult(int userId,String searchString) async {
   var options = BaseOptions(
     baseUrl: 'https://dev.uksfirstdomain.shop',
-    connectTimeout: 5000,
-    receiveTimeout: 3000,
   );
   Dio dio = Dio(options);
-  Response resp = await dio.get('/app/friends/${searchString}');
+  Response resp = await dio.get('/app/friends/${searchString}/users/${userId}');
 
   print(resp);
   var data = resp.data;
@@ -106,6 +117,10 @@ Future<List<FriendList>> receiveSearchResult(String searchString) async {
       profileImage: dataResult[i]['profileImgUrl'],
       levelNum: dataResult[i]['userLevel'],
       level: 'Lv',
+      notificationId: dataResult[i]['notificationId']?? 0,
+      isFriend: dataResult[i]['isFriend'],
+      hasRequest: dataResult[i]['hasRequest'],
+      sendRequest: dataResult[i]['sendRequest'],
     ));
   }
 
