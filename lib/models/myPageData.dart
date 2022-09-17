@@ -3,6 +3,7 @@ import 'dart:convert';
 
 class MyPageData {
   final String name;
+  final int secondId;
   final String profileImage;
   final String level;
   final int levelNum;
@@ -13,6 +14,7 @@ class MyPageData {
 
   MyPageData({
     required this.name,
+    required this.secondId,
     required this.profileImage,
     required this.level,
     required this.levelNum,
@@ -37,6 +39,7 @@ Future<MyPageData> receiveMyPageData() async {
   print("실행전");
   MyPageData myPageData=MyPageData(
     name: resp['result']['userName'],
+    secondId: resp['result']['secondId'],
     profileImage:resp['result']['profileImgUrl'],
     level: 'Lv',
     levelNum: resp['result']['userLevel'],

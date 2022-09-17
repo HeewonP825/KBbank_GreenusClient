@@ -248,7 +248,7 @@ class MissionDetailState extends State<MissionDetail> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  MissionCustom(onSonChanged: (String period, String count) {
+                  MissionCustom(widget.missionInfo,onSonChanged: (String period, String count) {
                     updatePeriodAndCount(period, count);
                   }),
                   Text(widget.missionInfo.descriptionComment1),

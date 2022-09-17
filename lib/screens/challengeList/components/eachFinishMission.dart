@@ -54,6 +54,7 @@ class EachFinishMission extends StatelessWidget {
                   friendProfileList: friendProfileList ?? [],
                   backgroundImage: finishMissionData?.backgroundImage ?? '',
                   startDate: finishMissionData?.startDate ?? "지구가 태어날대부터 시작함",
+                  isGoing: false,
                 ),
               );
             },

@@ -12,6 +12,7 @@ class IngMissionData {
   final String backgroundImage;
   final String startDate;
   final List<FriendProfile> friendProfileList;
+  final bool isGoing;
 
   IngMissionData({
     required this.groupId,
@@ -19,6 +20,7 @@ class IngMissionData {
     required this.backgroundImage,
     required this.startDate,
     required this.friendProfileList,
+    required this.isGoing,
   });
 }
 
@@ -60,6 +62,7 @@ Future<List<IngMissionData>> receiveIngMissionData() async {
       backgroundImage: data[i]['category']==0? "assets/images/mission.png":"assets/images/mission1.png" ,
       startDate: data[i]['startDate'],
       friendProfileList: friendProfileList,
+      isGoing: true,
     ));
   }
 

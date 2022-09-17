@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 class FriendList {
   final int friendId;
+  int? secondId;
   final String friendName;
   final String profileImage;
   final String level;
@@ -13,6 +14,7 @@ class FriendList {
 
   FriendList({
     required this.friendId,
+    this.secondId,
     required this.friendName,
     required this.profileImage,
     required this.level,

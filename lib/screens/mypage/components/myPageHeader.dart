@@ -30,9 +30,12 @@ class MyPageHeader extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildRoundTextButton(myPageData.badge1, FontAwesomeIcons.solidHeart),
-                _buildRoundTextButton(myPageData.badge2, FontAwesomeIcons.solidHeart),
-                _buildRoundTextButton(myPageData.badge3, FontAwesomeIcons.solidHeart),
+                _buildRoundTextButton(
+                    myPageData.badge1, FontAwesomeIcons.solidHeart),
+                _buildRoundTextButton(
+                    myPageData.badge2, FontAwesomeIcons.solidHeart),
+                _buildRoundTextButton(
+                    myPageData.badge3, FontAwesomeIcons.solidHeart),
               ],
             )
           ],
@@ -80,14 +83,45 @@ class MyPageHeader extends StatelessWidget {
           children: [
             Text.rich(
               TextSpan(children: [
-                TextSpan(text: myPageData.level, style: TextStyle(fontFamily: 'Cafe24Ohsquare', fontSize: 10,),),
-                TextSpan(text: myPageData.levelNum.toString(), style: TextStyle(fontFamily: 'Cafe24Ohsquare', fontSize: 20,),),
+                TextSpan(
+                  text: myPageData.level,
+                  style: TextStyle(
+                    fontFamily: 'Cafe24Ohsquare',
+                    fontSize: 10,
+                  ),
+                ),
+                TextSpan(
+                  text: myPageData.levelNum.toString(),
+                  style: TextStyle(
+                    fontFamily: 'Cafe24Ohsquare',
+                    fontSize: 20,
+                  ),
+                ),
               ]),
             ),
             SizedBox(height: 5),
             Text(
               myPageData.name,
-              style: TextStyle(fontFamily: 'Cafe24Ohsquare', fontSize: 26,),
+              style: TextStyle(
+                fontFamily: 'Cafe24Ohsquare',
+                fontSize: 26,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(width: 8,),
+        Column(
+        mainAxisAlignment:MainAxisAlignment.end,
+          children: [
+            SizedBox(height: 30,),
+            SizedBox(
+                child: Text(
+                    "#"+myPageData.secondId.toString(),
+                style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.grey,
+                ),),
+
             ),
           ],
         )

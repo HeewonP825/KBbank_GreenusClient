@@ -6,7 +6,7 @@ class MissionInfo {
   final String descriptionImgUrl;
   final String descriptionComment1;
   final String descriptionComment2;
-
+  final String goal;
 
   MissionInfo({
     required this.missionId,
@@ -14,6 +14,7 @@ class MissionInfo {
     required this.descriptionImgUrl,
     required this.descriptionComment1,
     required this.descriptionComment2,
+    required this.goal,
   });
 }
 
@@ -40,6 +41,7 @@ Future<List<MissionInfo>> receiveMissionInfo() async {
     missionList.add(MissionInfo(
       missionId:data[i]['missionId'],
       missionName: data[i]['missionName'],
+      goal: data[i]['goal'],
       descriptionImgUrl: data[i]['descriptionImgUrl'],
       descriptionComment1: data[i]['descriptionComment1'],
       descriptionComment2: data[i]['descriptionComment2'],

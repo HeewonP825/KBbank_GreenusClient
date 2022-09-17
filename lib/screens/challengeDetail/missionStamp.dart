@@ -88,7 +88,7 @@ class _MissionStampWidgetState extends State<MissionStampWidget> {
               child: Calendar(widget.ingMissionData.groupId),
             ),
           ),
-          GestureDetector(
+          widget.ingMissionData.isGoing? GestureDetector(
             onTap: () {
               print("인증하기 페이지로 이동`");
               Navigator.push(
@@ -133,7 +133,7 @@ class _MissionStampWidgetState extends State<MissionStampWidget> {
                     ),
                   ],
                 )),
-          )
+          ): SizedBox()
         ]),
         floatingActionButton: FloatingActionButton(
           child: (Icon(Icons.keyboard_return)),

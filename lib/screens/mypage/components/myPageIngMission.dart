@@ -57,6 +57,7 @@ class MyPageIngMission extends StatelessWidget {
                 friendProfileList: friendProfileList ?? [],
                 backgroundImage: ingMissionData?.backgroundImage ?? '',
                 startDate: ingMissionData?.startDate ?? "지구가 태어날대부터 시작함",
+                isGoing: true,
               ),
             );
           },

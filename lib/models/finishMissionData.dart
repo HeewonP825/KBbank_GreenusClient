@@ -10,6 +10,7 @@ class FinishMissionData {
   final String startDate;
   final String finishDate;
   final List<FriendProfile> friendProfileList;
+  final bool isGoing;
 
   FinishMissionData({
     required this.groupId,
@@ -18,6 +19,7 @@ class FinishMissionData {
     required this.startDate,
     required this.finishDate,
     required this.friendProfileList,
+    required this.isGoing,
   });
 }
 
@@ -110,6 +112,7 @@ Future<List<FinishMissionData>> receiveFinishMissionData() async {
       startDate: data[i]['startDate'],
       finishDate:data[i]['endDate'],
       friendProfileList: friendProfileList,
+      isGoing: false,
     ));
   }
 

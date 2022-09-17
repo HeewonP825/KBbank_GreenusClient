@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:kbbank_practice/models/missionInfo.dart';
 
 typedef IntsCallback(String period,String count);
 
 class MissionCustom extends StatefulWidget {
   final IntsCallback onSonChanged;
-
-  MissionCustom({Key? key, required this.onSonChanged}) : super(key: key);
+  MissionInfo missionInfo;
+  MissionCustom(this.missionInfo, {Key? key, required this.onSonChanged}) : super(key: key);
 
 
 
@@ -30,8 +31,8 @@ class MissionCustomState extends State<MissionCustom> {
         alignment: Alignment.topLeft,
             child: Row(
               children: [
-                Text('6개월 '),
-                Text(' 동안 '),
+                // Text('6개월 '),
+                // Text(' 동안 '),
                 // ElevatedButton(
                 //   child: Text('$n'),
                 //   onPressed: () {
@@ -109,7 +110,7 @@ class MissionCustomState extends State<MissionCustom> {
                     widget.onSonChanged(n,m);
                   },
                 ),
-                Text("자전거로 출퇴근 하기"),
+                Text(widget.missionInfo.goal),
               ],
             ),
     );
