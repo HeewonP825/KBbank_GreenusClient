@@ -3,8 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+typedef void onClick(File file);
 class getImageWidget extends StatefulWidget {
-  getImageWidget({Key? key}) : super(key: key);
+  final onClick pickImage;
+
+  getImageWidget({Key? key,required this.pickImage}) : super(key: key);
 
   @override
   State<getImageWidget> createState() => _getImageWidgetState();
@@ -21,6 +24,7 @@ class _getImageWidgetState extends State<getImageWidget> {
 
     setState(() {
       _image = File(image!.path);
+      widget.pickImage(_image!);
     });
   }
 

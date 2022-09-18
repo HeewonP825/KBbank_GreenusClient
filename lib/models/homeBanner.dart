@@ -75,7 +75,7 @@ Future<List<HomeBanner>> receiveHomeBannerList() async {
 
   for (int i = 0; i < homeBanner.length; i++) {
     homeBannerList.add(HomeBanner(
-      bannerImage: homeBanner[i]['category']==0? "assets/images/mission.png":"assets/images/mission1.png",
+      bannerImage: homeBanner[i]['category']==0? "assets/images/banner.png":"assets/images/banner1.png",
       bannerTitle: homeBanner[i]['bannerTitle'],
       eventTitle: homeBanner[i]['eventTitle'],
       eventContent:homeBanner[i]['eventContent'],

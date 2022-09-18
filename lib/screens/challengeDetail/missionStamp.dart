@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kbbank_practice/models/ingMissionData.dart';
@@ -89,11 +90,13 @@ class _MissionStampWidgetState extends State<MissionStampWidget> {
             ),
           ),
           widget.ingMissionData.isGoing? GestureDetector(
-            onTap: () {
+            onTap: () async{
               print("인증하기 페이지로 이동`");
+              int confirmationId=await postFeed(1, widget.ingMissionData.groupId); //todo 고쳐야함.
+              print(confirmationId);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DoCertify(widget.ingMissionData)),
+                MaterialPageRoute(builder: (context) => DoCertify(widget.ingMissionData,confirmationId)),
               );
             },
             child: Container(
@@ -146,4 +149,23 @@ class _MissionStampWidgetState extends State<MissionStampWidget> {
           },
         ));
   }
+}
+
+Future<int> postFeed(int userId,int groupId) async {
+  // var userId = 1; //TODO 바꿔야함.
+
+  var options = BaseOptions(
+    baseUrl: 'https://dev.uksfirstdomain.shop',
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+  );
+  Dio dio = Dio(options);
+  Response response =
+  await dio.post('/app/group/missionConfirmation', data: {
+    "userId":userId,
+    "groupId": groupId,
+  });
+
+  print(response);
+  return response.data['result']['confirmationId'];
 }

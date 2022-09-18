@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kbbank_practice/kakao_login.dart';
+import 'package:kbbank_practice/models/main_view_model.dart';
 import 'package:kbbank_practice/theme.dart';
 import '../../constants.dart';
 import '../mainScreens.dart';
@@ -8,6 +10,7 @@ import '../components/ImageContainer.dart';
 
 class SplashScreen extends StatelessWidget {
   static String routeName = "/splash";
+  final viewModel=MainViewModel(KakaoLogin());
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,11 @@ class SplashScreen extends StatelessWidget {
                           fit: BoxFit.cover),
                     ),
                   ),
-                  onTap: () {
+                  onTap: () async{
+                    await viewModel.login();
+                    print("model!!!");
+                    print(viewModel.user?.id);
+                    print(viewModel.user?.properties);
                     _completeSplash(context, MainScreens());
                   },
                 ),
@@ -49,7 +56,8 @@ class SplashScreen extends StatelessWidget {
   //     value: value,
   //   );
   // }
-  void _completeSplash(BuildContext context, Widget widget) {
+  void _completeSplash(BuildContext context, Widget widget){
+
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (BuildContext context) => widget));
   }

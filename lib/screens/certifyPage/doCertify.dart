@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kbbank_practice/screens/certifyPage/getImageWidget.dart';
 import 'package:kbbank_practice/screens/challengeDetail/missionFeed.dart';
@@ -15,7 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
-import 'package:http/http.dart' as http;
 
 
 import '../../../../theme.dart';
@@ -23,14 +23,15 @@ import '../../../../theme.dart';
 class DoCertify extends StatefulWidget {
 
   final IngMissionData ingMissionData;
-
-  const DoCertify(this.ingMissionData);
+  final int confirmationId;
+  const DoCertify(this.ingMissionData,this.confirmationId,{Key? key,}):super(key:key);
 
   @override
   DoCertifyState createState() => DoCertifyState();
 }
 
 class DoCertifyState extends State<DoCertify> {
+  List<File> pickedImage=[];
 
 
   final ButtonStyle RoundButtonStyle = TextButton.styleFrom(
@@ -44,6 +45,12 @@ class DoCertifyState extends State<DoCertify> {
       borderRadius: BorderRadius.circular(27.5),
     ),
   );
+  void updateFileList(File file){
+    setState(() {
+      pickedImage.add(file);
+      print(pickedImage);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,17 +75,14 @@ class DoCertifyState extends State<DoCertify> {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          SizedBox(height: 5,),
           Flexible(
-            child: Container(
-              margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-              //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-              height: 30,
-              child: Flexible(
-                flex: 5,
-                child: Row(
+            flex: 1,
+            child: Row(
                     //mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    SizedBox(width: 15,),
                     Text(
                       "인증하기",
                       style: TextStyle(
@@ -91,7 +95,7 @@ class DoCertifyState extends State<DoCertify> {
                       size: 25,
                     ),
                     Container(
-                        margin: EdgeInsets.fromLTRB(160, 5, 0, 10),
+                        margin: EdgeInsets.fromLTRB(160, 15, 0, 10),
                         alignment: Alignment.topRight,
                         child: Text(
                           "2022-09-12",
@@ -102,45 +106,50 @@ class DoCertifyState extends State<DoCertify> {
                       ),
                     ],
                   ),
-                ),
-              ),
           ),
           Container(
               width: 400,
               child: Divider(color: Color(0xFFE8E8E8), thickness: 1.0)),
+          SizedBox(height: 15,),
           Flexible(
-            child: Container(
-              margin: EdgeInsets.fromLTRB(15, 15, 15, 0),
-              //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-              child: Flexible(
-                flex: 5,
-                child: Row(
+            flex: 7,
+            child: Row(
                 //mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    getImageWidget(),
-                    getImageWidget(),
+                    SizedBox(width: 15,),
+                    getImageWidget(
+                        pickImage:(File file){
+                          updateFileList(file);
+                        }
+                    ),
+                    getImageWidget(
+                        pickImage:(File file){
+                          updateFileList(file);
+                        }
+                    ),
                   ],
                 ),
-              ),
-            ),
           ),
           Flexible(
-            child: Container(
-              margin: EdgeInsets.fromLTRB(15, 3, 15, 15),
-              //padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-              child: Flexible(
-                flex: 5,
-                child: Row(
+            flex: 7,
+            child: Row(
                   //mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    getImageWidget(),
-                    getImageWidget(),
+                    SizedBox(width: 15,),
+                    getImageWidget(
+                        pickImage:(File file){
+                          updateFileList(file);
+                        }
+                    ),
+                    getImageWidget(
+                        pickImage:(File file){
+                          updateFileList(file);
+                        }
+                    ),
                   ],
                 ),
-              ),
-            ),
           ),
           Container(
               width: 400,
@@ -165,7 +174,11 @@ class DoCertifyState extends State<DoCertify> {
                         actions: <Widget>[
                           FlatButton(
                             child: Text('네'),
-                            onPressed: () {
+                            onPressed: () async{
+                              for(int i=0; i<pickedImage.length; i++){
+                                await uploadImage(pickedImage[i],widget.ingMissionData.groupId,widget.confirmationId);
+                              }
+
                               Navigator.of(context).pop();
                               Navigator.pop(
                                 context,
@@ -195,21 +208,44 @@ class DoCertifyState extends State<DoCertify> {
   }
 }
 
-Upload(File imageFile) async {
-  var stream = new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
-  var length = await imageFile.length();
+// Upload(File imageFile,int groupId,int confirmationId) async {
+//   var stream = new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+//   var length = await imageFile.length();
+//   final queryParameters={
+//     "directory":groupId.toString(),
+//   };
+//   Map data = {"confirmationId": confirmationId};
+//
+//   var body = json.encode(data);
+//
+//   var uri = Uri.https("localhost:3001","/app/group/missionConfirmation/images",queryParameters);
+//
+//   var request = new http.MultipartRequest("POST", uri);
+//   var multipartFile = new http.MultipartFile('file', stream, length,
+//       filename: basename(imageFile.path));
+//   //contentType: new MediaType('image', 'png'));
+//
+//   request.files.add(multipartFile);
+//   var response = await request.send();
+//   print(response.statusCode);
+//   response.stream.transform(utf8.decoder).listen((value) {
+//     print(value);
+//   });
+// }
 
-  var uri = Uri.parse("https://dev.uksfirstdomain.shop/app/uploadFiles");
-
-  var request = new http.MultipartRequest("POST", uri);
-  var multipartFile = new http.MultipartFile('file', stream, length,
-      filename: basename(imageFile.path));
-  //contentType: new MediaType('image', 'png'));
-
-  request.files.add(multipartFile);
-  var response = await request.send();
-  print(response.statusCode);
-  response.stream.transform(utf8.decoder).listen((value) {
-    print(value);
+uploadImage(File imageFile,int groupId,int confirmationId) async {
+  String fileName = imageFile.path.split('/').last;
+  FormData formData = FormData.fromMap({
+    "image":
+    await MultipartFile.fromFile(imageFile.path, filename:fileName),
+    "confirmationId":confirmationId,
   });
+  var options = BaseOptions(
+    baseUrl: 'http://10.0.2.2:3002',
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+  );
+  Dio dio=Dio(options);
+  Response response = await dio.post("/app/group/missionConfirmation/images", data: formData,);
+
 }
