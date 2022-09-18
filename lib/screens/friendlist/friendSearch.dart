@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:kbbank_practice/models/friendList.dart';
 import 'package:kbbank_practice/screens/friendlist/components/friendContainer.dart';
 import 'package:kbbank_practice/screens/friendlist/components/searchFriendContainer.dart';
@@ -12,6 +13,8 @@ import 'friendListScreen.dart';
 class FriendSearch extends StatefulWidget {
   final List<String> list = List.generate(10, (index) => "$index");
 
+  FriendSearch({Key? key}) : super(key: key);
+
   @override
   _FriendSearchState createState() => _FriendSearchState();
 }
@@ -20,14 +23,15 @@ class _FriendSearchState extends State<FriendSearch> {
   late Future<List<FriendList>> futureFriends;
   late String searchValue;
 
-  void initState() {
+  void initState(){
     super.initState();
-    futureFriends=receiveSearchResult(1,"");
+    futureFriends=receiveSearchResult("");
   }
+
 
   void updateSearchResult(){
     setState(() {
-      futureFriends=receiveSearchResult(1,searchValue);
+      futureFriends=receiveSearchResult(searchValue);
     });
   }
 
@@ -55,7 +59,7 @@ class _FriendSearchState extends State<FriendSearch> {
           onSubmitted: (value) {
             print("Submit~!!");
             setState((){
-              futureFriends=receiveSearchResult(1,value); // TODO 바꿔야함.
+              futureFriends=receiveSearchResult(value); // TODO 바꿔야함.
               searchValue=value;
             });
 
@@ -94,13 +98,20 @@ class _FriendSearchState extends State<FriendSearch> {
     );
   }
 }
+Future<AccessTokenInfo> receiveId () async{
+  AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
 
-Future<List<FriendList>> receiveSearchResult(int userId,String searchString) async {
+  return tokenInfo;
+}
+
+Future<List<FriendList>> receiveSearchResult(String searchString) async {
+  AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
+
   var options = BaseOptions(
     baseUrl: 'https://dev.uksfirstdomain.shop',
   );
   Dio dio = Dio(options);
-  Response resp = await dio.get('/app/friends/${searchString}/users/${userId}');
+  Response resp = await dio.get('/app/friends/${searchString}/users/${tokenInfo.id}');
 
   print(resp);
   var data = resp.data;

@@ -33,9 +33,6 @@ class SplashScreen extends StatelessWidget {
                   ),
                   onTap: () async{
                     await viewModel.login();
-                    print("model!!!");
-                    print(viewModel.user?.id);
-                    print(viewModel.user?.properties);
                     _completeSplash(context, MainScreens());
                   },
                 ),

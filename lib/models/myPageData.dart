@@ -1,6 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
+
 class MyPageData {
   final String name;
   final int secondId;
@@ -25,10 +27,10 @@ class MyPageData {
 }
 
 Future<MyPageData> receiveMyPageData() async {
-  var userId = 12;
+  AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
 
   var jsonString = await http.get(
-      Uri.parse('https://dev.uksfirstdomain.shop/app/users/${userId}'));
+      Uri.parse('https://dev.uksfirstdomain.shop/app/users/${tokenInfo.id}'));
   var resp = jsonDecode(jsonString.body);
   print("receive MyPageData 실행");
   print(resp);

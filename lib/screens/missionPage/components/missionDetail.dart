@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:kbbank_practice/models/friendList.dart';
 import 'package:kbbank_practice/models/missionInfo.dart';
 import 'package:kbbank_practice/screens/challengeList/components/ingMission.dart';
@@ -315,7 +316,8 @@ class MissionDetailState extends State<MissionDetail> {
 }
 
 Future<int> postMyMission(int missionId) async {
-  var userId = 1;
+  // var userId = 1;
+  AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
 
   var options = BaseOptions(
     baseUrl: 'https://dev.uksfirstdomain.shop',
@@ -323,7 +325,9 @@ Future<int> postMyMission(int missionId) async {
     receiveTimeout: 3000,
   );
   Dio dio = Dio(options);
-  Response response = await dio.post('/app/MyMission/${missionId}');
+  Response response = await dio.post('/app/MyMission/${missionId}',data: {
+    "userId":tokenInfo.id
+  });
 
   print(response.data['result']['groupId']);
   int groupId = response.data['result']['groupId'];

@@ -36,7 +36,7 @@ class MainViewModel{
       print("response!!!!@#!@#!@!@@!");
       print(response.data['code']);
       print(response.data);
-      if(response.data['code']==2001){
+      if(response.data['code']==2000){
         print("아직 회원이 아닙니다.");
         response=
         await dio.post('/app/users'
@@ -46,7 +46,7 @@ class MainViewModel{
               'profileImgUrl':user?.properties?['profile_image']
             });
         print("node서버에 user정보 삽입 요청후 반환값");
-      }else if(response.data['code']==2002){
+      }else if(response.data['code']==200){
         print("이미 회원입니다.");
       }
 

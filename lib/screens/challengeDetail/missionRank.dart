@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:kbbank_practice/models/FriendProfile.dart';
 import 'package:kbbank_practice/models/ingMissionData.dart';
 import 'package:kbbank_practice/models/missionRankUserInfo.dart';
@@ -173,7 +174,8 @@ class _MissionRankState extends State<MissionRank> {
 
 Future<List<MissionRankUserInfo>> receiveMissionRankUserInfo(groupId) async {
   //Todo userId수정 필요
-  var userId = 1;
+  // var userId = 1;
+  AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
 
   var options = BaseOptions(
     baseUrl: 'https://dev.uksfirstdomain.shop',
@@ -182,9 +184,9 @@ Future<List<MissionRankUserInfo>> receiveMissionRankUserInfo(groupId) async {
   );
   Dio dio = Dio(options);
   Response response = await dio
-      .get('/app/MyMissionMainPage/users/${userId}/groupId/${groupId}');
+      .get('/app/MyMissionMainPage/users/${tokenInfo.id}/groupId/${groupId}');
 
-  print("/app/MyMissionMainPage/users/${userId}/groupId/${groupId}");
+  print("/app/MyMissionMainPage/users/${tokenInfo.id}/groupId/${groupId}");
   print("미션 랭크를 출력합시다!!! ");
   print("여러분~?");
   print("당연히~ 제가~ 1등이겠죠?");

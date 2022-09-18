@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 class Event {
   final String title;
@@ -25,7 +26,8 @@ class Event {
 Future<Map<DateTime,List<Event>>> receiveEventSource(groupId) async{
   Map<DateTime,List<Event>> eventSource={};
 
-  var userId = 1;
+  // var userId = 1;
+  AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
 
   var options = BaseOptions(
     baseUrl: 'https://dev.uksfirstdomain.shop',
@@ -33,9 +35,9 @@ Future<Map<DateTime,List<Event>>> receiveEventSource(groupId) async{
     receiveTimeout: 3000,
   );
   Dio dio = Dio(options);
-  Response response = await dio.get('/app/MyMissionMainPage/users/${userId}/groupId/${groupId}');
+  Response response = await dio.get('/app/MyMissionMainPage/users/${tokenInfo.id}/groupId/${groupId}');
 
-  print("/app/MyMissionMainPage/users/${userId}/groupId/${groupId}");
+  // print("/app/MyMissionMainPage/users/${userId}/groupId/${groupId}");
   print("stamp 출력");
   print(response.data["result"]);
   print(response.data["result"]['stampDays']);

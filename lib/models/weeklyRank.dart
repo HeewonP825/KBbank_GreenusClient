@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 class WeeklyRank {
   final String imageUrl;
   final String name;
@@ -57,7 +58,11 @@ class WeeklyRank {
 Future<List<WeeklyRank>> receiveWeeklyRankList() async {
   print("receive Weekly Rank List run");
   //Todo userId수정 필요
-  var userId = 1;
+  // var userId = 1;
+  AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
+  print('토큰 정보 보기 성공'
+      '\n회원정보: ${tokenInfo.id}'
+      '\n만료시간: ${tokenInfo.expiresIn} 초');
 
   var options = BaseOptions(
     baseUrl: 'https://dev.uksfirstdomain.shop',
@@ -65,7 +70,7 @@ Future<List<WeeklyRank>> receiveWeeklyRankList() async {
     receiveTimeout: 3000,
   );
   Dio dio = Dio(options);
-  Response response = await dio.get('/app/friends/rank/${userId}');
+  Response response = await dio.get('/app/friends/rank/${tokenInfo.id}');
 
   print("WeeklyRank Response");
   print(1.toString()+"동");

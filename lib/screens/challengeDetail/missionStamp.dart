@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:kbbank_practice/models/ingMissionData.dart';
 import 'package:kbbank_practice/models/missionRankUserInfo.dart';
 import 'package:kbbank_practice/screens/challengeDetail/calendar.dart';
@@ -153,7 +154,7 @@ class _MissionStampWidgetState extends State<MissionStampWidget> {
 
 Future<int> postFeed(int userId,int groupId) async {
   // var userId = 1; //TODO 바꿔야함.
-
+  AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
   var options = BaseOptions(
     baseUrl: 'https://dev.uksfirstdomain.shop',
     connectTimeout: 5000,
@@ -162,7 +163,7 @@ Future<int> postFeed(int userId,int groupId) async {
   Dio dio = Dio(options);
   Response response =
   await dio.post('/app/group/missionConfirmation', data: {
-    "userId":userId,
+    "userId":tokenInfo.id,
     "groupId": groupId,
   });
 

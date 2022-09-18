@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import '../../../../models/homeBanner.dart';
 import 'boxBorderText.dart';
 import 'numberIndicator.dart';
@@ -18,6 +19,7 @@ class _HomeRecommendMissionState extends State<HomeRecommendMission> {
   void initState() {
     super.initState();
     futureHomeBannerList=receiveHomeBannerList();
+
   }
 
   @override

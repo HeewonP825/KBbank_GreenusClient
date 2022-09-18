@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 import 'FriendProfile.dart';
 
@@ -74,7 +75,8 @@ class FinishMissionData {
 
 Future<List<FinishMissionData>> receiveFinishMissionData() async {
   //Todo userId수정 필요
-  var userId = 1;
+  // var userId = 1;
+  AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
 
   var options = BaseOptions(
     baseUrl: 'https://dev.uksfirstdomain.shop',
@@ -82,7 +84,7 @@ Future<List<FinishMissionData>> receiveFinishMissionData() async {
     receiveTimeout: 3000,
   );
   Dio dio = Dio(options);
-  Response response= await dio.get('/app/MyMissionLists/${userId}', queryParameters: {
+  Response response= await dio.get('/app/MyMissionLists/${tokenInfo.id}', queryParameters: {
     'status': 'completed'
   });
 
@@ -94,9 +96,6 @@ Future<List<FinishMissionData>> receiveFinishMissionData() async {
   List<FinishMissionData> ingMissionLists=[];
   List<FriendProfile> friendProfileList=[];
 
-  print("friends");
-  print(data[0]['friends'].runtimeType);
-  print(data[0]['friends'][0]['profileImgUrl']);
 
   for(int i=0; i<data.length; i++){
     for(int j=0; j<data[i]['friends'].length; j++){
@@ -116,7 +115,6 @@ Future<List<FinishMissionData>> receiveFinishMissionData() async {
     ));
   }
 
-  print(ingMissionLists[0].finishDate);
   return ingMissionLists;
 }
 

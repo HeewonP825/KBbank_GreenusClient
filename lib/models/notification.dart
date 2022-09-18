@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 class NotificationMessage {
 
@@ -17,15 +18,14 @@ class NotificationMessage {
 
 Future<List<NotificationMessage>> receiveNotificationLists() async {
   //Todo userId수정 필요
-  var userId = 1;
-
+  AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
   var options = BaseOptions(
     baseUrl: 'https://dev.uksfirstdomain.shop',
     connectTimeout: 5000,
     receiveTimeout: 3000,
   );
   Dio dio = Dio(options);
-  Response response= await dio.get('/app/users/${userId}/notifications');
+  Response response= await dio.get('/app/users/${tokenInfo.id}/notifications');
 
   print(response);
   print(response.data);

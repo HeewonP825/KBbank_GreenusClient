@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:kbbank_practice/screens/missionPage/components/missionFriendContainer.dart';
 
 import '../../../../theme.dart';
@@ -14,10 +15,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 Future<List<FriendList>> receiveFriendsList() async {
-  var userId = 1;
+  // var userId = 1;
+  AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
 
   var jsonString = await http.get(
-      Uri.parse('https://dev.uksfirstdomain.shop/app/users/${userId}/friends'));
+      Uri.parse('https://dev.uksfirstdomain.shop/app/users/${tokenInfo.id}/friends'));
   var resp = jsonDecode(jsonString.body);
   print("친구야~!~!@~!@~!@~!놀자~!@~!");
   print(resp['result']);

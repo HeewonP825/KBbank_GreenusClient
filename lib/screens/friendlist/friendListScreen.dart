@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import '../../../models/friendList.dart';
 import 'components/friendContainer.dart';
 import '../components/ImageContainer.dart';
@@ -11,7 +12,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 Future<List<FriendList>> receiveFriendsList() async {
-  var userId = 1;
+  // var userId = 1;
+  AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
 
   print("여기서 문제임?");
 
@@ -21,7 +23,7 @@ Future<List<FriendList>> receiveFriendsList() async {
     receiveTimeout: 3000,
   );
   Dio dio = Dio(options);
-  Response resp = await dio.get('/app/users/${userId}/friends');
+  Response resp = await dio.get('/app/users/${tokenInfo.id}/friends');
 
 
   print("친구야~!~!@~!@~!@~!놀자~!@~!");

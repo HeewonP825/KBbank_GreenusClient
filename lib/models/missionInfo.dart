@@ -20,7 +20,7 @@ class MissionInfo {
 
 Future<List<MissionInfo>> receiveMissionInfo() async {
   //Todo userId수정 필요
-  var userId = 1;
+  // var userId = 1;
 
   var options = BaseOptions(
     baseUrl: 'https://dev.uksfirstdomain.shop',

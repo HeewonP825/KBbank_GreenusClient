@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 import 'FriendProfile.dart';
 
@@ -26,15 +27,15 @@ class IngMissionData {
 
 Future<List<IngMissionData>> receiveIngMissionData() async {
   //Todo userId수정 필요
-  var userId = 1;
-
+  // var userId = 1;
+  AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
   var options = BaseOptions(
     baseUrl: 'https://dev.uksfirstdomain.shop',
     connectTimeout: 5000,
     receiveTimeout: 3000,
   );
   Dio dio = Dio(options);
-  Response response= await dio.get('/app/MyMissionLists/${userId}', queryParameters: {
+  Response response= await dio.get('/app/MyMissionLists/${tokenInfo.id}', queryParameters: {
     'status': 'onGoing'
   });
 
@@ -47,7 +48,7 @@ Future<List<IngMissionData>> receiveIngMissionData() async {
   List<FriendProfile> friendProfileList=[];
 
   print("friends");
-  print(data[0]['friends'].runtimeType);
+  
 
   for(int i=0; i<data.length; i++){
     friendProfileList=[];
