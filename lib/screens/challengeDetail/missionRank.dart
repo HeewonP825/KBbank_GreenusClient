@@ -179,8 +179,6 @@ Future<List<MissionRankUserInfo>> receiveMissionRankUserInfo(groupId) async {
 
   var options = BaseOptions(
     baseUrl: 'https://dev.uksfirstdomain.shop',
-    connectTimeout: 5000,
-    receiveTimeout: 3000,
   );
   Dio dio = Dio(options);
   Response response = await dio

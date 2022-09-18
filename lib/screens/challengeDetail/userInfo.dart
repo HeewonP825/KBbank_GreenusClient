@@ -56,7 +56,7 @@ class UserInfoWidget extends StatelessWidget {
                 image: new DecorationImage(
                   fit: BoxFit.fill,
                   image: new Image.network(
-                          "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
+                          rankUserInfo.profileImgUrl)
                       .image,
                 ),
               ),
