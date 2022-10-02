@@ -1,16 +1,71 @@
-# kbbank_practice
+![](https://velog.velcdn.com/images/alsdnrdl01/post/c80c2fbe-b5ca-42b8-93d9-62a77ed5791c/image.png)
 
-A new Flutter project.
 
-## Getting Started
+## 목차
+[ 1. 프로젝트 소개] (#프로젝트-소개)
+[ 2. 기술 스택] (#기술-스택)
+[ 3. 구현 기능] (#구현-기능)
+[ 4. 배운점 ] (#배운점)
+[ 5. 아쉬운점 & 보완 계획](#아쉬운점-&-보완-계획)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## 프로젝트 소개
+위 프로젝트는 ** 국민은행 소프트웨어 경진대회 출품작 ** 입니다.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+** "대부분 사람들은 환경 문제의 심각성을 인지하고 있지만 환경 보호 활동을 꾸준히 실천하는 사람들은 많지 않고 실천조차 하지 않는 사람도 많다" ** 라는 문제점을 인식하고 이를 해결하기위한 프로젝트를 기획하였습니다.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+본 앱은 사용자들이 쉽고 작은 여러 미션을 친구와 함께 수행할 수 있는 기능을 제공함으로써 친환경 보호를 필수적으로 실천하는 ** '필환경' 인구 수 증가 ** 를 목표로 하고 있습니다.
+
+
+또한 본 팀 [그린메이트] 에선 이를 초·중 교육 수
+업에서 활용될 수 있을 거라 기대하고있습니다.
+
+MAIN FLOW: 선생님이 그룹을 만들어 학생들을 초대하고 미션 수행 감독
+아이들의 환경에 대한 관심도 및 참여도를 증가시킬 수 있을거라 기대합니다.
+추후 교육용 UI를 따로 제작하여 업데이트할 예정입니다.
+
+서버 Repository주소: https://github.com/J-MU/ESGCompetitionProject_server
+
+## 기술 스택
+![](https://velog.velcdn.com/images/alsdnrdl01/post/d3152ad0-9de5-496d-b3d5-baf59d215aa5/image.png)
+
+
+
+## 구현 기능
+
+* 친구를 초대해 미션을 함께 진행
+* 좋아요 기능 및 알림 기능을 통해 서로의 미션 참여 독려
+* 랭킹 제시를 통한 경쟁 심리 유발
+* 인증을 통해 미션 수행여부 공유
+
+<img src="https://velog.velcdn.com/images/alsdnrdl01/post/b62c89d2-a157-4213-a812-0585b679a8c2/image.png"  width="70%" align:center/>
+[좌측] 이미지는 유저를 검색하여 친구요청을 보내는 화면이다.
+       유저의 이름 또는 유저에게 주어진 고유 번호를 통해 검색 할 수 있다.
+       <br>
+[우측] 인증 게시글에 좋아요를 누르거나 본인이 참여한 미션에 누군가가 인증을 올린다면 알림이 들어온다.
+<img src="https://velog.velcdn.com/images/alsdnrdl01/post/b235e133-ad20-41ca-ac96-7ac3ded266da/image.png"  width="70%" align:center/>
+[좌측] 미션에서 친구들과 본인의 랭킹을 알 수 있다. 이를 통해 경쟁 심리를 유발한다.</br>
+[우측] 미션에 대해 인증사진을 올릴 수 있으며 친구들은 이를 확인하고 좋아요를 눌러 독려할 수 있다.
+
+
+## 배운점
+J-MU: 기존에 백엔드를 중심으로 공부하다가 처음으로 프론트측 공부를 하며 프로젝트에 참여를 했다.
+	  프론트에서 API호출을 하며 데이터를 주고받으면서 프론트 입장에서 바라보는 눈이 생긴거 같다.
+      이 프로젝트를 진행한 이후에 다시 API작성을 하더라도 프론트를 한번도 경험해보지 못 했을 때       보다 개선되었음을 스스로도 느끼고 있다.
+      
+
+
+
+
+
+## 아쉬운점
+J-MU: 위 프로젝트는 version1은 공모전 제출까지 채 3주도 안되는 기간동안 진행된 프로젝트이다.
+      시간적인 여유가 너무 없어 좀 더 개선할수 있었던 기능들과 UI들이 많았으나 1차 개발은 원했던       걸 모두 구현하진 못하고 종료되었다. 이후 천천히 아쉬웠던 부분들을 보완해 나가 실제 배포 까       지 해보거나 다른 환경 관련 공모전에 출품해보려고 한다.
+      
+      
+## 보완 하고 싶은 점
+
+1. FCM을 이용한 유저에게 알림 전달.
+2. 인증하는 부분 UI개선
+3. 학교에서 수업에 활용하기 용이 하도록 선생님용 기능과 UI제공
+4. 유저를 복돋아 줄 수 있는 여러 알림들 추가 구현
